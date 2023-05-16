@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="25dp"
+    tools:context=".ui.auth.VerifikasiActivity">
+
+    <TextView
+        android:id="@+id/tv_otp_verification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="@string/otp_verification"
+        android:textSize="25sp"
+        android:textColor="@color/green_moss"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_otp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/picture_otp"
+        android:src="@drawable/pict_otp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_otp_verification"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_send_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/the_verification_code_has_been_sent_via_email"
+        android:gravity="center"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintTop_toBottomOf="@+id/iv_otp" />
+
+    <EditText
+        android:id="@+id/et_digit_satu"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="40dp"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textSize="30sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textAlignment="center"
+        android:background="@drawable/bg_input_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_send_email"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck"/>
+
+    <EditText
+        android:id="@+id/et_digit_dua"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_input_text"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textSize="30sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/et_digit_satu"
+        app:layout_constraintTop_toBottomOf="@+id/tv_send_email"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
+
+
+    <EditText
+        android:id="@+id/et_digit_tiga"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_input_text"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textSize="30sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/et_digit_dua"
+        app:layout_constraintTop_toBottomOf="@+id/tv_send_email"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/et_digit_empat"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/bg_input_text"
+        android:fontFamily="@font/poppins_medium"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/et_digit_tiga"
+        app:layout_constraintTop_toBottomOf="@+id/tv_send_email"
+        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
