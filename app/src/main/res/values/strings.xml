@@ -3,4 +3,23 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="sign_up_now">Sign up now!</string>
+    <string name="discover_the_power_of_herbal_wellness">Discover the power of herbal wellness</string>
+    <string name="logo_herbify">logo herbify</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="button_register">button register</string>
+    <string name="register">Register</string>
+
+    <string name="already_have_account_login">Already have account? <font color="#687316">login</font></string>
+    <string name="picture_herbal">picture herbal</string>
+    <string name="welcome_back">Welcome back!</string>
+    <string name="dive_into_the_realm_of_herbal_wellness">Dive into the realm of herbal wellness</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_account_register">Don\'t have account? <font color="#687316">register</font></string>
+    <string name="picture_otp">picture OTP</string>
+    <string name="the_verification_code_has_been_sent_via_email">The verification code has been sent via email u**r@g****.**m</string>
+    <string name="code">0</string>
+    <string name="otp_verification">OTP Verification</string>
 </resources>
