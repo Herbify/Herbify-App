@@ -1,22 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/pict_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:contentDescription="@string/picture_herbal"
+            android:scaleType="fitXY"
+            android:src="@drawable/dashboard_picture"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_marginTop="-40dp"
+            android:background="@drawable/bg_rounded_40"
+            app:layout_constraintTop_toBottomOf="@id/pict_dashboard"
+            tools:layout_editor_absoluteX="0dp">
+
+            <ImageButton
+                android:id="@+id/btn_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/button_chatbot"
+                android:src="@drawable/scan"
+                app:layout_constraintBottom_toTopOf="@+id/guideHorizontal2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_scan"
+                app:layout_constraintTop_toTopOf="@+id/guideHorizontal1"
+                tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
+
+            <TextView
+                android:id="@+id/tv_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:labelFor="@+id/btn_scan"
+                android:text="@string/chat_herbal"
+                android:textColor="@color/green_moss"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_chat"
+                app:layout_constraintStart_toStartOf="@+id/btn_chat"
+                app:layout_constraintTop_toBottomOf="@+id/btn_chat" />
+
+            <ImageButton
+                android:id="@+id/btn_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/button_scan"
+                android:src="@drawable/scan"
+                app:flow_horizontalAlign="center"
+                app:layout_constraintBottom_toTopOf="@+id/guideHorizontal2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideHorizontal1"
+                tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
+
+            <TextView
+                android:id="@+id/tv_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:labelFor="@+id/btn_scan"
+                android:text="@string/scan"
+                android:textColor="@color/green_moss"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_scan"
+                app:layout_constraintStart_toStartOf="@+id/btn_scan"
+                app:layout_constraintTop_toBottomOf="@+id/btn_scan" />
+
+            <ImageButton
+                android:id="@+id/btn_chat_doc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/button_chatdoc"
+                android:src="@drawable/scan"
+                app:layout_constraintBottom_toTopOf="@+id/guideHorizontal2"
+                app:layout_constraintStart_toEndOf="@+id/btn_scan"
+                app:layout_constraintTop_toTopOf="@+id/guideHorizontal1"
+                tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
+
+            <TextView
+                android:id="@+id/tv_caht_doc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:labelFor="@+id/btn_scan"
+                android:text="@string/herbaldoc"
+                android:textColor="@color/green_moss"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_chat_doc"
+                app:layout_constraintStart_toStartOf="@+id/btn_chat_doc"
+                app:layout_constraintTop_toBottomOf="@+id/btn_chat_doc" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideHorizontal1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.0" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideHorizontal2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.2" />
+
+            <ImageView
+                android:id="@+id/banner_herbal"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginTop="20sp"
+                android:contentDescription="@string/picture_herbal"
+                android:elevation="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/banner_herbal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideHorizontal2"
+                tools:ignore="ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/tv_ingin_ketahui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/yang_mungkin_ingin_anda_ketahui"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/banner_herbal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ingin_ketahui" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>
