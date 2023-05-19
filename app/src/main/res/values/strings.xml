@@ -22,4 +22,11 @@
     <string name="the_verification_code_has_been_sent_via_email">The verification code has been sent via email u**r@g****.**m</string>
     <string name="code">0</string>
     <string name="otp_verification">OTP Verification</string>
+    <string name="button_chatbot">button chatbot</string>
+    <string name="button_scan">button scan</string>
+    <string name="button_chatdoc">button chatdoc</string>
+    <string name="scan">Scan</string>
+    <string name="chat_herbal">Chat Herbal</string>
+    <string name="herbaldoc">HerbalDoc</string>
+    <string name="yang_mungkin_ingin_anda_ketahui">Yang mungkin ingin anda ketahui</string>
 </resources>
