@@ -17,7 +17,7 @@
             android:layout_height="300dp"
             android:contentDescription="@string/picture_herbal"
             android:scaleType="fitXY"
-            android:src="@drawable/dashboard_picture"
+            android:src="@drawable/pict_dashboard"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
                 android:layout_marginEnd="40dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/button_chatbot"
-                android:src="@drawable/scan"
+                android:src="@drawable/chatbot"
                 app:layout_constraintBottom_toTopOf="@+id/guideHorizontal2"
                 app:layout_constraintEnd_toStartOf="@+id/btn_scan"
                 app:layout_constraintTop_toTopOf="@+id/guideHorizontal1"
@@ -156,14 +156,40 @@
                 app:layout_constraintTop_toBottomOf="@+id/banner_herbal" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_herbal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_ingin_ketahui" />
 
+            <TextView
+                android:id="@+id/tv_saran_produk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/produk_yang_mungkin_anda_cari"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_herbal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_produk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_saran_produk" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
