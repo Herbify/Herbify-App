@@ -8,7 +8,7 @@ import com.herbify.herbifyapp.model.Herbal
 
 @Database(
     entities = [Herbal::class],
-    version = 0,
+    version = 1,
     exportSchema = false
 )
 
