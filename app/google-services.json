@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "923583538036",
-    "project_id": "testing-herbify-2ea27",
-    "storage_bucket": "testing-herbify-2ea27.appspot.com"
+    "project_number": "265441557627",
+    "project_id": "herbify-app-47360",
+    "storage_bucket": "herbify-app-47360.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:923583538036:android:4c707ea25fda5fc5288221",
+        "mobilesdk_app_id": "1:265441557627:android:f9713b5a18f85a7b2376de",
         "android_client_info": {
           "package_name": "com.herbify.herbifyapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "923583538036-3j6e3ste3168063db2602uimgk9up4f8.apps.googleusercontent.com",
+          "client_id": "265441557627-jgj1u4ni3mpm7kvossgctg0jsni4m3gd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.herbify.herbifyapp",
+            "certificate_hash": "833ded876b18048c2ed9ed206aa1ac95a4f37e8b"
+          }
+        },
+        {
+          "client_id": "265441557627-pso76a7e1ra6n5et8pdcdb5eakl40o0l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBHRbaEtcGb2QnQquzNXYAmu9CwDUQCaGI"
+          "current_key": "AIzaSyDNyQWKjgFc0aZtjQJ09a00jidPGlNjWHA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "923583538036-3j6e3ste3168063db2602uimgk9up4f8.apps.googleusercontent.com",
+              "client_id": "265441557627-pso76a7e1ra6n5et8pdcdb5eakl40o0l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
