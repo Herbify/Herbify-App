@@ -22,4 +22,24 @@
     <string name="the_verification_code_has_been_sent_via_email">The verification code has been sent via email u**r@g****.**m</string>
     <string name="code">0</string>
     <string name="otp_verification">OTP Verification</string>
+    <string name="button_chatbot">button chatbot</string>
+    <string name="button_scan">button scan</string>
+    <string name="button_chatdoc">button chatdoc</string>
+    <string name="scan">Scan</string>
+    <string name="chat_herbal">Chat Herbal</string>
+    <string name="herbaldoc">HerbalDoc</string>
+    <string name="yang_mungkin_ingin_anda_ketahui">Yang mungkin ingin anda ketahui</string>
+    <string name="ginger">Ginger</string>
+    <string name="produk_yang_mungkin_anda_cari">Produk yang mungkin anda cari</string>
+    <string name="name_doctor">Dr. Lorem Ipsum Dolor Sit</string>
+    <string name="tahun">2 Tahun</string>
+    <string name="harga">Rp50.000</string>
+    <string name="rating">4.9</string>
+    <string name="name_profil">Lorem Ipsumdolor Sit</string>
+    <string name="address">Malang, Jawa Timur</string>
+    <string name="profil">profil</string>
+    <string name="description_post">Kayu manis atau dengan nama ilmiah Cinnamomum ialah jenis pohon penghasil rempah-rempah. di dalam kamus Biologi, Cinnamomum zeylanicum Termasuk ke dalam</string>
+    <string name="favorite_count">100</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
