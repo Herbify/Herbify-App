@@ -17,7 +17,7 @@
         android:id="@+id/tv_sign_up_now"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/sign_up_now"
         android:textColor="@color/green_moss"
@@ -45,7 +45,7 @@
         android:id="@+id/iv_logo_register"
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:contentDescription="@string/picture_herbal"
         android:src="@drawable/pict_auth"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintWidth="350dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo_register">
@@ -92,6 +92,7 @@
             android:maxWidth="40dp"
             android:background="@drawable/bg_input_text"
             android:hint="@string/email"
+            android:autofillHints="emailAddress"
             android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -117,11 +118,36 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/tv_opsi_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/or"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/til_password"
+            app:layout_constraintStart_toStartOf="@+id/til_password"
+            app:layout_constraintTop_toBottomOf="@+id/til_password" />
+
+        <ImageButton
+            android:id="@+id/btn_google"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_google"
+            android:contentDescription="@string/button_login_google"
+            app:layout_constraintEnd_toEndOf="@+id/tv_opsi_login"
+            app:layout_constraintStart_toStartOf="@+id/tv_opsi_login"
+            app:layout_constraintTop_toBottomOf="@+id/tv_opsi_login"
+            tools:ignore="RedundantDescriptionCheck" />
+
     <Button
         android:id="@+id/btn_register"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/poppins_semi_bold"
         android:gravity="center"
         android:background="@drawable/bg_button"
@@ -131,7 +157,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_password" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_google" />
 
         <TextView
             android:id="@+id/tv_login"
@@ -145,6 +171,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_register"
+            tools:ignore="TextContrastCheck"
             tools:layout_editor_absoluteX="25dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
