@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="20dp"
+    android:layout_marginBottom="10dp"
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,6 +16,7 @@
 
         <ImageView
             android:id="@+id/iv_profil_doctor"
+            android:contentDescription="@string/profil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/profil_doctor"
@@ -44,7 +46,8 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_profil_doctor"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
 
         <ImageView
             android:id="@+id/ic_star"
@@ -53,8 +56,10 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/ic_baseline_star_24"
+            android:contentDescription="@string/star_icon"
             app:layout_constraintStart_toEndOf="@+id/tv_tahun"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_doctor" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_doctor"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/tv_rating"
@@ -64,9 +69,10 @@
             android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins_light"
             android:text="@string/rating"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/ic_star"
             app:layout_constraintTop_toBottomOf="@+id/tv_name_doctor"
-            android:textSize="12sp" />
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/tv_price"
@@ -78,7 +84,8 @@
             android:text="@string/harga"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/iv_profil_doctor"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tahun" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_tahun"
+            tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
