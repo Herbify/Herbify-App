@@ -68,7 +68,7 @@
             android:id="@+id/tie_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_input_text"
+            android:background="@drawable/bg_rounded_15"
             android:hint="@string/name"
             android:autofillHints="name"/>
 
@@ -90,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxWidth="40dp"
-            android:background="@drawable/bg_input_text"
+            android:background="@drawable/bg_rounded_15"
             android:hint="@string/email"
             android:autofillHints="emailAddress"
             android:inputType="textEmailAddress" />
@@ -112,7 +112,7 @@
             android:id="@+id/tie_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_input_text"
+            android:background="@drawable/bg_rounded_15"
             android:hint="@string/password"
             android:inputType="textPassword" />
 

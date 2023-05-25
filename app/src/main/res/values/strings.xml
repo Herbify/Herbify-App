@@ -38,7 +38,7 @@
     <string name="name_profil">Lorem Ipsumdolor Sit</string>
     <string name="address">Malang, Jawa Timur</string>
     <string name="profil">profil</string>
-    <string name="description_post">Kayu manis atau dengan nama ilmiah Cinnamomum ialah jenis pohon penghasil rempah-rempah. di dalam kamus Biologi, Cinnamomum zeylanicum Termasuk ke dalam</string>
+    <string name="description_post">Kayu manis atau dengan nama ilmiah Cinnamomum ialah jenis pohon penghasil rempah-rempah. di dalam kamus Biologi, Cinnamomum zeylanicum Termasuk ke dalam jenis rempah-rempah yang dihasilkan dari kulit bagian dalam yang kering, yang amat beraroma, manis, dan pedas</string>
     <string name="favorite_count">100</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -58,4 +58,13 @@
     <string name="background">background</string>
     <string name="judul_postingan">Judul postingan</string>
     <string name="thumbnail">Thumbnail</string>
+    <string name="masukkan_judul_artikel">Masukkan judul artikel</string>
+    <string name="gambar_artikel">Gambar artikel</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="masukkan_deskripsi_artikel">Masukkan deskripsi artikel</string>
+    <string name="tag">Tag</string>
+    <string name="scroll_view_add_post">scroll view add post</string>
+    <string name="posting">Posting</string>
+    <string name="waktu">00.00 WIB</string>
+    <string name="tanggal">11 Desember 2023</string>
 </resources>
