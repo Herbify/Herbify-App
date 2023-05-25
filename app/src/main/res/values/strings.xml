@@ -55,4 +55,7 @@
     <string name="herbapedia">HerbaPedia</string>
     <string name="herbatalk">HerbaTalk</string>
     <string name="account">Account</string>
+    <string name="background">background</string>
+    <string name="judul_postingan">Judul postingan</string>
+    <string name="thumbnail">Thumbnail</string>
 </resources>
