@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/broken_white"
-    tools:context=".ui.HerbaTalkFragment">
+    tools:context=".ui.herbal_talk.HerbaTalkFragment">
 
     <ScrollView
         android:id="@+id/sv_herbatalk"

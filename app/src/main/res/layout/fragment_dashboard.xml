@@ -150,9 +150,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/yang_mungkin_ingin_anda_ketahui"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/banner_herbal" />
 
@@ -174,9 +175,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/produk_yang_mungkin_anda_cari"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_herbal" />
 

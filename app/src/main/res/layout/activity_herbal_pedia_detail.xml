@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.herbal_pedia.HerbalPediaDetailActivity">
+
+    <include
+        android:id="@+id/top"
+        layout="@layout/custom_app_bar" />
+
+    <ScrollView
+        android:id="@+id/sv_herbal_pedia_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        app:layout_constraintTop_toBottomOf="@+id/top">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rounded_40">
+
+            <ImageView
+                android:id="@+id/iv_herbal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:contentDescription="@string/gambar_herbal"
+                android:scaleType="centerCrop"
+                android:src="@drawable/kayu_manis"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="25dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/deskripsi"
+                android:textColor="@color/green_moss"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/iv_herbal" />
+
+            <TextView
+                android:id="@+id/tv_isi_deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="14sp"
+                android:text="@string/description_post"
+                app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi"
+                tools:layout_editor_absoluteX="25dp" />
+
+            <TextView
+                android:id="@+id/tv_manfaat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/manfaat"
+                android:textColor="@color/green_moss"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_isi_deskripsi"
+                tools:layout_editor_absoluteX="25dp" />
+
+            <TextView
+                android:id="@+id/tv_manfaatnya"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:background="@drawable/bg_rounded_15"
+                android:padding="5dp"
+                android:text="@string/manfaatnya"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_manfaat" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="90dp"
+                android:layout_height="900dp"
+                colo
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

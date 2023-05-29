@@ -67,4 +67,7 @@
     <string name="posting">Posting</string>
     <string name="waktu">00.00 WIB</string>
     <string name="tanggal">11 Desember 2023</string>
+    <string name="gambar_herbal">gambar herbal</string>
+    <string name="manfaat">Manfaat</string>
+    <string name="manfaatnya">manfaatnya</string>
 </resources>

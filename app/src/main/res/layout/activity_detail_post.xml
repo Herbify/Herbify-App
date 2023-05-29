@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/pict_post"
-                android:background="@drawable/bg_rounded_20"/>
+                android:background="@drawable/bg_rounded_item"/>
             <TextView
                 android:id="@+id/tv_description"
                 android:layout_width="match_parent"
