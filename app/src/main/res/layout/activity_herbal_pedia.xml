@@ -10,11 +10,20 @@
         android:id="@+id/top"
         layout="@layout/custom_app_bar"/>
 
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/bg_rounded_80_stroke_bold"
+        app:layout_constraintBottom_toTopOf="@+id/sv_herbal_pedia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/sv_herbal_pedia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top">
 

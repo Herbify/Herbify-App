@@ -23,16 +23,19 @@
         android:theme="@style/Theme.HerbifyApp"
         tools:targetApi="31">
         <activity
-            android:name=".HerbalPediaDetailActivity"
+            android:name=".ui.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".HerbalPediaActivity"
+            android:name=".ui.herbal_pedia.HerbalPediaDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".AddNewPostActivity"
+            android:name=".ui.herbal_pedia.HerbalPediaActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailPostActivity"
+            android:name=".ui.herbal_talk.add.AddNewPostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.herbal_talk.detail.DetailPostActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -26,13 +26,15 @@
                 android:id="@+id/iv_herbal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="25dp"
                 android:layout_marginEnd="25dp"
                 android:contentDescription="@string/gambar_herbal"
                 android:scaleType="centerCrop"
                 android:src="@drawable/kayu_manis"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck"
+                tools:layout_editor_absoluteX="25dp" />
 
             <TextView
                 android:id="@+id/tv_deskripsi"
@@ -58,7 +60,8 @@
                 android:textSize="14sp"
                 android:text="@string/description_post"
                 app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi"
-                tools:layout_editor_absoluteX="25dp" />
+                tools:layout_editor_absoluteX="25dp"
+                tools:ignore="VisualLintLongText" />
 
             <TextView
                 android:id="@+id/tv_manfaat"
@@ -88,16 +91,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_manfaat" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="90dp"
-                android:layout_height="900dp"
-                colo
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_racik"
+        android:contentDescription="@string/racik"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
