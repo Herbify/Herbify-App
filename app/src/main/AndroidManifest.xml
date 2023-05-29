@@ -23,6 +23,12 @@
         android:theme="@style/Theme.HerbifyApp"
         tools:targetApi="31">
         <activity
+            android:name=".HerbalPediaDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HerbalPediaActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddNewPostActivity"
             android:exported="false" />
         <activity

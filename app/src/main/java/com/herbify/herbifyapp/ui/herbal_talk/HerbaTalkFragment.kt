@@ -1,4 +1,4 @@
-package com.herbify.herbifyapp.ui
+package com.herbify.herbifyapp.ui.herbal_talk
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
