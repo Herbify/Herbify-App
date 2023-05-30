@@ -23,6 +23,15 @@
         android:theme="@style/Theme.HerbifyApp"
         tools:targetApi="31">
         <activity
+            android:name=".QnaChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SelectDoctorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".BrewPageActivity"
             android:exported="false" />
         <activity

@@ -79,4 +79,8 @@
     <string name="posting_ceritamu">Posting Ceritamu</string>
     <string name="herbaltalk">HerbalTalk</string>
     <string name="button_add">button add</string>
+    <string name="status">online</string>
+    <string name="profil_doctor">profil doctor</string>
+    <string name="type_a_message">Type a message</string>
+    <string name="send">Send</string>
 </resources>
