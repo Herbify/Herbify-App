@@ -70,4 +70,17 @@
     <string name="gambar_herbal">gambar herbal</string>
     <string name="manfaat">Manfaat</string>
     <string name="manfaatnya">manfaatnya</string>
+    <string name="racik">Racik</string>
+    <string name="shutter">Shutter</string>
+    <string name="arrow_back">arrow back</string>
+    <string name="scan_herbal">Scan herbal</string>
+    <string name="nama_herbal">Nama herbal</string>
+    <string name="detail">Detail</string>
+    <string name="posting_ceritamu">Posting Ceritamu</string>
+    <string name="herbaltalk">HerbalTalk</string>
+    <string name="button_add">button add</string>
+    <string name="status">online</string>
+    <string name="profil_doctor">profil doctor</string>
+    <string name="type_a_message">Type a message</string>
+    <string name="send">Send</string>
 </resources>

@@ -7,7 +7,34 @@
     tools:context=".ui.herbal_talk.detail.DetailPostActivity">
 
     <include
-        layout="@layout/custom_app_bar"/>
+        android:id="@+id/include"
+        layout="@layout/custom_app_bar" />
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="25dp"
+        android:contentDescription="@string/arrow_back"
+        android:src="@drawable/ic_baseline_arrow_back_white_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_halaman"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_halaman" />
+
+    <TextView
+        android:id="@+id/tv_halaman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="@string/herbaltalk"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/sv_detail_post"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <ScrollView
         android:id="@+id/sv_detail_post"
@@ -15,13 +42,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/bg_rounded_40"
-        android:layout_marginTop="75dp">
+        android:layout_marginTop="80dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="20dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

@@ -10,6 +10,58 @@
         android:id="@+id/top"
         layout="@layout/custom_app_bar" />
 
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="25dp"
+        android:contentDescription="@string/arrow_back"
+        android:src="@drawable/ic_baseline_arrow_back_white_24"
+        app:layout_constraintBottom_toTopOf="@+id/sv_herbal_pedia_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_halaman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="@string/nama_herbal"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/sv_herbal_pedia_detail"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageView
+        android:id="@+id/btn_share"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/arrow_back"
+        android:src="@drawable/ic_baseline_share_white_24"
+        app:layout_constraintBottom_toTopOf="@+id/sv_herbal_pedia_detail"
+        app:layout_constraintEnd_toStartOf="@+id/btn_bookmark"
+        app:layout_constraintTop_toTopOf="@+id/top"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/btn_bookmark"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="25dp"
+        android:contentDescription="@string/arrow_back"
+        android:src="@drawable/ic_baseline_bookmark_border_white_24"
+        app:layout_constraintBottom_toTopOf="@+id/sv_herbal_pedia_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top"
+        tools:ignore="ImageContrastCheck" />
+
+
+
     <ScrollView
         android:id="@+id/sv_herbal_pedia_detail"
         android:layout_width="match_parent"
@@ -26,13 +78,15 @@
                 android:id="@+id/iv_herbal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="25dp"
                 android:layout_marginEnd="25dp"
                 android:contentDescription="@string/gambar_herbal"
                 android:scaleType="centerCrop"
                 android:src="@drawable/kayu_manis"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck"
+                tools:layout_editor_absoluteX="25dp" />
 
             <TextView
                 android:id="@+id/tv_deskripsi"
@@ -58,7 +112,8 @@
                 android:textSize="14sp"
                 android:text="@string/description_post"
                 app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi"
-                tools:layout_editor_absoluteX="25dp" />
+                tools:layout_editor_absoluteX="25dp"
+                tools:ignore="VisualLintLongText" />
 
             <TextView
                 android:id="@+id/tv_manfaat"
@@ -88,16 +143,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_manfaat" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="90dp"
-                android:layout_height="900dp"
-                colo
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_racik"
+        android:contentDescription="@string/racik"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:fabSize="auto"
+        app:maxImageSize="30dp"
+        app:backgroundTint="@color/green_moss"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

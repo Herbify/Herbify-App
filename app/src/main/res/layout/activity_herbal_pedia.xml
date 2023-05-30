@@ -10,11 +10,33 @@
         android:id="@+id/top"
         layout="@layout/custom_app_bar"/>
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/bg_rounded_80_stroke_bold"
+        app:layout_constraintBottom_toTopOf="@+id/sv_herbal_pedia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:searchIcon="@drawable/ic_baseline_search_white_24" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/scan_button"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/searchView"
+        app:layout_constraintTop_toTopOf="@+id/searchView" />
+
     <ScrollView
         android:id="@+id/sv_herbal_pedia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top">
 
