@@ -27,7 +27,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="-40dp"
             android:background="@drawable/bg_rounded_40"
             app:layout_constraintTop_toBottomOf="@id/pict_dashboard"
@@ -193,6 +193,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_saran_produk" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
