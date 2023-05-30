@@ -22,7 +22,7 @@ class LoginViewModel(private val pref: UserPreferences): ViewModel() {
                 if(response.isSuccessful){
                     val responseBody = response.body()!!
                     if(responseBody.data != null){
-                        pref.login(responseBody.data.email, responseBody.data.id, responseBody.accessToken!!, responseBody.data.status != null)
+                        pref.login(responseBody.data.name, responseBody.data.email, responseBody.data.id, responseBody.accessToken!!, responseBody.data.status == 1)
                         onSuccessEvent()
                     }
                 }else{
