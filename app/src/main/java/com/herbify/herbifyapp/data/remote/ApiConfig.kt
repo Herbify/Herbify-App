@@ -13,7 +13,7 @@ class ApiConfig {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("https://herbify-387103.et.r.appspot.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
