@@ -1,4 +1,4 @@
-package com.herbify.herbifyapp
+package com.herbify.herbifyapp.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
