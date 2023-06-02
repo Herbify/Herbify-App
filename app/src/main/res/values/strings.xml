@@ -83,4 +83,6 @@
     <string name="profil_doctor">profil doctor</string>
     <string name="type_a_message">Type a message</string>
     <string name="send">Send</string>
+    <string name="pilih_dokter">Pilih doktermu</string>
+    <string name="view_pager">view pager</string>
 </resources>
