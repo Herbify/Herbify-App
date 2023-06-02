@@ -28,16 +28,31 @@
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.HerbifyApp" />
         <activity
-            android:name=".HerbalPediaDetailActivity"
+            android:name=".QnaChatActivity"
             android:exported="false" />
         <activity
-            android:name=".HerbalPediaActivity"
+            android:name=".SelectDoctorActivity"
             android:exported="false" />
         <activity
-            android:name=".AddNewPostActivity"
+            android:name=".DoctorChatActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailPostActivity"
+            android:name=".BrewPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.herbal_pedia.HerbalPediaDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.herbal_pedia.HerbalPediaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.herbal_talk.add.AddNewPostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.herbal_talk.detail.DetailPostActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

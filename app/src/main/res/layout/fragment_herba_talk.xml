@@ -32,6 +32,27 @@
         layout="@layout/custom_app_bar"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <SearchView
+        android:id="@+id/sv_herbaltalk"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/bg_rounded_item"
+        app:layout_constraintBottom_toTopOf="@+id/sv_herbatalk"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_app_bar" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/button_add"
+        app:backgroundTint="@color/broken_white"
+        app:layout_constraintBottom_toBottomOf="@+id/sv_herbaltalk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sv_herbaltalk"
+        app:layout_constraintTop_toTopOf="@+id/sv_herbaltalk"
+        tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
 
 
 

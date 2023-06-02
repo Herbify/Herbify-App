@@ -40,72 +40,75 @@
         android:text="@string/the_verification_code_has_been_sent_via_email"
         app:layout_constraintTop_toBottomOf="@+id/iv_otp" />
 
-    <EditText
-        android:id="@+id/et_digit_satu"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="40dp"
-        android:inputType="number"
-        android:maxLength="1"
-        android:textSize="30sp"
-        android:fontFamily="@font/poppins_medium"
-        android:textAlignment="center"
-        android:background="@drawable/bg_rounded_15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_send_email"
-        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck"/>
-
-    <EditText
-        android:id="@+id/et_digit_dua"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bg_rounded_15"
-        android:inputType="number"
-        android:maxLength="1"
-        android:textSize="30sp"
-        android:fontFamily="@font/poppins_medium"
-        android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/et_digit_satu"
-        app:layout_constraintTop_toBottomOf="@+id/tv_send_email"
-        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
-
-
-    <EditText
-        android:id="@+id/et_digit_tiga"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/bg_rounded_15"
-        android:inputType="number"
-        android:maxLength="1"
-        android:textSize="30sp"
-        android:fontFamily="@font/poppins_medium"
-        android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/et_digit_dua"
-        app:layout_constraintTop_toBottomOf="@+id/tv_send_email"
-        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/et_digit_empat"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="25dp"
-        android:background="@drawable/bg_rounded_15"
-        android:fontFamily="@font/poppins_medium"
-        android:inputType="number"
-        android:maxLength="1"
-        android:textAlignment="center"
-        android:textSize="30sp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/et_digit_tiga"
-        app:layout_constraintTop_toBottomOf="@+id/tv_send_email"
-        tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_send_email">
+
+        <EditText
+            android:id="@+id/et_digit_satu"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_rounded_15"
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/et_digit_dua"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_rounded_15"
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
+
+
+        <EditText
+            android:id="@+id/et_digit_tiga"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_rounded_15"
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
+
+        <EditText
+            android:id="@+id/et_digit_empat"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/bg_rounded_15"
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
+
 
     <TextView
         android:id="@+id/tv_otp_wrong"
