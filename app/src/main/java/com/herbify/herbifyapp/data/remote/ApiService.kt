@@ -1,15 +1,17 @@
 package com.herbify.herbifyapp.data.remote
 
-import com.herbify.herbifyapp.data.remote.response.GenerateOtpResponse
-import com.herbify.herbifyapp.data.remote.response.LoginResponse
-import com.herbify.herbifyapp.data.remote.response.OtpResponse
-import com.herbify.herbifyapp.data.remote.response.UserPostResponse
+import com.herbify.herbifyapp.data.remote.response.auth.GenerateOtpResponse
+import com.herbify.herbifyapp.data.remote.response.auth.LoginResponse
+import com.herbify.herbifyapp.data.remote.response.auth.OtpResponse
+import com.herbify.herbifyapp.data.remote.response.auth.UserPostResponse
+import com.herbify.herbifyapp.data.remote.response.herbal.HerbalResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @FormUrlEncoded
@@ -39,4 +41,10 @@ interface ApiService {
         @Field("email") email: String,
         @Field("code") code: Int,
     ):Call<UserPostResponse>
+
+    @GET("api/herbal")
+    fun getAllHerbals(
+        @Query("page") page: Int,
+        @Query("size") size:Int
+    ): HerbalResponse
 }

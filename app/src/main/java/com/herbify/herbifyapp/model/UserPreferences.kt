@@ -1,11 +1,8 @@
 package com.herbify.herbifyapp.model
 
 import android.content.Context
-import android.content.SharedPreferences
-import androidx.datastore.dataStore
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
-import java.util.concurrent.Flow
 
 class UserPreferences private constructor(context: Context){
     companion object {

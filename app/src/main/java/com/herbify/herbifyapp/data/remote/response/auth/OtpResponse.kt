@@ -1,13 +1,13 @@
-package com.herbify.herbifyapp.data.remote.response
+package com.herbify.herbifyapp.data.remote.response.auth
 
 import com.google.gson.annotations.SerializedName
 
 data class OtpResponse(
 
-	@field:SerializedName("data")
+    @field:SerializedName("data")
 	val data: OTP? = null,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String
 )
 
@@ -20,13 +20,13 @@ data class OTP(
 	val createdAt: String? = null,
 
 	@field:SerializedName("code")
-	val code: Int? = null,
+	val code: Int,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("userId")
-	val userId: Int? = null,
+	val userId: Int,
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: String? = null
@@ -34,20 +34,20 @@ data class OTP(
 
 data class GenerateOtpResponse(
 
-	@field:SerializedName("data")
+    @field:SerializedName("data")
 	val data: GenerateOtpData? = null,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String? = null,
 
-	@field:SerializedName("email")
+    @field:SerializedName("email")
 	val email: String? = null
 )
 
 data class GenerateOtpData(
-	@field:SerializedName("data")
+    @field:SerializedName("data")
 	val data: OTP? = null,
 
-	@field:SerializedName("info")
+    @field:SerializedName("info")
 	val info: String? = null,
 )

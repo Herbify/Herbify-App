@@ -1,4 +1,4 @@
-package com.herbify.herbifyapp.data.remote.response
+package com.herbify.herbifyapp.data.remote.response.auth
 
 import com.google.gson.annotations.SerializedName
 

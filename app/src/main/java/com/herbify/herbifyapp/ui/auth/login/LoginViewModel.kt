@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.herbify.herbifyapp.data.remote.ApiConfig
-import com.herbify.herbifyapp.data.remote.response.LoginResponse
+import com.herbify.herbifyapp.data.remote.response.auth.LoginResponse
 import com.herbify.herbifyapp.model.UserPreferences
 import retrofit2.Call
 import retrofit2.Response
