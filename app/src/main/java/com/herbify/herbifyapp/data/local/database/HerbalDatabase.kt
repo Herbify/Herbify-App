@@ -7,9 +7,10 @@ import androidx.room.RoomDatabase
 import com.herbify.herbifyapp.data.local.dao.HerbalDao
 import com.herbify.herbifyapp.data.local.dao.RemoteKeysDao
 import com.herbify.herbifyapp.data.remote.response.herbal.HerbalData
+import com.herbify.herbifyapp.model.RemoteKey
 
 @Database(
-    entities = [HerbalData::class],
+    entities = [HerbalData::class, RemoteKey::class],
     version = 1,
     exportSchema = false
 )

@@ -12,8 +12,8 @@ interface HerbalDao {
     @Query("SELECT * FROM herbals ORDER BY name DESC")
     fun getAllHerbals() : PagingSource<Int, HerbalData>
 
-    @Query("SELECT * FROM herbals ORDER BY name DESC")
-    suspend fun deleteAll() : PagingSource<Int, HerbalData>
+    @Query("DELETE FROM herbals")
+    suspend fun deleteAll()
 
     @Insert(onConflict = OnConflictStrategy.NONE)
     suspend fun insertHerbal(herbalData: List<HerbalData>)

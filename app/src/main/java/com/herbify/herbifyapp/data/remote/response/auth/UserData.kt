@@ -20,7 +20,7 @@ data class UserData(
     val photo: String? = null,
 
     @field:SerializedName("id")
-    val id: Int,
+    val id: Long,
 
     @field:SerializedName("email")
     val email: String,
