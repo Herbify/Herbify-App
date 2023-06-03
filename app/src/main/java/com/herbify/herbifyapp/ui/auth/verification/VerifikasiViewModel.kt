@@ -1,10 +1,13 @@
 package com.herbify.herbifyapp.ui.auth.verification
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.JsonObject
 import com.herbify.herbifyapp.data.remote.ApiConfig
 import com.herbify.herbifyapp.data.remote.response.auth.GenerateOtpResponse
+import com.herbify.herbifyapp.data.remote.response.auth.OtpResponse
 import com.herbify.herbifyapp.data.remote.response.auth.UserPostResponse
 import com.herbify.herbifyapp.model.UserPreferences
 import retrofit2.Call
@@ -17,10 +20,31 @@ class VerifikasiViewModel(private val pref: UserPreferences):ViewModel() {
     private val _otp = MutableLiveData<Int>(0)
     val otp : LiveData<Int> get() = _otp
 
+    fun refreshOtp(){
+        val apiService = ApiConfig().getApiService()
+        val client = apiService.getOtp(pref.getUser().id)
+        client.enqueue(object : retrofit2.Callback<OtpResponse>{
+            override fun onResponse(call: Call<OtpResponse>, response: Response<OtpResponse>) {
+                if(response.isSuccessful){
+                    _otp.value = response.body()?.data?.code
+                }
+            }
+
+            override fun onFailure(call: Call<OtpResponse>, t: Throwable) {
+                Log.e("Verification: ", "Failed getting otp")
+            }
+
+        })
+    }
+
     fun verify(typedOtp:Int, onFailureEvent: (String) -> Unit, onSuccessEvent: ()-> Unit){
         _isLoading.value = true
         val apiService = ApiConfig().getApiService()
-        val client = apiService.verifyOtp(pref.getUser().email!!, typedOtp)
+        val params = JsonObject().apply {
+            addProperty("email", pref.getUser().email!!)
+            addProperty("code", typedOtp)
+        }
+        val client = apiService.verifyOtp(params)
         client.enqueue(object : retrofit2.Callback<UserPostResponse>{
             override fun onResponse(
                 call: Call<UserPostResponse>,

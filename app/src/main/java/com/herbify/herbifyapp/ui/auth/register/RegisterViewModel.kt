@@ -1,6 +1,7 @@
 package com.herbify.herbifyapp.ui.auth.register
 
 import androidx.lifecycle.ViewModel
+import com.google.gson.JsonObject
 import com.herbify.herbifyapp.data.remote.ApiConfig
 import com.herbify.herbifyapp.data.remote.request.RegisterRequest
 import com.herbify.herbifyapp.data.remote.response.auth.UserPostResponse
@@ -11,7 +12,12 @@ import retrofit2.Response
 class RegisterViewModel(private val pref: UserPreferences):ViewModel() {
     fun register(request: RegisterRequest, onRegisterSuccess : () -> Unit, onRegisterFailed: (String) -> Unit){
         val apiService = ApiConfig().getApiService()
-        val client = apiService.register(request.name, request.email, request.password)
+        val params = JsonObject().apply {
+            addProperty("name", request.name)
+            addProperty("email", request.email)
+            addProperty("password", request.password)
+        }
+        val client = apiService.register(params)
         client.enqueue(object : retrofit2.Callback<UserPostResponse>{
             override fun onResponse(
                 call: Call<UserPostResponse>,

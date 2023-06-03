@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import com.herbify.herbifyapp.ui.MainActivity
 import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.model.UserPreferences
@@ -25,10 +26,10 @@ class SplashScreenActivity : AppCompatActivity() {
 
         userPref = UserPreferences.getInstance(this)
 
-        if(userPref.hasSession()){
+        if(userPref.hasSession() && userPref.isVerified()){
             @Suppress("DEPRECATION")
             Handler().postDelayed({
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
                 startActivity(intent)
                 finish()
@@ -36,7 +37,7 @@ class SplashScreenActivity : AppCompatActivity() {
         }else{
             @Suppress("DEPRECATION")
             Handler().postDelayed({
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
                 startActivity(intent)
                 finish()

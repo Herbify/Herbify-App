@@ -29,12 +29,13 @@ class HerbalPediaFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity(), ViewModelFactory(requireContext()))[HerbalPediaViewModel::class.java]
 
         _binding = FragmentHerbalpediaBinding.inflate(inflater, container, false)
+
         val root: View = binding.root
         return root
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initBinding()
     }
 

@@ -1,6 +1,7 @@
 package com.herbify.herbifyapp.model
 
 import android.content.Context
+import android.util.Log
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 
@@ -46,7 +47,8 @@ class UserPreferences private constructor(context: Context){
     }
 
     fun hasSession():Boolean{
-        return preferences.getString(TOKEN_KEY,null) == null
+        Log.d("USER PREFERENCES", "Has session : ${preferences.getString(TOKEN_KEY, null) != null}")
+        return preferences.getString(TOKEN_KEY,null) != null
     }
 
     fun isVerified(): Boolean = preferences.getBoolean(VERIFIED_KEY, false)
@@ -62,6 +64,16 @@ class UserPreferences private constructor(context: Context){
             .putString(EMAIL_KEY,email)
             .putString(TOKEN_KEY, token)
             .putBoolean(VERIFIED_KEY, isVerified)
+            .apply()
+    }
+
+    fun logout() {
+        preferences.edit()
+            .putLong(ID_KEY, 0)
+            .putString(NAME_KEY, null)
+            .putString(EMAIL_KEY,null)
+            .putString(TOKEN_KEY, null)
+            .putBoolean(VERIFIED_KEY, false)
             .apply()
     }
 }

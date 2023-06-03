@@ -41,6 +41,7 @@ class VerifikasiActivity : AppCompatActivity() {
         viewModel.otp.observe(this){it ->
             this.otp = it
         }
+        viewModel.refreshOtp()
     }
 
     private fun setEditTextListener() {
@@ -65,6 +66,8 @@ class VerifikasiActivity : AppCompatActivity() {
                 if(editable != null){
                     if(editable.length == 1){
                         binding.etDigitTiga.requestFocus()
+                    }else if(editable.isEmpty()){
+                        binding.etDigitSatu.requestFocus()
                     }
                 }
             }
@@ -78,6 +81,8 @@ class VerifikasiActivity : AppCompatActivity() {
                 if(editable != null){
                     if(editable.length == 1){
                         binding.etDigitEmpat.requestFocus()
+                    }else if(editable.isEmpty()){
+                        binding.etDigitDua.requestFocus()
                     }
                 }
             }
@@ -102,6 +107,8 @@ class VerifikasiActivity : AppCompatActivity() {
                                 }
                             )
                         }
+                    }else if(editable.isEmpty()){
+                        binding.etDigitTiga.requestFocus()
                     }
                 }
             }

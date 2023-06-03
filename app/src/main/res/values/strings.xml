@@ -96,4 +96,5 @@
     <string name="title_herbaltalk">Herbaltalk</string>
     <string name="title_account">Account</string>
     <string name="title_herbalpedia">Herbalpedia</string>
+    <string name="logout">Keluar dari Akun</string>
 </resources>
