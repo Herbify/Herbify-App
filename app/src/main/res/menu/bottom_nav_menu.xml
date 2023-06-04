@@ -5,12 +5,12 @@
         android:icon="@drawable/ic_home"
         android:title="@string/title_dashboard" />
     <item
-        android:id="@+id/navigation_herpabedia"
+        android:id="@+id/navigation_herbalpedia"
         android:icon="@drawable/ic_herbapedia"
         android:title="@string/herbapedia" />
     <item
-        android:id="@+id/navigation_herbatalk"
-        android:icon="@drawable/ic_herbapedia"
+        android:id="@+id/navigation_herbaltalk"
+        android:icon="@drawable/ic_herbatalk"
         android:title="@string/herbatalk" />
     <item
         android:id="@+id/navigation_account"

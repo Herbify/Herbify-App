@@ -1,4 +1,4 @@
-package com.herbify.herbifyapp.data.remote.response
+package com.herbify.herbifyapp.data.remote.response.auth
 
 import com.google.gson.annotations.SerializedName
 
@@ -20,7 +20,7 @@ data class UserData(
     val photo: String? = null,
 
     @field:SerializedName("id")
-    val id: Int,
+    val id: Long,
 
     @field:SerializedName("email")
     val email: String,

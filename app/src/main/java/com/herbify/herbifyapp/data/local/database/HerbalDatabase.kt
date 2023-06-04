@@ -4,15 +4,20 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.herbify.herbifyapp.model.Herbal
+import com.herbify.herbifyapp.data.local.dao.HerbalDao
+import com.herbify.herbifyapp.data.local.dao.RemoteKeysDao
+import com.herbify.herbifyapp.data.remote.response.herbal.HerbalData
+import com.herbify.herbifyapp.model.RemoteKey
 
 @Database(
-    entities = [Herbal::class],
+    entities = [HerbalData::class, RemoteKey::class],
     version = 1,
     exportSchema = false
 )
 
 abstract class HerbalDatabase: RoomDatabase() {
+    abstract fun getHerbalDao(): HerbalDao
+    abstract fun getRemoteKeys(): RemoteKeysDao
     companion object{
         @Volatile
         private var INSTANCE : HerbalDatabase? = null

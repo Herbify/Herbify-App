@@ -20,11 +20,13 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.initialize
 import com.herbify.herbifyapp.ui.MainActivity
 import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.ui.ViewModelFactory
 import com.herbify.herbifyapp.databinding.ActivityLoginBinding
 import com.herbify.herbifyapp.ui.auth.register.RegisterActivity
+import com.herbify.herbifyapp.ui.auth.verification.VerifikasiActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -36,12 +38,15 @@ class LoginActivity : AppCompatActivity() {
     private val REQ_ONE_TAP = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Log.d("LoginActivity: ", "Login page opened")
 
         supportActionBar?.hide()
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[LoginViewModel::class.java]
+        Firebase.initialize(this)
 
         auth = Firebase.auth
         initGoogleSignIn()
@@ -72,10 +77,18 @@ class LoginActivity : AppCompatActivity() {
             onFailedEvent = {
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             },
-            onSuccessEvent = {
-                goToMain()
+            onSuccessEvent = {isVerified ->
+                if(isVerified) goToMain()
+                else goToOtpVerification()
             }
         )
+    }
+
+    private fun goToOtpVerification() {
+        val intent = Intent(this@LoginActivity, VerifikasiActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        startActivity(intent)
+        finish()
     }
 
     private fun goToMain(){
@@ -167,7 +180,6 @@ class LoginActivity : AppCompatActivity() {
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithCredential:failure", task.exception)
-                                        updateUI(null)
                                     }
                                 }
                         }
@@ -190,12 +202,10 @@ class LoginActivity : AppCompatActivity() {
                 if(task.isSuccessful){
                     Log.d(TAG, "signInWithGoogleSuccess")
                     val user = auth.currentUser
-
                     updateUI(user)
                 }else{
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
-                    updateUI(null)
                 }
             }
     }
@@ -223,14 +233,7 @@ class LoginActivity : AppCompatActivity() {
         }catch (e: ApiException) {
             // Google Sign In failed, update UI appropriately
             Log.w(TAG, "Google sign in failed", e)
-            updateUI(null)
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val curentUser = auth.currentUser
-        updateUI(curentUser)
     }
 
     companion object {

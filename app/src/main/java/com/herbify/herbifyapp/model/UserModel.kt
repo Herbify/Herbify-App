@@ -1,9 +1,13 @@
 package com.herbify.herbifyapp.model
 
-data class UserModel(
-    val id: Int?,
+class UserModel(
+    val id: Long,
     val name: String?,
     val token: String?,
     val email: String?,
     val isVerified: Boolean,
-)
+){
+    fun isLogged(): Boolean {
+        return token != ""
+    }
+}
