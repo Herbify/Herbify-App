@@ -3,23 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_dashboard">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.herbify.herbifyapp.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_herbalpedia"
+        android:name="com.herbify.herbifyapp.ui.herbal_pedia.HerbalPediaFragment"
+        android:label="@string/title_herbalpedia"
+        tools:layout="@layout/fragment_herbalpedia" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.herbify.herbifyapp.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
-
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.herbify.herbifyapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_herbaltalk"
+        android:name="com.herbify.herbifyapp.ui.herbal_talk.HerbaTalkFragment"
+        android:label="@string/title_herbaltalk"
+        tools:layout="@layout/fragment_herba_talk" />
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.herbify.herbifyapp.ui.account.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" />
 </navigation>

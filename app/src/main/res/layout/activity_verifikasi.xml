@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="25dp"
-    tools:context=".ui.auth.VerifikasiActivity">
+    tools:context=".ui.auth.verification.VerifikasiActivity">
 
     <TextView
         android:id="@+id/tv_otp_verification"
@@ -34,10 +34,10 @@
         android:id="@+id/tv_send_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/the_verification_code_has_been_sent_via_email"
-        android:gravity="center"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:text="@string/the_verification_code_has_been_sent_via_email"
         app:layout_constraintTop_toBottomOf="@+id/iv_otp" />
 
     <LinearLayout
@@ -109,6 +109,39 @@
     </LinearLayout>
 
 
+
+    <TextView
+        android:id="@+id/tv_otp_wrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wrong_otp"
+        android:textColor="@color/Alert"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/et_digit_tiga"
+        app:layout_constraintEnd_toEndOf="@+id/et_digit_empat"
+        app:layout_constraintStart_toStartOf="@+id/et_digit_satu"
+        app:layout_constraintTop_toBottomOf="@+id/tv_send_email"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <TextView
+        android:id="@+id/tv_not_get_otp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/not_ket_otp"
+        app:layout_constraintStart_toStartOf="@+id/et_digit_satu"
+        app:layout_constraintTop_toBottomOf="@+id/et_digit_satu" />
+
+    <TextView
+        android:id="@+id/tv_resend_otp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/resend_otp"
+        android:textColor="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_not_get_otp"
+        app:layout_constraintStart_toEndOf="@+id/tv_not_get_otp"
+        app:layout_constraintTop_toTopOf="@+id/tv_not_get_otp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

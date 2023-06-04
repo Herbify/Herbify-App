@@ -12,7 +12,7 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
             storePassword 'android'
-            storeFile file('C:\\Users\\AF Syauqi\\.android\\debug.keystore')
+            storeFile file('D:\\Kuliah\\_BANGKIT\\HerbifyApp\\debug.keystore')
         }
     }
     namespace 'com.herbify.herbifyapp'

@@ -1,6 +1,5 @@
 package com.herbify.herbifyapp.ui.auth.login
 
-import android.app.Activity
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.IntentSender
@@ -10,48 +9,96 @@ import android.widget.Toast
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
-import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
-import com.google.android.gms.auth.api.Auth
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.GetSignInIntentRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.initialize
+import com.herbify.herbifyapp.ui.MainActivity
 import com.herbify.herbifyapp.R
+import com.herbify.herbifyapp.ui.ViewModelFactory
 import com.herbify.herbifyapp.databinding.ActivityLoginBinding
 import com.herbify.herbifyapp.ui.auth.register.RegisterActivity
+import com.herbify.herbifyapp.ui.auth.verification.VerifikasiActivity
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var viewModel: LoginViewModel
     private lateinit var googleSignInClient: SignInClient
     private lateinit var googleSignInRequest: BeginSignInRequest
     private lateinit var auth: FirebaseAuth
-    private lateinit var oneTapClient: SignInClient
     private val REQ_ONE_TAP = 2
-    private var showOneTapUI = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.d("LoginActivity: ", "Login page opened")
+
         supportActionBar?.hide()
+        viewModel = ViewModelProvider(this, ViewModelFactory(this))[LoginViewModel::class.java]
+        Firebase.initialize(this)
 
         auth = Firebase.auth
+        initGoogleSignIn()
+        initBinding()
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            oneTapSignIn()
+        }
+    }
 
+    private fun initBinding(){
+        binding.tvRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnGoogle.setOnClickListener {
+            googleSignIn()
+        }
+        binding.btnLogin.setOnClickListener {
+            emailSignIn()
+        }
+    }
+
+    private fun emailSignIn() {
+        viewModel.login(
+            email = binding.tieEmail.text.toString(),
+            password = binding.tiePassword.text.toString(),
+            onFailedEvent = {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            },
+            onSuccessEvent = {isVerified ->
+                if(isVerified) goToMain()
+                else goToOtpVerification()
+            }
+        )
+    }
+
+    private fun goToOtpVerification() {
+        val intent = Intent(this@LoginActivity, VerifikasiActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        startActivity(intent)
+        finish()
+    }
+
+    private fun goToMain(){
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        startActivity(intent)
+        finish()
+    }
+
+    private fun initGoogleSignIn(){
         googleSignInRequest = BeginSignInRequest.builder()
             .setGoogleIdTokenRequestOptions(
                 BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
@@ -60,22 +107,8 @@ class LoginActivity : AppCompatActivity() {
                     .setFilterByAuthorizedAccounts(true)
                     .build()
             ).build()
-        oneTapClient = Identity.getSignInClient(this)
 
         googleSignInClient = Identity.getSignInClient(this)
-
-        binding.tvRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-        binding.btnLogin.setOnClickListener {
-            googleSignIn()
-        }
-
-        val currentUser = auth.currentUser
-        if (currentUser == null) {
-            oneTapSignIn()
-        }
     }
 
     private fun googleSignIn() {
@@ -109,6 +142,7 @@ class LoginActivity : AppCompatActivity() {
                 
             }
     }
+
     private val signInLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
         handleSignInResult(result.data)
     }
@@ -124,13 +158,14 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         when(requestCode){
             REQ_ONE_TAP -> {
                 try {
-                    val credential = oneTapClient.getSignInCredentialFromIntent(data)
+                    val credential = googleSignInClient.getSignInCredentialFromIntent(data)
                     val idToken = credential.googleIdToken
                     when{
                         idToken != null ->{
@@ -145,7 +180,6 @@ class LoginActivity : AppCompatActivity() {
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithCredential:failure", task.exception)
-                                        updateUI(null)
                                     }
                                 }
                         }
@@ -172,14 +206,15 @@ class LoginActivity : AppCompatActivity() {
                 }else{
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
-                    updateUI(null)
                 }
             }
     }
 
     fun updateUI(user: FirebaseUser?) {
         if(user != null){
-            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
             finish()
         }
     }
@@ -198,14 +233,7 @@ class LoginActivity : AppCompatActivity() {
         }catch (e: ApiException) {
             // Google Sign In failed, update UI appropriately
             Log.w(TAG, "Google sign in failed", e)
-            updateUI(null)
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val curentUser = auth.currentUser
-        updateUI(curentUser)
     }
 
     companion object {

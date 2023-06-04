@@ -70,6 +70,16 @@
     <string name="gambar_herbal">gambar herbal</string>
     <string name="manfaat">Manfaat</string>
     <string name="manfaatnya">manfaatnya</string>
+    <string name="wrong_otp">Kode OTP tidak valid</string>
+    <string name="not_ket_otp">Belum menerima kode?</string>
+    <string name="resend_otp">Kirim lagi</string>
+    <string name="retry">Muat ulang</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
     <string name="racik">Racik</string>
     <string name="shutter">Shutter</string>
     <string name="arrow_back">arrow back</string>
@@ -86,4 +96,8 @@
     <string name="pilih_dokter">Pilih doktermu</string>
     <string name="view_pager">view pager</string>
     <string name="text_message">Text message</string>
+    <string name="title_herbaltalk">Herbaltalk</string>
+    <string name="title_account">Account</string>
+    <string name="title_herbalpedia">Herbalpedia</string>
+    <string name="logout">Keluar dari Akun</string>
 </resources>
