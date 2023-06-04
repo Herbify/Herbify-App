@@ -45,11 +45,10 @@ class RegisterActivity : AppCompatActivity() {
         )
         viewModel.register(
             request,
-            onRegisterFailed = {text ->
-            Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-        },
-        onRegisterSuccess = {
+        onRegisterSuccess = { id, email ->
             val intent = Intent(this, VerifikasiActivity::class.java)
+            intent.putExtra("id", id)
+            intent.putExtra("email", email)
             startActivity(intent)
         })
     }

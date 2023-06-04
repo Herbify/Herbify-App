@@ -25,6 +25,7 @@ import com.herbify.herbifyapp.ui.MainActivity
 import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.ui.ViewModelFactory
 import com.herbify.herbifyapp.databinding.ActivityLoginBinding
+import com.herbify.herbifyapp.model.UserModel
 import com.herbify.herbifyapp.ui.auth.register.RegisterActivity
 import com.herbify.herbifyapp.ui.auth.verification.VerifikasiActivity
 
@@ -36,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var googleSignInRequest: BeginSignInRequest
     private lateinit var auth: FirebaseAuth
     private val REQ_ONE_TAP = 2
+    private var user: UserModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +48,14 @@ class LoginActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[LoginViewModel::class.java]
+        viewModel.user.observe(this){it ->
+            user = it
+            if (user != null){
+                if (user?.token != null){
+                    movePage(user!!.isVerified)
+                }
+            }
+        }
         Firebase.initialize(this)
 
         auth = Firebase.auth
@@ -55,6 +65,11 @@ class LoginActivity : AppCompatActivity() {
         if (currentUser == null) {
             oneTapSignIn()
         }
+    }
+
+    private fun movePage(isVerified : Boolean) {
+        if(isVerified) goToMain()
+        else goToOtpVerification()
     }
 
     private fun initBinding(){
@@ -76,10 +91,6 @@ class LoginActivity : AppCompatActivity() {
             password = binding.tiePassword.text.toString(),
             onFailedEvent = {
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            },
-            onSuccessEvent = {isVerified ->
-                if(isVerified) goToMain()
-                else goToOtpVerification()
             }
         )
     }
@@ -210,7 +221,7 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    fun updateUI(user: FirebaseUser?) {
+    private fun updateUI(user: FirebaseUser?) {
         if(user != null){
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
