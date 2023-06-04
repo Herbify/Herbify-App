@@ -93,6 +93,9 @@
     <string name="profil_doctor">profil doctor</string>
     <string name="type_a_message">Type a message</string>
     <string name="send">Send</string>
+    <string name="pilih_dokter">Pilih doktermu</string>
+    <string name="view_pager">view pager</string>
+    <string name="text_message">Text message</string>
     <string name="title_herbaltalk">Herbaltalk</string>
     <string name="title_account">Account</string>
     <string name="title_herbalpedia">Herbalpedia</string>
