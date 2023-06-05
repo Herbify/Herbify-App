@@ -20,6 +20,22 @@ class VerifikasiViewModel(private val pref: UserPreferences):ViewModel() {
     private val _otp = MutableLiveData<Int>(0)
     val otp : LiveData<Int> get() = _otp
 
+    fun refreshOtp(id: Long){
+        val apiService = ApiConfig().getApiService()
+        val client = apiService.getOtp(id)
+        client.enqueue(object : retrofit2.Callback<OtpResponse>{
+            override fun onResponse(call: Call<OtpResponse>, response: Response<OtpResponse>) {
+                if(response.isSuccessful){
+                    _otp.value = response.body()?.data?.code
+                }
+            }
+
+            override fun onFailure(call: Call<OtpResponse>, t: Throwable) {
+                Log.e("Verification: ", "Failed getting otp")
+            }
+
+        })
+    }
     fun refreshOtp(){
         val apiService = ApiConfig().getApiService()
         val client = apiService.getOtp(pref.getUser().id)
@@ -42,6 +58,41 @@ class VerifikasiViewModel(private val pref: UserPreferences):ViewModel() {
         val apiService = ApiConfig().getApiService()
         val params = JsonObject().apply {
             addProperty("email", pref.getUser().email!!)
+            addProperty("code", typedOtp)
+        }
+        val client = apiService.verifyOtp(params)
+        client.enqueue(object : retrofit2.Callback<UserPostResponse>{
+            override fun onResponse(
+                call: Call<UserPostResponse>,
+                response: Response<UserPostResponse>
+            ) {
+                if(response.isSuccessful){
+                    val responseBody = response.body()!!
+                    if (responseBody.data != null){
+                        pref.verify()
+                        _isLoading.value = false
+                        onSuccessEvent()
+                    }else{
+                        onFailureEvent(responseBody.message)
+                    }
+                }else{
+                    onFailureEvent(response.message())
+                }
+                _isLoading.value = false
+            }
+
+            override fun onFailure(call: Call<UserPostResponse>, t: Throwable) {
+                onFailureEvent(t.message.toString())
+                _isLoading.value = false
+            }
+        })
+    }
+
+    fun verify(email:String, typedOtp:Int, onFailureEvent: (String) -> Unit, onSuccessEvent: ()-> Unit){
+        _isLoading.value = true
+        val apiService = ApiConfig().getApiService()
+        val params = JsonObject().apply {
+            addProperty("email", email)
             addProperty("code", typedOtp)
         }
         val client = apiService.verifyOtp(params)

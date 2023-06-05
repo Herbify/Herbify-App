@@ -41,7 +41,12 @@ class VerifikasiActivity : AppCompatActivity() {
         viewModel.otp.observe(this){it ->
             this.otp = it
         }
-        viewModel.refreshOtp()
+        val id = intent.getLongExtra("id", -1L)
+        if(id == -1L){
+            viewModel.refreshOtp()
+        }else{
+            viewModel.refreshOtp(id)
+        }
     }
 
     private fun setEditTextListener() {
@@ -97,15 +102,29 @@ class VerifikasiActivity : AppCompatActivity() {
                     if(editable.length == 1){
                         val typedOtp = checkAndGetOTP()
                         if(typedOtp != 0){
-                            viewModel.verify(
-                                typedOtp = typedOtp,
-                                onFailureEvent = {text -> Toast.makeText(this@VerifikasiActivity, text, Toast.LENGTH_SHORT).show()},
-                                onSuccessEvent = {
-                                    val intent = Intent(this@VerifikasiActivity, MainActivity::class.java)
-                                    intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                                    startActivity(intent)
-                                }
-                            )
+                            val email = intent.getStringExtra("email")
+                            if(email != null){
+                                viewModel.verify(
+                                    email,
+                                    typedOtp = typedOtp,
+                                    onFailureEvent = {text -> Toast.makeText(this@VerifikasiActivity, text, Toast.LENGTH_SHORT).show()},
+                                    onSuccessEvent = {
+                                        val intent = Intent(this@VerifikasiActivity, MainActivity::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                        startActivity(intent)
+                                    }
+                                )
+                            }else{
+                                viewModel.verify(
+                                    typedOtp = typedOtp,
+                                    onFailureEvent = {text -> Toast.makeText(this@VerifikasiActivity, text, Toast.LENGTH_SHORT).show()},
+                                    onSuccessEvent = {
+                                        val intent = Intent(this@VerifikasiActivity, MainActivity::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                        startActivity(intent)
+                                    }
+                                )
+                            }
                         }
                     }else if(editable.isEmpty()){
                         binding.etDigitTiga.requestFocus()

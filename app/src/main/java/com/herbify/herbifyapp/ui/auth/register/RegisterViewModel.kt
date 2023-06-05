@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class RegisterViewModel(private val pref: UserPreferences):ViewModel() {
-    fun register(request: RegisterRequest, onRegisterSuccess : () -> Unit, onRegisterFailed: (String) -> Unit){
+    fun register(request: RegisterRequest, onRegisterSuccess : (Long, String) -> Unit){
         val apiService = ApiConfig().getApiService()
         val params = JsonObject().apply {
             addProperty("name", request.name)
@@ -25,18 +25,13 @@ class RegisterViewModel(private val pref: UserPreferences):ViewModel() {
             ) {
                 if(response.isSuccessful){
                     val responseBody = response.body()!!
-                    if(responseBody.data != null){
-                        onRegisterSuccess()
-                    }else{
-                        onRegisterFailed(responseBody.message)
+                    if(responseBody.data != null) {
+                        onRegisterSuccess(responseBody.data.id, responseBody.data.email)
                     }
-                }else{
-                    onRegisterFailed(response.message())
                 }
             }
 
             override fun onFailure(call: Call<UserPostResponse>, t: Throwable) {
-                onRegisterFailed(t.message.toString())
             }
 
         })
