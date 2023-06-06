@@ -7,6 +7,7 @@
     tools:context=".ui.herbal_doc.SelectDoctorFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_doctor_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="25dp"

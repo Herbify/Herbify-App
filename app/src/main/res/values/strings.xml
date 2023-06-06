@@ -100,4 +100,5 @@
     <string name="title_account">Account</string>
     <string name="title_herbalpedia">Herbalpedia</string>
     <string name="logout">Keluar dari Akun</string>
+    <string name="wait">Tunggu sebentar...</string>
 </resources>

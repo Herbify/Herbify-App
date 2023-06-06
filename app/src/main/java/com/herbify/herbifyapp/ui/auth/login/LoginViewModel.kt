@@ -34,14 +34,19 @@ class LoginViewModel(private val pref: UserPreferences): ViewModel() {
                     if(responseBody.data != null){
                         pref.login(responseBody.data.name, responseBody.data.email, responseBody.data.id, responseBody.accessToken!!, responseBody.data.status == 1)
                         _user.value = pref.getUser()
+                        _isLoading.value = false
+                    }else{
+                        onFailedEvent(responseBody.message!!)
                     }
                 }else{
                     onFailedEvent(response.message())
+                    _isLoading.value = false
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                onFailedEvent(t.message.toString())
+                onFailedEvent(t.message!!)
+                _isLoading.value = false
             }
         })
     }

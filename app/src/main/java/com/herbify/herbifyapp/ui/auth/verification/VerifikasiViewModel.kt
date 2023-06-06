@@ -21,33 +21,39 @@ class VerifikasiViewModel(private val pref: UserPreferences):ViewModel() {
     val otp : LiveData<Int> get() = _otp
 
     fun refreshOtp(id: Long){
+        _isLoading.value = true
         val apiService = ApiConfig().getApiService()
         val client = apiService.getOtp(id)
         client.enqueue(object : retrofit2.Callback<OtpResponse>{
             override fun onResponse(call: Call<OtpResponse>, response: Response<OtpResponse>) {
                 if(response.isSuccessful){
                     _otp.value = response.body()?.data?.code
+                    _isLoading.value = false
                 }
             }
 
             override fun onFailure(call: Call<OtpResponse>, t: Throwable) {
                 Log.e("Verification: ", "Failed getting otp")
+                _isLoading.value = false
             }
 
         })
     }
     fun refreshOtp(){
+        _isLoading.value = false
         val apiService = ApiConfig().getApiService()
         val client = apiService.getOtp(pref.getUser().id)
         client.enqueue(object : retrofit2.Callback<OtpResponse>{
             override fun onResponse(call: Call<OtpResponse>, response: Response<OtpResponse>) {
                 if(response.isSuccessful){
                     _otp.value = response.body()?.data?.code
+                    _isLoading.value = false
                 }
             }
 
             override fun onFailure(call: Call<OtpResponse>, t: Throwable) {
                 Log.e("Verification: ", "Failed getting otp")
+                _isLoading.value = false
             }
 
         })
@@ -82,7 +88,7 @@ class VerifikasiViewModel(private val pref: UserPreferences):ViewModel() {
             }
 
             override fun onFailure(call: Call<UserPostResponse>, t: Throwable) {
-                onFailureEvent(t.message.toString())
+                onFailureEvent(t.message!!)
                 _isLoading.value = false
             }
         })
@@ -124,6 +130,7 @@ class VerifikasiViewModel(private val pref: UserPreferences):ViewModel() {
     }
 
     fun resendOtp(onFailureEvent: (String) -> Unit){
+        _isLoading.value = false
         val apiService = ApiConfig().getApiService()
         val client = apiService.generateOtp(pref.getUser().id!!)
         client.enqueue(object : retrofit2.Callback<GenerateOtpResponse>{
@@ -134,17 +141,21 @@ class VerifikasiViewModel(private val pref: UserPreferences):ViewModel() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody?.data?.data != null){
+                        _isLoading.value = false
                         _otp.value = responseBody.data.data.code
                     }else{
+                        _isLoading.value = false
                         onFailureEvent(responseBody?.message!!)
                     }
                 }else{
+                    _isLoading.value = false
                     onFailureEvent(response.message())
                 }
             }
 
             override fun onFailure(call: Call<GenerateOtpResponse>, t: Throwable) {
                 onFailureEvent(t.message.toString())
+                _isLoading.value = false
             }
 
         })

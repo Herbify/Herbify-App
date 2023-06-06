@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.herbal_pedia.HerbalPediaActivity">
+    tools:context=".ui.herbal_pedia.HerbalPediaFragment">
 
     <include
         android:id="@+id/top"
-        layout="@layout/custom_app_bar"/>
+        layout="@layout/custom_app_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
@@ -22,10 +25,11 @@
         app:searchIcon="@drawable/ic_baseline_search_white_24" />
 
     <ImageView
+        android:id="@+id/iv_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
         android:layout_marginStart="5dp"
+        android:layout_marginEnd="25dp"
         android:src="@drawable/scan_button"
         app:layout_constraintBottom_toBottomOf="@+id/searchView"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,7 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.herbify.herbifyapp.R
+import com.herbify.herbifyapp.databinding.FragmentSelectDoctorBinding
+import com.herbify.herbifyapp.ui.ViewModelFactory
+import com.herbify.herbifyapp.ui.adapter.DoctorListAdapter
+import com.herbify.herbifyapp.utils.RepositoryResult
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,28 +24,37 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class SelectDoctorFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var binding : FragmentSelectDoctorBinding
+    private lateinit var viewModel : DoctorViewModel
+    private lateinit var adapter : DoctorListAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_select_doctor, container, false)
+        binding = FragmentSelectDoctorBinding.inflate(inflater,container, false)
+        return binding.root
     }
 
-    companion object {
-        const val ARG_POSITION = "position"
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        adapter = DoctorListAdapter()
+        initViewModel()
+        initBinding()
+    }
 
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(this, ViewModelFactory(context))[DoctorViewModel::class.java]
+        viewModel.getAllDoctor().observe(viewLifecycleOwner){result ->
+            if(result is RepositoryResult.Success) {
+                adapter.submitList(result.data)
+            }
+        }
+    }
+
+    private fun initBinding() {
+        binding.rvDoctorList.layoutManager = LinearLayoutManager(context)
+        binding.rvDoctorList.setHasFixedSize(true)
+        binding.rvDoctorList.adapter = adapter
     }
 }
