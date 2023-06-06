@@ -27,6 +27,10 @@ class SelectDoctorFragment : Fragment() {
     private lateinit var binding : FragmentSelectDoctorBinding
     private lateinit var viewModel : DoctorViewModel
     private lateinit var adapter : DoctorListAdapter
+
+    companion object{
+        const val ARGS_DOCTOR_TYPE = "doctor_type"
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -45,11 +49,17 @@ class SelectDoctorFragment : Fragment() {
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this, ViewModelFactory(context))[DoctorViewModel::class.java]
-        viewModel.getAllDoctor().observe(viewLifecycleOwner){result ->
-            if(result is RepositoryResult.Success) {
-                adapter.submitList(result.data)
+        val type = arguments?.getInt(ARGS_DOCTOR_TYPE)
+            viewModel.doctor.observe(viewLifecycleOwner){result ->
+                if(result is RepositoryResult.Success) {
+                    if(type == 0){
+                        adapter.submitList(result.data)
+                    }else{
+                        adapter.submitList(result.data.filter { it.status == 1 })
+                    }
+                }
             }
-        }
+
     }
 
     private fun initBinding() {
