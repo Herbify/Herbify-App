@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -47,6 +48,19 @@ class LoginActivity : AppCompatActivity() {
         Log.d("LoginActivity: ", "Login page opened")
 
         supportActionBar?.hide()
+        iniViewModel()
+        Firebase.initialize(this)
+
+        auth = Firebase.auth
+        initGoogleSignIn()
+        initBinding()
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            oneTapSignIn()
+        }
+    }
+
+    private fun iniViewModel() {
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[LoginViewModel::class.java]
         viewModel.user.observe(this){it ->
             user = it
@@ -56,14 +70,8 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-        Firebase.initialize(this)
-
-        auth = Firebase.auth
-        initGoogleSignIn()
-        initBinding()
-        val currentUser = auth.currentUser
-        if (currentUser == null) {
-            oneTapSignIn()
+        viewModel.isLoading.observe(this){
+            setLoadingDiaog(it)
         }
     }
 
@@ -244,6 +252,14 @@ class LoginActivity : AppCompatActivity() {
         }catch (e: ApiException) {
             // Google Sign In failed, update UI appropriately
             Log.w(TAG, "Google sign in failed", e)
+        }
+    }
+
+    private fun setLoadingDiaog(isLoading: Boolean){
+        binding.loadingdialog.cvLoading.visibility = if(isLoading) {
+            View.VISIBLE
+        }else{
+            View.INVISIBLE
         }
     }
 

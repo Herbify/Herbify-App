@@ -43,7 +43,7 @@
             android:name=".ui.herbal_pedia.BrewPageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.CameraActivity"
+            android:name=".ui.camera.CameraActivity"
             android:exported="false" />
         <activity
             android:name=".ui.herbal_pedia.HerbalPediaDetailActivity"

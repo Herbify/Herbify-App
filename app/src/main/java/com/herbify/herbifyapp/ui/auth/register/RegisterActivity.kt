@@ -3,6 +3,7 @@ package com.herbify.herbifyapp.ui.auth.register
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.herbify.herbifyapp.data.remote.request.RegisterRequest
@@ -53,7 +54,18 @@ class RegisterActivity : AppCompatActivity() {
         })
     }
 
+    private fun setLoadingDiaog(isLoading: Boolean){
+        binding.loadingdialog.cvLoading.visibility = if(isLoading) {
+            View.VISIBLE
+        }else{
+            View.INVISIBLE
+        }
+    }
+
     private fun initViewModel() {
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[RegisterViewModel::class.java]
+        viewModel.isLoading.observe(this){
+            setLoadingDiaog(it)
+        }
     }
 }
