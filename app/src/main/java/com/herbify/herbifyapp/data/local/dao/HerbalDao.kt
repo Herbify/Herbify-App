@@ -15,6 +15,6 @@ interface HerbalDao {
     @Query("DELETE FROM herbals")
     suspend fun deleteAll()
 
-    @Insert(onConflict = OnConflictStrategy.NONE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertHerbal(herbalData: List<HerbalData>)
 }
