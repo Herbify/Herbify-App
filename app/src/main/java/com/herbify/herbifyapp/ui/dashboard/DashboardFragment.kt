@@ -30,6 +30,8 @@ class DashboardFragment : Fragment() {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         return binding.root
+
+
     }
 
     override fun onDestroyView() {
