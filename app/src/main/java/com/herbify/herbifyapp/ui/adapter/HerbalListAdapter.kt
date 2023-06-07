@@ -27,9 +27,13 @@ class HerbalListAdapter: PagingDataAdapter<HerbalData, HerbalListAdapter.MyViewH
     class MyViewHolder(private val binding: ItemCardHerbapediaBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(data: HerbalData){
             Glide.with(itemView).load(data.image).into(binding.ivHerbal)
-            val intent = Intent(itemView.context, HerbalPediaDetailActivity::class.java)
-            intent.putExtra(HerbalPediaDetailActivity.HERBAL_DATA, data)
-            itemView.context.startActivity(intent)
+            binding.tvHerbalName.text = data.name
+            binding.tvHerbalScname.text = data.scientificName
+            itemView.setOnClickListener{
+                val intent = Intent(itemView.context, HerbalPediaDetailActivity::class.java)
+                intent.putExtra(HerbalPediaDetailActivity.HERBAL_DATA, data)
+                itemView.context.startActivity(intent)
+            }
         }
 
     }

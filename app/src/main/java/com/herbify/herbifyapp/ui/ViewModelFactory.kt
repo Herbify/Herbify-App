@@ -10,6 +10,7 @@ import com.herbify.herbifyapp.ui.auth.login.LoginViewModel
 import com.herbify.herbifyapp.ui.auth.register.RegisterViewModel
 import com.herbify.herbifyapp.ui.auth.verification.VerifikasiViewModel
 import com.herbify.herbifyapp.ui.dashboard.DashboardViewModel
+import com.herbify.herbifyapp.ui.herbal_doc.DoctorViewModel
 import com.herbify.herbifyapp.ui.herbal_pedia.HerbalPediaViewModel
 
 class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInstanceFactory() {
@@ -34,6 +35,9 @@ class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInst
                 }
                 modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
                     AccountViewModel(UserPreferences.getInstance(context)) as T
+                }
+                modelClass.isAssignableFrom(DoctorViewModel::class.java) -> {
+                    DoctorViewModel(Injection.provideDoctorRepository(context)) as T
                 }
                 else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
             }

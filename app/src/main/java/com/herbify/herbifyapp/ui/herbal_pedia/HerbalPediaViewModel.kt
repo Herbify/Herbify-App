@@ -1,5 +1,7 @@
 package com.herbify.herbifyapp.ui.herbal_pedia
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,5 +11,8 @@ import com.herbify.herbifyapp.data.remote.response.herbal.HerbalData
 import com.herbify.herbifyapp.repository.HerbalRepository
 
 class HerbalPediaViewModel(private val repository: HerbalRepository): ViewModel() {
-    fun herbals(): LiveData<PagingData<HerbalData>> = repository.getHerbals().cachedIn(viewModelScope)
+    fun herbals(): LiveData<PagingData<HerbalData>> {
+
+        return repository.getHerbals().cachedIn(viewModelScope)
+    }
 }

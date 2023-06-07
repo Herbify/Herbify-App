@@ -41,11 +41,22 @@ class VerifikasiActivity : AppCompatActivity() {
         viewModel.otp.observe(this){it ->
             this.otp = it
         }
+        viewModel.isLoading.observe(this){
+            setLoadingDiaog(it)
+        }
         val id = intent.getLongExtra("id", -1L)
         if(id == -1L){
             viewModel.refreshOtp()
         }else{
             viewModel.refreshOtp(id)
+        }
+    }
+
+    private fun setLoadingDiaog(isLoading: Boolean){
+        binding.loadingdialog.cvLoading.visibility = if(isLoading) {
+            View.VISIBLE
+        }else{
+            View.INVISIBLE
         }
     }
 
