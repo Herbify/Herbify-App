@@ -9,12 +9,20 @@ plugins {
 android {
     signingConfigs {
         debug {
+            storeFile file('/Users/haniapn/Documents/UMM/Semester 6/Capstone/Herbify-App/debug.keystore')
+            storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
-            storePassword 'android'
-            storeFile file('D:\\Kuliah\\_BANGKIT\\HerbifyApp\\debug.keystore')
         }
     }
+//    signingConfigs {
+//        debug {
+//            keyAlias 'androiddebugkey'
+//            keyPassword 'android'
+//            storePassword 'android'
+//            storeFile file('D:\\Kuliah\\_BANGKIT\\HerbifyApp\\debug.keystore')
+//        }
+//    }
     namespace 'com.herbify.herbifyapp'
     compileSdk 33
 
@@ -72,7 +80,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.15.1'
 
     //CameraX
-    def camerax_version = "1.2.2"
+    def camerax_version = "1.2.3"
     implementation "androidx.camera:camera-camera2:${camerax_version}"
     implementation "androidx.camera:camera-lifecycle:${camerax_version}"
     implementation "androidx.camera:camera-view:${camerax_version}"

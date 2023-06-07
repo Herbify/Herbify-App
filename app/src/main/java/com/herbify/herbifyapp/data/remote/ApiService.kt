@@ -2,6 +2,7 @@ package com.herbify.herbifyapp.data.remote
 
 import com.google.gson.JsonObject
 import com.herbify.herbifyapp.data.remote.response.DoctorResponse
+import com.herbify.herbifyapp.data.remote.response.article.AddNewArticleResponse
 import com.herbify.herbifyapp.data.remote.response.auth.GenerateOtpResponse
 import com.herbify.herbifyapp.data.remote.response.auth.LoginResponse
 import com.herbify.herbifyapp.data.remote.response.auth.OtpResponse
@@ -15,6 +16,8 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
+
+    //authentication
     @POST("auth/register")
     fun register(
         @Body raw: JsonObject
@@ -41,10 +44,21 @@ interface ApiService {
         @Query("limit") limit:Int,
         @Query("page") page: Int
     ): HerbalResponse
-
-    @GET("doctor")
+  
+  
+  //herbadoc
+   @GET("doctor")
     fun getAllDoctors(): Call<DoctorResponse>
 
     @GET("doctor/{id}")
     fun getDoctor(@Path("id") id: Long): Call<DoctorResponse>
+  
+  
+  //herbaltalk
+    @POST("api/article")
+    fun addNewArticle(
+        @Body article: JsonObject
+    ): Call<AddNewArticleResponse>
+  
+ 
 }

@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_otp" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -118,41 +118,44 @@
 
     </LinearLayout>
 
-
     <TextView
         android:id="@+id/tv_otp_wrong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="30dp"
         android:text="@string/wrong_otp"
         android:textColor="@color/Alert"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:text="@string/not_ket_otp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_otp_wrong">
 
-        <TextView
-            android:id="@+id/tv_not_get_otp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/not_ket_otp" />
+    <TextView
+        android:id="@+id/tv_resend_otp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/resend_otp"
+        android:textColor="@color/purple_700"
+        android:layout_marginTop="20dp"
+        android:text="@string/not_ket_otp"/>
 
-        <TextView
-            android:id="@+id/tv_resend_otp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/resend_otp"
-            android:textColor="@color/purple_700" />
+    <TextView
+        android:id="@+id/tv_resend_otp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/resend_otp"
+        android:textColor="@color/purple_700"/>
 
     </LinearLayout>
 
