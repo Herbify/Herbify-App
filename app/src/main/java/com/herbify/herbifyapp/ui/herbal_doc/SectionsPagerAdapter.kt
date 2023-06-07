@@ -11,11 +11,11 @@ class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(a
     }
 
     override fun createFragment(position: Int): Fragment {
-        TODO("Not yet implemented")
-//        val fragment = SelectDoctorFragment()
-//        fragment.arguments = Bundle().apply {
-//            putInt(SelectDoctorFragment.ARG_POSITION, position + 1)
-//        }
+        val fragment: Fragment = SelectDoctorFragment()
+        fragment.arguments = Bundle().apply {
+            putInt(SelectDoctorFragment.ARGS_DOCTOR_TYPE, position)
+        }
+        return fragment
     }
 
 
