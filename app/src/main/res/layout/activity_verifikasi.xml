@@ -140,16 +140,17 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_otp_wrong">
 
         <TextView
-            android:id="@+id/tv_not_get_otp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
             android:text="@string/not_ket_otp" />
 
         <TextView
             android:id="@+id/tv_resend_otp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/poppins_regular"
             android:text="@string/resend_otp"
             android:textColor="@color/purple_700" />
 

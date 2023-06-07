@@ -17,7 +17,10 @@ class HerbalPediaDetailActivity : AppCompatActivity() {
         binding = ActivityHerbalPediaDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         initBinding()
+
     }
 
     private fun initBinding() {

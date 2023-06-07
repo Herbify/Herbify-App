@@ -10,5 +10,5 @@ import com.herbify.herbifyapp.data.remote.response.herbal.HerbalData
 import com.herbify.herbifyapp.repository.HerbalRepository
 
 class DashboardViewModel(private val herbalRepository: HerbalRepository) : ViewModel() {
-    var herbals: LiveData<PagingData<HerbalData>> = herbalRepository.getHerbals().cachedIn(viewModelScope)
+    fun herbals(): LiveData<PagingData<HerbalData>> = herbalRepository.getHerbals().cachedIn(viewModelScope)
 }

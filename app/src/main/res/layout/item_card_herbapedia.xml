@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="150dp"
     android:layout_height="150dp"
     app:cardCornerRadius="20dp"
     android:elevation="40dp"
     android:layout_marginStart="25dp"
-    android:layout_marginTop="25dp">
+    android:layout_marginTop="25dp"
+    android:layout_marginEnd="25dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="150dp"
@@ -18,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/kayu_manis"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +46,9 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:text="@string/name"
-                android:textSize="12sp" />
+                android:textColor="#616161"
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
 
             <TextView
                 android:id="@+id/tv_herbal_scname"
@@ -53,7 +57,9 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="@string/ilmiah_name"
-                android:textSize="12sp" />
+                android:textColor="#546E7A"
+                android:textSize="8sp"
+                tools:ignore="SmallSp,TextContrastCheck" />
 
         </LinearLayout>
 
