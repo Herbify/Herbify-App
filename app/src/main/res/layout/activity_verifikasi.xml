@@ -7,6 +7,15 @@
     android:layout_margin="25dp"
     tools:context=".ui.auth.verification.VerifikasiActivity">
 
+    <include
+        android:id="@+id/loadingdialog"
+        layout="@layout/dialog_loading"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_otp_verification"
         android:layout_width="match_parent"

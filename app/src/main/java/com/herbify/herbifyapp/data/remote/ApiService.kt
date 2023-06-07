@@ -1,17 +1,15 @@
 package com.herbify.herbifyapp.data.remote
 
 import com.google.gson.JsonObject
+import com.herbify.herbifyapp.data.remote.response.DoctorResponse
 import com.herbify.herbifyapp.data.remote.response.article.AddNewArticleResponse
 import com.herbify.herbifyapp.data.remote.response.auth.GenerateOtpResponse
 import com.herbify.herbifyapp.data.remote.response.auth.LoginResponse
 import com.herbify.herbifyapp.data.remote.response.auth.OtpResponse
 import com.herbify.herbifyapp.data.remote.response.auth.UserPostResponse
 import com.herbify.herbifyapp.data.remote.response.herbal.HerbalResponse
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -41,19 +39,26 @@ interface ApiService {
         @Body raw: JsonObject
     ):Call<UserPostResponse>
 
-    @GET("api/herbal")
-    fun getAllHerbals(
-        @Query("page") page: Int,
-        @Query("size") size:Int
+    @GET("herbal")
+    suspend fun getAllHerbals(
+        @Query("limit") limit:Int,
+        @Query("page") page: Int
     ): HerbalResponse
+  
+  
+  //herbadoc
+   @GET("doctor")
+    fun getAllDoctors(): Call<DoctorResponse>
 
-
-    //herbaltalk
+    @GET("doctor/{id}")
+    fun getDoctor(@Path("id") id: Long): Call<DoctorResponse>
+  
+  
+  //herbaltalk
     @POST("api/article")
     fun addNewArticle(
         @Body article: JsonObject
     ): Call<AddNewArticleResponse>
-
-
-
+  
+ 
 }

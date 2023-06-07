@@ -12,6 +12,12 @@ data class HerbalResponse(
 	@field:SerializedName("data")
 	val data: List<HerbalData>,
 
+	@field:SerializedName("limit")
+	val limit: Int,
+
+	@field:SerializedName("page")
+	val page: Int,
+
 	@field:SerializedName("message")
 	val message: String
 ) : Parcelable
