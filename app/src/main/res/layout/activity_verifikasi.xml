@@ -121,26 +121,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <TextView
-        android:id="@+id/tv_not_get_otp"
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/not_ket_otp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_otp_wrong" />
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_otp_wrong"
+        app:layout_constraintStart_toStartOf="@+id/tv_otp_wrong"
+        app:layout_constraintTop_toBottomOf="@+id/tv_otp_wrong">
 
-    <TextView
-        android:id="@+id/tv_resend_otp"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/resend_otp"
-        android:textColor="@color/purple_700"
-        app:layout_constraintEnd_toEndOf="@+id/tv_not_get_otp"
-        app:layout_constraintStart_toStartOf="@+id/tv_not_get_otp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_not_get_otp" />
+        <TextView
+            android:id="@+id/tv_not_get_otp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/not_ket_otp" />
+
+        <TextView
+            android:id="@+id/tv_resend_otp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/resend_otp"
+            android:textColor="@color/purple_700" />
+
+    </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
