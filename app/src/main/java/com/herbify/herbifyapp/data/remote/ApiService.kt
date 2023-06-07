@@ -52,8 +52,7 @@ interface ApiService {
 
     @GET("doctor/{id}")
     fun getDoctor(@Path("id") id: Long): Call<DoctorResponse>
-  
-  
+
   //herbaltalk
     @POST("api/article")
     fun addNewArticle(

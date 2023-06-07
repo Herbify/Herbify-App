@@ -13,34 +13,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="240dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="25dp"
-        android:background="@drawable/bg_rounded_80_stroke_bold"
-        app:layout_constraintBottom_toTopOf="@+id/sv_herbal_pedia"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:searchIcon="@drawable/ic_baseline_search_white_24" />
-
-    <ImageView
-        android:id="@+id/iv_scan"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="25dp"
-        android:src="@drawable/scan_button"
-        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/sv_herbal_pedia"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/searchView"
-        app:layout_constraintTop_toTopOf="@+id/searchView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_rounded_80_stroke_bold"
+            app:searchIcon="@drawable/ic_baseline_search_white_24" />
+
+        <ImageView
+            android:id="@+id/iv_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:contentDescription="@string/scan_button"
+            android:src="@drawable/scan_button"
+            tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
+
+
+    </LinearLayout>
+
 
     <ScrollView
         android:id="@+id/sv_herbal_pedia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top">
 
@@ -56,7 +63,6 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_card_herbapedia" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
