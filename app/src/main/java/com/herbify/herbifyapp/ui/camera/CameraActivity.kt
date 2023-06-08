@@ -34,6 +34,11 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        binding.btnBack.setOnClickListener {
+            @Suppress("DEPRECATION")
+            onBackPressed()
+        }
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
