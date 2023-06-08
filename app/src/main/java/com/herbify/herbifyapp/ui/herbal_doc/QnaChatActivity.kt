@@ -19,7 +19,5 @@ class QnaChatActivity : AppCompatActivity() {
     }
 
     private fun initBinding() {
-        binding.rvChatDoctor.layoutManager = LinearLayoutManager(this)
-        binding.rvChatDoctor.adapter = DoctotChatAdapter(DummyDoctorChat.dummyData)
     }
 }

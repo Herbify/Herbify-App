@@ -1,17 +1,20 @@
 package com.herbify.herbifyapp.ui.camera
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.herbify.herbifyapp.createFile
 import com.herbify.herbifyapp.databinding.ActivityCameraBinding
@@ -23,6 +26,8 @@ class CameraActivity : AppCompatActivity() {
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     companion object{
         const val CAMERA_X_RESULT = 200
+        private var REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
+        private const val REQUEST_CODE_PERMISSIONS = 10
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +39,30 @@ class CameraActivity : AppCompatActivity() {
             @Suppress("DEPRECATION")
             onBackPressed()
         }
+        if (!allPermissionsGranted()) {
+            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+        }
+
         binding.shutter.setOnClickListener{takePhoto()}
-//        binding.switchCamera.setOnClickListener {
-//            cameraSelector = if(cameraSelector.equals(CameraSelector.DEFAULT_BACK_CAMERA)) CameraSelector.DEFAULT_FRONT_CAMERA
-//            else CameraSelector.DEFAULT_BACK_CAMERA
-//            startCamera()
-//        }
+
+//        val actionBar: ActionBar = supportActionBar
+    }
+
+    private fun allPermissionsGranted(): Boolean = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (!allPermissionsGranted()) {
+                Toast.makeText(this, "Tidak mendapatkan permissions", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onResume() {
