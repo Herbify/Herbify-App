@@ -38,5 +38,12 @@ class SelectDoctorActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
+
+        supportActionBar?.hide()
+        binding.btnBack.setOnClickListener {
+            @Suppress("DEPRECATION")
+            onBackPressed()
+        }
+
     }
 }

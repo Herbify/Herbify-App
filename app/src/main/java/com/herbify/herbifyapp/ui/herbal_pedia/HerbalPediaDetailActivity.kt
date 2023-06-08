@@ -3,7 +3,6 @@ package com.herbify.herbifyapp.ui.herbal_pedia
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
-import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.data.remote.response.herbal.HerbalData
 import com.herbify.herbifyapp.databinding.ActivityHerbalPediaDetailBinding
 
@@ -18,6 +17,10 @@ class HerbalPediaDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+        binding.btnBack.setOnClickListener {
+            @Suppress("DEPRECATION")
+            onBackPressed()
+        }
 
         initBinding()
 

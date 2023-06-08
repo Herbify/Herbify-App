@@ -36,7 +36,6 @@ class DashboardFragment : Fragment(), View.OnClickListener {
             )[DashboardViewModel::class.java]
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-
         return binding.root
 
 
