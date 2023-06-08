@@ -15,6 +15,14 @@ data class DoctorResponse(
 	val message: String
 )
 
+data class DoctorIdResponse(
+	@field:SerializedName("data")
+	val data: DoctorData? = null,
+
+	@field:SerializedName("message")
+	val message: String
+)
+
 @Parcelize
 data class DoctorData(
 

@@ -1,6 +1,7 @@
 package com.herbify.herbifyapp.ui.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -13,9 +14,10 @@ import com.herbify.herbifyapp.model.Doctor
 class DoctorListAdapter : ListAdapter<Doctor, DoctorListAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(val binding : ItemDoctorBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(doctor: Doctor){
+            Log.d("DoctorListAdapter", doctor.name)
             binding.tvNameDoctor.text = doctor.name
             binding.tvTahun.text = doctor.verifiedAt
-            Glide.with(itemView.context).load(doctor.photo).into(binding.ivProfilDoctor)
+//            Glide.with(itemView.context).load(doctor.photo).into(binding.ivProfilDoctor)
         }
     }
 
@@ -31,10 +33,8 @@ class DoctorListAdapter : ListAdapter<Doctor, DoctorListAdapter.MyViewHolder>(DI
         val DIFF_CALLBACK: DiffUtil.ItemCallback<Doctor> =
             object : DiffUtil.ItemCallback<Doctor>() {
                 override fun areItemsTheSame(oldUser: Doctor, newUser: Doctor): Boolean {
-                    return oldUser.email == newUser.email
+                    return oldUser.name == newUser.name
                 }
-
-                @SuppressLint("DiffUtilEquals")
                 override fun areContentsTheSame(oldUser: Doctor, newUser: Doctor): Boolean {
                     return oldUser == newUser
                 }

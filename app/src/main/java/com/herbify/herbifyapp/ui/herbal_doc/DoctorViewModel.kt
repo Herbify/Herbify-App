@@ -12,4 +12,5 @@ class DoctorViewModel(private val doctorRepository: DoctorRepository): ViewModel
     fun getExistedDoctor(){
         doctor
     }
+
 }
