@@ -20,6 +20,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/pict_dashboard"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ImageContrastCheck" />
@@ -65,7 +66,6 @@
                 android:id="@+id/btn_scan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/button_scan"
                 android:src="@drawable/scan"
@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.1" />
+                app:layout_constraintGuide_percent="0.13" />
 
             <ImageView
                 android:id="@+id/banner_herbal"
@@ -165,7 +165,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginEnd="25dp"
                 android:layout_marginBottom="20dp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_saran_produk"
@@ -192,6 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
+                android:paddingBottom="110dp"
                 android:layout_marginEnd="25dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
