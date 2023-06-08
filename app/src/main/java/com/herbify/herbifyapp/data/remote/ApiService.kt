@@ -1,6 +1,7 @@
 package com.herbify.herbifyapp.data.remote
 
 import com.google.gson.JsonObject
+import com.herbify.herbifyapp.data.remote.response.DoctorIdResponse
 import com.herbify.herbifyapp.data.remote.response.DoctorResponse
 import com.herbify.herbifyapp.data.remote.response.article.AddNewArticleResponse
 import com.herbify.herbifyapp.data.remote.response.auth.GenerateOtpResponse
@@ -51,7 +52,7 @@ interface ApiService {
     fun getAllDoctors(): Call<DoctorResponse>
 
     @GET("doctor/{id}")
-    fun getDoctor(@Path("id") id: Long): Call<DoctorResponse>
+    fun getDoctor(@Path("id") id: Int): Call<DoctorIdResponse>
 
   //herbaltalk
     @POST("api/article")
