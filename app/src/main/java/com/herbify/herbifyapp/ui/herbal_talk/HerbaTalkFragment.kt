@@ -18,11 +18,15 @@ class HerbaTalkFragment : Fragment(), View.OnClickListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHerbaTalkBinding.inflate(inflater, container, false)
+        binding.btnAdd.setOnClickListener(this)
         return binding.root
+
+
     }
+
 
     override fun onClick(p0: View) {
         when (p0){

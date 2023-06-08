@@ -29,6 +29,11 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        binding.btnBack.setOnClickListener {
+            @Suppress("DEPRECATION")
+            onBackPressed()
+        }
         binding.shutter.setOnClickListener{takePhoto()}
 //        binding.switchCamera.setOnClickListener {
 //            cameraSelector = if(cameraSelector.equals(CameraSelector.DEFAULT_BACK_CAMERA)) CameraSelector.DEFAULT_FRONT_CAMERA
