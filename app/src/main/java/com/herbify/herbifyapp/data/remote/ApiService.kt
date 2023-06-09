@@ -9,12 +9,10 @@ import com.herbify.herbifyapp.data.remote.response.auth.LoginResponse
 import com.herbify.herbifyapp.data.remote.response.auth.OtpResponse
 import com.herbify.herbifyapp.data.remote.response.auth.UserPostResponse
 import com.herbify.herbifyapp.data.remote.response.herbal.HerbalResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -55,10 +53,16 @@ interface ApiService {
     fun getDoctor(@Path("id") id: Int): Call<DoctorIdResponse>
 
   //herbaltalk
-    @POST("api/article")
-    fun addNewArticle(
-        @Body article: JsonObject
-    ): Call<AddNewArticleResponse>
-  
- 
+  @Multipart
+  @POST("api/article")
+  suspend fun addNewArticle(
+      @Part("title") title: RequestBody,
+      @Part photo: MultipartBody.Part,
+      @Part("content") content: RequestBody,
+      @Part("tag[tag1]") tag1: RequestBody,
+      @Part("tag[tag2]") tag2: RequestBody
+  ): Call<AddNewArticleResponse>
+
+
+
 }
