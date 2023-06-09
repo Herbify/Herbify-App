@@ -76,4 +76,9 @@ class UserPreferences private constructor(context: Context){
             .putBoolean(VERIFIED_KEY, false)
             .apply()
     }
+
+
+    fun getIdUser(): Int {
+        return preferences.getInt(ID_KEY, 0)
+    }
 }
