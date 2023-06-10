@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.herbify.herbifyapp.data.remote.ApiService
 import com.herbify.herbifyapp.data.remote.response.article.AddNewArticleResponse
+import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.utils.RepositoryResult
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -15,7 +16,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
-class ArticleRepository(private val apiService: ApiService) {
+class ArticleRepository(
+    private val apiService: ApiService,
+    private val userPreferences: UserPreferences) {
 
     suspend fun addNewArticle(
         title: String,
@@ -27,6 +30,8 @@ class ArticleRepository(private val apiService: ApiService) {
         val result = MediatorLiveData<RepositoryResult<AddNewArticleResponse>>()
         result.value = RepositoryResult.Loading
 
+        val userId = userPreferences.getUser().id
+
         val titleRequestBody = title.toRequestBody("text/plain".toMediaType())
         val photoRequestBody = photo.asRequestBody("image/*".toMediaTypeOrNull())
         val photoPart = MultipartBody.Part.createFormData("photo", photo.name, photoRequestBody)
@@ -35,11 +40,12 @@ class ArticleRepository(private val apiService: ApiService) {
         val tag2RequestBody = tag2.toRequestBody("text/plain".toMediaType())
 
         val client = apiService.addNewArticle(
+            userId,
             titleRequestBody,
             photoPart,
             contentRequestBody,
             tag1RequestBody,
-            tag2RequestBody
+            tag2RequestBody,
         )
 
         client.enqueue(object : Callback<AddNewArticleResponse> {
@@ -66,6 +72,8 @@ class ArticleRepository(private val apiService: ApiService) {
 
         return result
     }
+
+
 
 
 }
