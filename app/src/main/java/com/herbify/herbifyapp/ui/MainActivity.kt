@@ -9,10 +9,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.databinding.ActivityMainBinding
+import com.herbify.herbifyapp.ui.herbal_pedia.BrewViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var brewViewModel: BrewViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
