@@ -1,4 +1,4 @@
-package com.herbify.herbifyapp
+package com.herbify.herbifyapp.utils
 
 import android.app.Application
 import android.content.ContentResolver
@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
+import com.herbify.herbifyapp.R
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*

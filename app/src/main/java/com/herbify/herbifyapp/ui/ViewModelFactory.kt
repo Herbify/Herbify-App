@@ -12,6 +12,7 @@ import com.herbify.herbifyapp.ui.auth.verification.VerifikasiViewModel
 import com.herbify.herbifyapp.ui.dashboard.DashboardViewModel
 import com.herbify.herbifyapp.ui.herbal_doc.DoctorViewModel
 import com.herbify.herbifyapp.ui.herbal_pedia.HerbalPediaViewModel
+import com.herbify.herbifyapp.ui.herbal_talk.add.AddNewArticleViewModel
 
 class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -39,6 +40,10 @@ class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInst
                 modelClass.isAssignableFrom(DoctorViewModel::class.java) -> {
                     DoctorViewModel(Injection.provideDoctorRepository(context)) as T
                 }
+                modelClass.isAssignableFrom(AddNewArticleViewModel::class.java) -> {
+                    AddNewArticleViewModel(Injection.provideArticleRepository(context)) as T
+                }
+
                 else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
             }
         }else{
