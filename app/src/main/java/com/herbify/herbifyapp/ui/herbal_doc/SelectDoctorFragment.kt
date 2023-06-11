@@ -53,11 +53,8 @@ class SelectDoctorFragment : Fragment() {
         val type = arguments?.getInt(ARGS_DOCTOR_TYPE)
         viewModel.doctor.observe(viewLifecycleOwner){result ->
             if(result != null){
-                Log.d("Select DoctorFragment", result.toString())
-                Log.d("Select DoctorFragment", type.toString())
                 when(result){
                     is RepositoryResult.Success -> {
-                        Log.d("Select DoctorFragment", result.data.toString())
                         doctorAdapter.submitList(result.data)
                         binding.rvDoctorList.apply {
                             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

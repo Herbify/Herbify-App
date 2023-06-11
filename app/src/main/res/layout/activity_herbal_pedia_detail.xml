@@ -61,7 +61,6 @@
         tools:ignore="ImageContrastCheck" />
 
 
-
     <ScrollView
         android:id="@+id/sv_herbal_pedia_detail"
         android:layout_width="match_parent"
@@ -148,15 +147,22 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_racik"
-        android:contentDescription="@string/racik"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:fabSize="auto"
-        app:maxImageSize="30dp"
-        app:backgroundTint="@color/green_moss"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/racik"
+        app:backgroundTint="@color/green_moss"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toTopOf="@+id/brew_component"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="30dp" />
+
+    <include
+        android:id="@+id/brew_component"
+        layout="@layout/component_brew"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import com.herbify.herbifyapp.ui.ViewModelFactory
 import com.herbify.herbifyapp.ui.auth.login.LoginActivity
 import com.herbify.herbifyapp.ui.auth.verification.VerifikasiActivity
 import com.herbify.herbifyapp.ui.auth.verification.VerifikasiViewModel
+import com.herbify.herbifyapp.utils.RepositoryResult
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -44,14 +45,7 @@ class RegisterActivity : AppCompatActivity() {
             binding.tieEmail.text.toString(),
             binding.tiePassword.text.toString()
         )
-        viewModel.register(
-            request,
-        onRegisterSuccess = { id, email ->
-            val intent = Intent(this, VerifikasiActivity::class.java)
-            intent.putExtra("id", id)
-            intent.putExtra("email", email)
-            startActivity(intent)
-        })
+        viewModel.register(request)
     }
 
     private fun setLoadingDiaog(isLoading: Boolean){
@@ -64,8 +58,23 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[RegisterViewModel::class.java]
-        viewModel.isLoading.observe(this){
-            setLoadingDiaog(it)
+        viewModel.result.observe(this){result ->
+            when(result){
+                is RepositoryResult.Loading -> {
+                    setLoadingDiaog(true)
+                }
+                is RepositoryResult.Success -> {
+                    setLoadingDiaog(false)
+                    val intent = Intent(this, VerifikasiActivity::class.java)
+                    intent.putExtra("id", result.data.id)
+                    intent.putExtra("email", result.data.email)
+                    startActivity(intent)
+                }
+                is RepositoryResult.Error -> {
+                    setLoadingDiaog(false)
+                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }
