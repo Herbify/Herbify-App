@@ -3,7 +3,6 @@ package com.herbify.herbifyapp.data
 import android.content.Context
 import com.herbify.herbifyapp.data.local.database.HerbalDatabase
 import com.herbify.herbifyapp.data.remote.ApiConfig
-import com.herbify.herbifyapp.data.remote.ApiService
 import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.repository.ArticleRepository
 import com.herbify.herbifyapp.repository.BrewRepository
@@ -28,7 +27,9 @@ object Injection {
         val apiService = ApiConfig().getApiService()
         val userPreferences = UserPreferences.getInstance(context)
         return ArticleRepository(apiService,userPreferences)
-    fun provideBrewRepository(context: Context): BrewRepository{
-        return BrewRepository(HerbalDatabase.getDatabase(context).getBrewedDao(),AppExecutors())
     }
+    fun provideBrewRepository(context: Context): BrewRepository {
+        return BrewRepository(HerbalDatabase.getDatabase(context).getBrewedDao(), AppExecutors())
+    }
+
 }
