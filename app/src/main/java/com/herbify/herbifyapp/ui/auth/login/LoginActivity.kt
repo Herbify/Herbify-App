@@ -29,6 +29,7 @@ import com.herbify.herbifyapp.databinding.ActivityLoginBinding
 import com.herbify.herbifyapp.model.UserModel
 import com.herbify.herbifyapp.ui.auth.register.RegisterActivity
 import com.herbify.herbifyapp.ui.auth.verification.VerifikasiActivity
+import com.herbify.herbifyapp.utils.RepositoryResult
 
 class LoginActivity : AppCompatActivity() {
 
@@ -62,16 +63,25 @@ class LoginActivity : AppCompatActivity() {
 
     private fun iniViewModel() {
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[LoginViewModel::class.java]
-        viewModel.user.observe(this){it ->
-            user = it
-            if (user != null){
-                if (user?.token != null){
-                    movePage(user!!.isVerified)
+        viewModel.loginResult.observe(this){result ->
+            when(result){
+                is RepositoryResult.Success -> {
+                    setLoadingDiaog(false)
+                    user = result.data
+                    if (user != null){
+                        if (user?.token != null){
+                            movePage(user!!.isVerified)
+                        }
+                    }
+                }
+                is RepositoryResult.Loading -> {
+                    setLoadingDiaog(true)
+                }
+                is RepositoryResult.Error ->{
+                    setLoadingDiaog(false)
+                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                 }
             }
-        }
-        viewModel.isLoading.observe(this){
-            setLoadingDiaog(it)
         }
     }
 
@@ -97,9 +107,6 @@ class LoginActivity : AppCompatActivity() {
         viewModel.login(
             email = binding.tieEmail.text.toString(),
             password = binding.tiePassword.text.toString(),
-            onFailedEvent = {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            }
         )
     }
 
@@ -231,6 +238,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
+            viewModel.login(user.email!!)
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
