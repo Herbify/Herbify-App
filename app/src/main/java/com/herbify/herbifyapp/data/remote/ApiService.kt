@@ -15,7 +15,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-
     //authentication
     @POST("auth/register")
     fun register(
@@ -63,7 +62,6 @@ interface ApiService {
       @Part("tag[tag1]") tag1: RequestBody,
       @Part("tag[tag2]") tag2: RequestBody
   ): Call<AddNewArticleResponse>
-
 
 
 }

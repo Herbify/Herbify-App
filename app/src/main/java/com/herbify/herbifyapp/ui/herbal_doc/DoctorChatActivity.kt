@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.herbify.herbifyapp.R
+import com.herbify.herbifyapp.SocketHandler
 import com.herbify.herbifyapp.databinding.ActivityDoctorChatBinding
 import com.herbify.herbifyapp.model.Doctor
 import com.herbify.herbifyapp.ui.ViewModelFactory
@@ -21,11 +22,23 @@ class DoctorChatActivity : AppCompatActivity() {
         binding = ActivityDoctorChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        SocketHandler.setSocket()
+
+        val mSocket = SocketHandler.getSocket()
+
         initViewModel()
+        initBinding()
+    }
+
+    private fun initBinding() {
+        binding.buttonSend.setOnClickListener {
+        }
     }
 
     private fun initViewModel() {
         val doctorId: Doctor = intent.getParcelableExtra(DOCTOR_EXTRA)!!
         viewModel = ViewModelProvider(this, ViewModelFactory(this))[DoctorChatViewModel::class.java]
     }
+
+
 }

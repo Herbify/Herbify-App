@@ -8,19 +8,16 @@ import com.herbify.herbifyapp.data.remote.ApiConfig
 import com.herbify.herbifyapp.data.remote.response.auth.LoginResponse
 import com.herbify.herbifyapp.model.UserModel
 import com.herbify.herbifyapp.model.UserPreferences
+import com.herbify.herbifyapp.utils.RepositoryResult
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
 
 class LoginViewModel(private val pref: UserPreferences): ViewModel() {
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading : LiveData<Boolean> = _isLoading
+    var loginResult = MutableLiveData<RepositoryResult<UserModel>>()
 
-    private val _user = MutableLiveData<UserModel>()
-    val user : LiveData<UserModel> = _user
-
-    fun login(email: String, password: String, onFailedEvent : (String) -> Unit){
-        _isLoading.value = true
+    fun login(email: String, password: String){
+        loginResult.value = RepositoryResult.Loading
         val apiService = ApiConfig().getApiService()
         val params = JsonObject().apply {
             addProperty("email", email)
@@ -33,20 +30,46 @@ class LoginViewModel(private val pref: UserPreferences): ViewModel() {
                     val responseBody = response.body()!!
                     if(responseBody.data != null){
                         pref.login(responseBody.data.name, responseBody.data.email, responseBody.data.id, responseBody.accessToken!!, responseBody.data.status == 1)
-                        _user.value = pref.getUser()
-                        _isLoading.value = false
+                        loginResult.value = RepositoryResult.Success(pref.getUser())
                     }else{
-                        onFailedEvent(responseBody.message!!)
+                        loginResult.value = RepositoryResult.Error(responseBody.message!!)
                     }
                 }else{
-                    onFailedEvent(response.message())
-                    _isLoading.value = false
+                    loginResult.value = RepositoryResult.Error(response.message())
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                onFailedEvent(t.message!!)
-                _isLoading.value = false
+                loginResult.value = RepositoryResult.Error(t.message.toString())
+            }
+        })
+    }
+
+    fun login(email: String){
+        loginResult.value = RepositoryResult.Loading
+        val apiService = ApiConfig().getApiService()
+        val params = JsonObject().apply {
+            addProperty("email", email)
+            addProperty("type", "google")
+        }
+        val client = apiService.login(params)
+        client.enqueue(object : retrofit2.Callback<LoginResponse>{
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if(response.isSuccessful){
+                    val responseBody = response.body()!!
+                    if(responseBody.data != null){
+                        pref.login(responseBody.data.name, responseBody.data.email, responseBody.data.id, responseBody.accessToken!!, responseBody.data.status == 1)
+                        loginResult.value = RepositoryResult.Success(pref.getUser())
+                    }else{
+                        loginResult.value = RepositoryResult.Error(responseBody.message!!)
+                    }
+                }else{
+                    loginResult.value = RepositoryResult.Error(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                loginResult.value = RepositoryResult.Error(t.message.toString())
             }
         })
     }
