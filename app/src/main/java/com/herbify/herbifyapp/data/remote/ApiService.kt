@@ -55,6 +55,7 @@ interface ApiService {
   @Multipart
   @POST("api/article")
   suspend fun addNewArticle(
+      @Part("idUser") idUser: Long,
       @Part("title") title: RequestBody,
       @Part photo: MultipartBody.Part,
       @Part("content") content: RequestBody,
