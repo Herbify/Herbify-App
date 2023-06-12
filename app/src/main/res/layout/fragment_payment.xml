@@ -17,7 +17,7 @@
             android:id="@+id/tv_select_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pilih metode pembayaran"
+            android:text="@string/pilih_metode_pembayaran"
             android:fontFamily="@font/poppins_bold"
             android:textSize="22sp"
             android:gravity="center"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/harga"
-                android:textSize="18sp"
+                android:textSize="18sp"/>
 
 
         </LinearLayout>
@@ -72,15 +72,16 @@
             android:id="@+id/btn_payment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
             android:layout_marginTop="30dp"
+            android:background="@drawable/bg_button"
             android:fontFamily="@font/poppins_semi_bold"
             android:text="@string/bayar"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/linear_total"
             app:layout_constraintStart_toStartOf="@+id/linear_total"
-            app:layout_constraintTop_toBottomOf="@+id/linear_total" />
+            app:layout_constraintTop_toBottomOf="@+id/linear_total"
+            tools:ignore="TextContrastCheck" />
 
 
 
