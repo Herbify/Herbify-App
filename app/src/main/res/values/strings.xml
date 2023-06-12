@@ -110,4 +110,7 @@
     <string name="number_display">10</string>
     <string name="article">article</string>
     <string name="bookmark">bookmark</string>
+    <string name="text_conclution">Arahan dokter : “Boleh pake temulawak, asal jangan berlebihan yaa</string>
+    <string name="button_logout">button logout</string>
+    <string name="_24_juni_2023">24 Juni 2023</string>
 </resources>
