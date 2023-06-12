@@ -55,7 +55,7 @@
             android:id="@+id/cl_herbal_pedia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_rounded_40">
+            android:background="@drawable/bg_rounded_40_solid_white">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_item_herbal_pedia"

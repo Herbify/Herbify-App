@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="25dp"
+    android:background="@drawable/bg_rounded_40_solid_green_light"
+    tools:context=".ui.herbal_doc.DetailDoctorFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_profil_doctor"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/profil_doctor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+    <TextView
+        android:id="@+id/tv_name_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/nama_lengkap"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_profil_doctor" />
+
+    <TextView
+        android:id="@+id/tv_experience_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/tahun"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_name_user"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_user"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_user" />
+
+    <TextView
+        android:id="@+id/tv_riwayat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="start"
+        android:layout_marginTop="40dp"
+        android:text="@string/riwayat_pekerjaan"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_experience_year" />
+
+    <TextView
+        android:id="@+id/tv_value_riwayat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="14sp"
+        android:text="@string/daftar_riwayat_pekerjaan"
+        app:layout_constraintTop_toBottomOf="@id/tv_riwayat"/>
+
+    <TextView
+        android:id="@+id/tv_penghargaan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="start"
+        android:layout_marginTop="40dp"
+        android:text="@string/penghargaan"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_value_riwayat" />
+
+    <TextView
+        android:id="@+id/tv_value_penghargaan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="14sp"
+        android:text="@string/daftar_penghargaan"
+        app:layout_constraintTop_toBottomOf="@id/tv_penghargaan"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

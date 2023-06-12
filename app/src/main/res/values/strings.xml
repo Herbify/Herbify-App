@@ -113,4 +113,8 @@
     <string name="text_conclution">Arahan dokter : “Boleh pake temulawak, asal jangan berlebihan yaa</string>
     <string name="button_logout">button logout</string>
     <string name="_24_juni_2023">24 Juni 2023</string>
+    <string name="riwayat_pekerjaan">Riwayat Pekerjaan</string>
+    <string name="daftar_riwayat_pekerjaan">Daftar riwayat pekerjaan</string>
+    <string name="penghargaan">Penghargaan</string>
+    <string name="daftar_penghargaan">Daftar penghargaan</string>
 </resources>
