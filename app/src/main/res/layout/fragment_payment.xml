@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="-24dp"
-    app:cardCornerRadius="24dp"
+    app:cardCornerRadius="30dp"
     tools:context=".ui.PopUpCameraFragment"
     tools:ignore="TextSizeCheck">
 
@@ -18,33 +17,31 @@
             android:id="@+id/tv_select_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/pilih_metode_pembayaran"
             android:fontFamily="@font/poppins_bold"
-            android:gravity="center"
-            android:text="Pilih metode pembayaran"
             android:textSize="22sp"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_payment_method"
+        <RadioButton
+            android:id="@+id/rb_payment_method"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.32"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_select_payment"
-            tools:listitem="@layout/item_payment" />
+            android:text="@string/nama_payment"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_select_payment" />
 
         <LinearLayout
             android:id="@+id/linear_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/rv_payment_method"
-            app:layout_constraintStart_toStartOf="@+id/rv_payment_method"
-            app:layout_constraintTop_toBottomOf="@+id/rv_payment_method">
+            app:layout_constraintEnd_toEndOf="@+id/rb_payment_method"
+            app:layout_constraintStart_toStartOf="@+id/rb_payment_method"
+            app:layout_constraintTop_toBottomOf="@+id/rb_payment_method">
 
             <TextView
                 android:id="@+id/tv_total"
@@ -64,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/harga"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
 
 
         </LinearLayout>
@@ -74,16 +71,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="32dp"
             android:background="@drawable/bg_button"
             android:fontFamily="@font/poppins_semi_bold"
             android:text="@string/bayar"
             android:textAllCaps="false"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/linear_total"
             app:layout_constraintStart_toStartOf="@+id/linear_total"
-            app:layout_constraintTop_toBottomOf="@+id/linear_total" />
+            app:layout_constraintTop_toBottomOf="@+id/linear_total"
+            tools:ignore="TextContrastCheck" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
