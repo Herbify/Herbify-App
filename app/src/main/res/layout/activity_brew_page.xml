@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-50dp"
-        android:background="@drawable/bg_rounded_40"
+        android:background="@drawable/bg_rounded_40_solid_white"
         app:layout_constraintTop_toBottomOf="@+id/top"
         tools:listitem="@layout/item_card_herbapedia" />
 

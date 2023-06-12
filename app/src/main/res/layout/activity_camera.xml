@@ -25,6 +25,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/btn_galeri"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_photo_library_24"
+        app:layout_constraintBottom_toBottomOf="@+id/shutter"
+        app:layout_constraintEnd_toStartOf="@+id/shutter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shutter" />
+
     <include
         android:id="@+id/top_app_bar"
         layout="@layout/custom_app_bar_solid" />
