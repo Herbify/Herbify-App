@@ -2,18 +2,20 @@ package com.herbify.herbifyapp.data.remote.response.article
 
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 @Parcelize
 data class ArticleResponse(
 
 	@field:SerializedName("data")
-	val data: List<DataItem?>? = null,
+	val data: List<ArticleData>? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null
 ) : Parcelable
 
+@Entity("tags")
 @Parcelize
 data class TagArticle(
 
@@ -25,7 +27,7 @@ data class TagArticle(
 ) : Parcelable
 
 @Parcelize
-data class DataItem(
+data class ArticleData(
 
 	@field:SerializedName("numLike")
 	val numLike: Int? = null,

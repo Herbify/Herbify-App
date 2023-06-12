@@ -8,15 +8,12 @@ import com.herbify.herbifyapp.utils.RepositoryResult
 import java.io.File
 
 class AddNewArticleViewModel(private val articleRepository: ArticleRepository) : ViewModel() {
-
-    suspend fun addNewArticle(
+    fun addNewArticle(
         title: String,
         photo: File,
         content: String,
-        tag1: String,
-        tag2: String
+        tags: ArrayList<String>
     ): LiveData<RepositoryResult<AddNewArticleResponse>> {
-        return articleRepository.addNewArticle(title, photo, content, tag1, tag2)
+        return articleRepository.addNewArticle(title, photo, content, tags)
     }
-
 }
