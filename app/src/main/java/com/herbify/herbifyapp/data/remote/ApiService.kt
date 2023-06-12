@@ -10,7 +10,6 @@ import com.herbify.herbifyapp.data.remote.response.auth.OtpResponse
 import com.herbify.herbifyapp.data.remote.response.auth.UserPostResponse
 import com.herbify.herbifyapp.data.remote.response.herbal.HerbalResponse
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -53,14 +52,14 @@ interface ApiService {
 
   //herbaltalk
   @Multipart
-  @POST("api/article")
-  suspend fun addNewArticle(
+  @POST("article")
+  fun addNewArticle(
       @Part("idUser") idUser: Long,
-      @Part("title") title: RequestBody,
+      @Part("title") title: String,
       @Part photo: MultipartBody.Part,
-      @Part("content") content: RequestBody,
-      @Part("tag[tag1]") tag1: RequestBody,
-      @Part("tag[tag2]") tag2: RequestBody
+      @Part("content") content: String,
+      @Part("tag[tag1]") tag1: String,
+      @Part("tag[tag2]") tag2: String
   ): Call<AddNewArticleResponse>
 
 

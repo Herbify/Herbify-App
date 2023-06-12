@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -16,7 +15,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.herbify.herbifyapp.createFile
+import com.herbify.herbifyapp.utils.createFile
 import com.herbify.herbifyapp.databinding.ActivityCameraBinding
 
 class CameraActivity : AppCompatActivity() {

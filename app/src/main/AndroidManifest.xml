@@ -23,7 +23,9 @@
         android:theme="@style/Theme.HerbifyApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31" >
-
+        <activity
+            android:name=".DetailDoctorActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="false"
@@ -34,7 +36,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.auth.verification.VerifikasiActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ui.herbal_doc.SelectDoctorActivity"
             android:exported="false" />

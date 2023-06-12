@@ -6,23 +6,18 @@ import com.herbify.herbifyapp.data.remote.ApiService
 import com.herbify.herbifyapp.data.remote.response.article.AddNewArticleResponse
 import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.utils.RepositoryResult
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 
 class ArticleRepository(
     private val apiService: ApiService,
     private val userPreferences: UserPreferences) {
 
-    suspend fun addNewArticle(
+    fun addNewArticle(
         title: String,
-        photo: File,
+        photo: MultipartBody.Part,
         content: String,
         tag1: String,
         tag2: String
@@ -32,20 +27,13 @@ class ArticleRepository(
 
         val userId = userPreferences.getUser().id
 
-        val titleRequestBody = title.toRequestBody("text/plain".toMediaType())
-        val photoRequestBody = photo.asRequestBody("image/*".toMediaTypeOrNull())
-        val photoPart = MultipartBody.Part.createFormData("photo", photo.name, photoRequestBody)
-        val contentRequestBody = content.toRequestBody("text/plain".toMediaType())
-        val tag1RequestBody = tag1.toRequestBody("text/plain".toMediaType())
-        val tag2RequestBody = tag2.toRequestBody("text/plain".toMediaType())
-
         val client = apiService.addNewArticle(
             userId,
-            titleRequestBody,
-            photoPart,
-            contentRequestBody,
-            tag1RequestBody,
-            tag2RequestBody,
+            title,
+            photo,
+            content,
+            tag1,
+            tag2,
         )
 
         client.enqueue(object : Callback<AddNewArticleResponse> {
