@@ -22,7 +22,9 @@ class DoctorChatActivity : AppCompatActivity() {
         binding = ActivityDoctorChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // The following lines connects the Android app to the server.
         SocketHandler.setSocket()
+        SocketHandler.establishConnection()
 
         val mSocket = SocketHandler.getSocket()
 
