@@ -117,4 +117,7 @@
     <string name="daftar_riwayat_pekerjaan">Daftar riwayat pekerjaan</string>
     <string name="penghargaan">Penghargaan</string>
     <string name="daftar_penghargaan">Daftar penghargaan</string>
+    <string name="nama_payment">Nama payment</string>
+    <string name="total">Total</string>
+    <string name="bayar">Bayar</string>
 </resources>
