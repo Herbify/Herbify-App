@@ -11,17 +11,13 @@ import com.herbify.herbifyapp.data.remote.response.article.ArticleResponse
 import com.herbify.herbifyapp.data.remote.response.article.DetailArticleResponse
 import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.utils.RepositoryResult
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 
 class ArticleRepository(
     private val apiService: ApiService,
@@ -29,7 +25,7 @@ class ArticleRepository(
 
     fun addNewArticle(
         title: String,
-        photo: File,
+        photo: MultipartBody.Part,
         content: String,
         tags: ArrayList<String>
     ): LiveData<RepositoryResult<AddNewArticleResponse>> {
@@ -53,8 +49,8 @@ class ArticleRepository(
             titleRequestBody,
             photoPart,
             contentRequestBody,
-            tagRequestBody
-        )
+            tagRequestBody,
+          )
 
         client.enqueue(object : Callback<AddNewArticleResponse> {
             override fun onResponse(
@@ -131,7 +127,6 @@ class ArticleRepository(
             override fun onFailure(call: Call<DetailArticleResponse>, t: Throwable) {
                 result.value = RepositoryResult.Error(t.message.toString())
             }
-
         })
         return result
     }

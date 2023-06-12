@@ -16,6 +16,7 @@ import com.herbify.herbifyapp.ui.herbal_pedia.HerbalPediaViewModel
 import com.herbify.herbifyapp.ui.herbal_talk.HerbalTalkViewModel
 import com.herbify.herbifyapp.ui.herbal_talk.add.AddNewArticleViewModel
 import com.herbify.herbifyapp.ui.herbal_talk.detail.DetailPostViewModel
+import com.herbify.herbifyapp.ui.herbal_talk.add.AddNewArticleViewModel
 
 class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -43,6 +44,10 @@ class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInst
                 modelClass.isAssignableFrom(DoctorViewModel::class.java) -> {
                     DoctorViewModel(Injection.provideDoctorRepository(context)) as T
                 }
+                modelClass.isAssignableFrom(AddNewArticleViewModel::class.java) -> {
+                    AddNewArticleViewModel(Injection.provideArticleRepository(context)) as T
+                }
+
                 modelClass.isAssignableFrom(BrewViewModel::class.java) -> {
                     BrewViewModel(Injection.provideBrewRepository(context)) as T
                 }

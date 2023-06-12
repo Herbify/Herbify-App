@@ -22,10 +22,13 @@ object Injection {
         val appExecutors = AppExecutors()
         return DoctorRepository.getInstance(doctorDao, apiService, appExecutors)
     }
-    fun provideBrewRepository(context: Context): BrewRepository{
-        return BrewRepository(HerbalDatabase.getDatabase(context).getBrewedDao(),AppExecutors())
-    }
+
     fun provideArticleRepository(context: Context): ArticleRepository{
-        return ArticleRepository(ApiConfig().getApiService(), UserPreferences.getInstance(context))
+        val apiService = ApiConfig().getApiService()
+        val userPreferences = UserPreferences.getInstance(context)
+        return ArticleRepository(apiService,userPreferences)
+    }
+    fun provideBrewRepository(context: Context): BrewRepository {
+        return BrewRepository(HerbalDatabase.getDatabase(context).getBrewedDao(), AppExecutors())
     }
 }
