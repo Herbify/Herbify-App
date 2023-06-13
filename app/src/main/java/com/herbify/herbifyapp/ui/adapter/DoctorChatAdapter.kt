@@ -4,27 +4,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.herbify.herbifyapp.data.remote.response.chat.ConversationData
+import com.herbify.herbifyapp.data.remote.response.chat.MessagesItem
 import com.herbify.herbifyapp.databinding.ItemReceiveMessageBinding
 import com.herbify.herbifyapp.databinding.ItemSendMessageBinding
 import com.herbify.herbifyapp.model.DoctorChat
-import com.herbify.herbifyapp.repository.ChatRepository
 
-class DoctotChatAdapter(private val chatList: List<DoctorChat>): RecyclerView.Adapter<DoctotChatAdapter.MyViewHolder>() {
+class DoctorChatAdapter(private val chatList: List<MessagesItem>): RecyclerView.Adapter<DoctorChatAdapter.MyViewHolder>() {
     companion object{
         const val SEND_MESSAGE = 0
         const val RECEIVE_MESSAGE = 1
     }
     abstract class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        abstract fun bind()
+        abstract fun bind(message: MessagesItem)
     }
 
     class SendMessageViewholder(val view: View): MyViewHolder(view){
-        override fun bind() {
+        override fun bind(message: MessagesItem) {
         }
     }
 
     class ReceiveMessageViewHolder(val view: View): MyViewHolder(view){
-        override fun bind() {
+        override fun bind(message: MessagesItem) {
         }
     }
 
@@ -43,14 +44,18 @@ class DoctotChatAdapter(private val chatList: List<DoctorChat>): RecyclerView.Ad
     }
 
     override fun getItemViewType(position: Int): Int {
-        return chatList[position].type
+        return if(chatList[position].fromUser){
+            SEND_MESSAGE
+        }else{
+            RECEIVE_MESSAGE
+        }
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return  chatList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(chatList[position])
     }
 }

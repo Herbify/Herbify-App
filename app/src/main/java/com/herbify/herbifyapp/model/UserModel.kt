@@ -1,7 +1,7 @@
 package com.herbify.herbifyapp.model
 
 class UserModel(
-    val id: Long,
+    val id: Int,
     val name: String?,
     val token: String?,
     val email: String?,

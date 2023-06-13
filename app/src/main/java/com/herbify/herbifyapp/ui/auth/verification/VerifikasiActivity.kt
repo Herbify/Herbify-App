@@ -44,8 +44,8 @@ class VerifikasiActivity : AppCompatActivity() {
         viewModel.isLoading.observe(this){
             setLoadingDiaog(it)
         }
-        val id = intent.getLongExtra("id", -1L)
-        if(id == -1L){
+        val id = intent.getIntExtra("id", -1)
+        if(id == -1){
             viewModel.refreshOtp()
         }else{
             viewModel.refreshOtp(id)

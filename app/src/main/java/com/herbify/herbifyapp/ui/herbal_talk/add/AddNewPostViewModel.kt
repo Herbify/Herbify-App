@@ -6,12 +6,13 @@ import com.herbify.herbifyapp.data.remote.response.article.AddNewArticleResponse
 import com.herbify.herbifyapp.repository.ArticleRepository
 import com.herbify.herbifyapp.utils.RepositoryResult
 import okhttp3.MultipartBody
+import java.io.File
 
 class AddNewArticleViewModel(private val articleRepository: ArticleRepository) : ViewModel() {
 
     fun addNewArticle(
         title: String,
-        photo: MultipartBody.Part,
+        photo: File,
         content: String,
         tags: ArrayList<String>,
     ): LiveData<RepositoryResult<AddNewArticleResponse>> {

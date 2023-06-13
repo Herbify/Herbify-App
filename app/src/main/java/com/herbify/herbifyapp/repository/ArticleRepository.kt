@@ -12,6 +12,7 @@ import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.utils.RepositoryResult
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,11 +38,12 @@ class ArticleRepository(
             jsonObject.addProperty("tag$i", tags[i-1])
         }
         val tagsBody = jsonObject.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
+        val imageMultipart = photo.asRequestBody("image/jpeg".toMediaType())
 
         val client = apiService.addNewArticle(
             userId.toString().toRequestBody("text/plain".toMediaType()),
             title.toRequestBody("text/plain".toMediaType()),
-            photo,
+            MultipartBody.Part.createFormData("photo", photo.name, imageMultipart),
             content.toRequestBody("text/plain".toMediaType()),
             tagsBody
         )
@@ -74,9 +76,9 @@ class ArticleRepository(
     fun getArticleById(id: Int): LiveData<RepositoryResult<DetailArticleResponse>>{
         val result = MediatorLiveData<RepositoryResult<DetailArticleResponse>>()
         result.value = RepositoryResult.Loading
-      
-        val client = apiService.getAllArticle()
-        client.enqueue(object : Callback<ArticleResponse>{
+
+        val client = apiService.getArticleById(id)
+        client.enqueue(object : Callback<DetailArticleResponse>{
             override fun onResponse(
                 call: Call<DetailArticleResponse>,
                 response: Response<DetailArticleResponse>
@@ -100,10 +102,9 @@ class ArticleRepository(
     fun getAllArticle(): LiveData<RepositoryResult<List<ArticleData>>>{
         val result = MediatorLiveData<RepositoryResult<List<ArticleData>>>()
         result.value = RepositoryResult.Loading
+        val client = apiService.getAllArticle()
 
-        val client = apiService.getArticleById(id)
-        client.enqueue(object : Callback<DetailArticleResponse>{
-
+        client.enqueue(object : Callback<ArticleResponse>{
             override fun onResponse(
                 call: Call<ArticleResponse>,
                 response: Response<ArticleResponse>

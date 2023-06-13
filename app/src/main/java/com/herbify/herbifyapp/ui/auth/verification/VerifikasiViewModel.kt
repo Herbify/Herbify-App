@@ -20,7 +20,7 @@ class VerifikasiViewModel(private val pref: UserPreferences):ViewModel() {
     private val _otp = MutableLiveData<Int>(0)
     val otp : LiveData<Int> get() = _otp
 
-    fun refreshOtp(id: Long){
+    fun refreshOtp(id: Int){
         _isLoading.value = true
         val apiService = ApiConfig().getApiService()
         val client = apiService.getOtp(id)
@@ -132,7 +132,7 @@ class VerifikasiViewModel(private val pref: UserPreferences):ViewModel() {
     fun resendOtp(onFailureEvent: (String) -> Unit){
         _isLoading.value = false
         val apiService = ApiConfig().getApiService()
-        val client = apiService.generateOtp(pref.getUser().id!!)
+        val client = apiService.generateOtp(pref.getUser().id)
         client.enqueue(object : retrofit2.Callback<GenerateOtpResponse>{
             override fun onResponse(
                 call: Call<GenerateOtpResponse>,

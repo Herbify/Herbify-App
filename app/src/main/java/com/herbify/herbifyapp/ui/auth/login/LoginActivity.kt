@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
                 }
                 is RepositoryResult.Error ->{
                     setLoadingDiaog(false)
-                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error"+result.error, Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -238,11 +238,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
-            viewModel.login(user.email!!)
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-            finish()
+            viewModel.login(user.email!!, user.displayName!!, true)
         }
     }
 
@@ -270,6 +266,8 @@ class LoginActivity : AppCompatActivity() {
             View.INVISIBLE
         }
     }
+
+
 
     companion object {
         private const val TAG = "LoginActivity"
