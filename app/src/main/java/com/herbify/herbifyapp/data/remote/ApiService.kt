@@ -33,10 +33,10 @@ interface ApiService {
     fun getUser(@Path("id") id: Int): Call<UserPostResponse>
 
     @GET("auth/otp/{id}")
-    fun getOtp(@Path("id") id: Long):Call<OtpResponse>
+    fun getOtp(@Path("id") id: Int):Call<OtpResponse>
 
     @POST("auth/otp/{id}")
-    fun generateOtp(@Path("id") id: Long):Call<GenerateOtpResponse>
+    fun generateOtp(@Path("id") id: Int):Call<GenerateOtpResponse>
 
     @POST("auth/otp/verify")
     fun verifyOtp(

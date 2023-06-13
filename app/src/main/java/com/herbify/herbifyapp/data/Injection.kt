@@ -29,7 +29,7 @@ object Injection {
         val database = HerbalDatabase.getDatabase(context)
         val apiService = ApiConfig().getApiService()
         val userPreferences = UserPreferences.getInstance(context)
-        return ChatRepository(database, apiService, userPreferences)
+        return ChatRepository(database, apiService)
     }
     fun provideBrewRepository(context: Context): BrewRepository {
         return BrewRepository(HerbalDatabase.getDatabase(context).getBrewedDao(), AppExecutors())

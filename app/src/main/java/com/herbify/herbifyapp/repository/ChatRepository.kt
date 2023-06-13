@@ -11,8 +11,9 @@ import retrofit2.Call
 import retrofit2.Response
 
 class ChatRepository(private val database: HerbalDatabase, private val apiService: ApiService) {
-    fun createConversation(raw: JsonObject): LiveData<RepositoryResult<Conversation>>{
-        val result = MediatorLiveData<RepositoryResult<Conversation>>()
+    fun createConversation(raw: JsonObject): LiveData<RepositoryResult<SimpleConversationResponse>>{
+        val result = MediatorLiveData<RepositoryResult<SimpleConversationResponse>>()
+        result.value = RepositoryResult.Loading
         val client = apiService.createConversationRoom(raw)
         client.enqueue(object : retrofit2.Callback<SimpleConversationResponse>{
             override fun onResponse(
@@ -21,8 +22,7 @@ class ChatRepository(private val database: HerbalDatabase, private val apiServic
             ) {
                 if(response.isSuccessful){
                     val body = response.body()!!
-                    val conversationResponse = getConversationRoom(body.userId)
-                    result.value = conversationResponse.value
+                    result.value = RepositoryResult.Success(body)
                 }
             }
 

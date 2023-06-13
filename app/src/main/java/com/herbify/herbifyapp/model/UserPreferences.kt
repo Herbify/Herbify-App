@@ -38,7 +38,7 @@ class UserPreferences private constructor(context: Context){
 
     fun getUser(): UserModel{
         return UserModel(
-            id = preferences.getLong(ID_KEY, 0),
+            id = preferences.getInt(ID_KEY, 0),
             name = preferences.getString(NAME_KEY, null),
             token = preferences.getString(TOKEN_KEY, null),
             email = preferences.getString(EMAIL_KEY, null),
@@ -57,9 +57,9 @@ class UserPreferences private constructor(context: Context){
         preferences.edit().putBoolean(VERIFIED_KEY, true).apply()
     }
 
-    fun login(name: String, email: String, id: Long, token: String, isVerified: Boolean){
+    fun login(name: String, email: String, id: Int, token: String, isVerified: Boolean){
         preferences.edit()
-            .putLong(ID_KEY, id)
+            .putInt(ID_KEY, id)
             .putString(NAME_KEY, name)
             .putString(EMAIL_KEY,email)
             .putString(TOKEN_KEY, token)
@@ -69,7 +69,7 @@ class UserPreferences private constructor(context: Context){
 
     fun logout() {
         preferences.edit()
-            .putLong(ID_KEY, 0)
+            .putInt(ID_KEY, 0)
             .putString(NAME_KEY, null)
             .putString(EMAIL_KEY,null)
             .putString(TOKEN_KEY, null)

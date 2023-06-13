@@ -41,7 +41,7 @@ data class MessagesItem(
 	val sender: Int? = null,
 
 	@field:SerializedName("fromUser")
-	val fromUser: Boolean? = null,
+	val fromUser: Boolean,
 
 	@field:SerializedName("recipient")
 	val recipient: Int? = null,
@@ -83,7 +83,7 @@ data class ConversationData(
 	val createdAt: String? = null,
 
 	@field:SerializedName("messages")
-	val messages: List<MessagesItem?>? = null,
+	val messages: List<MessagesItem>? = null,
 
 	@field:SerializedName("finish")
 	val finish: Boolean? = null,

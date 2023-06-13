@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.JsonObject
 import com.herbify.herbifyapp.data.remote.ApiConfig
-import com.herbify.herbifyapp.data.remote.response.chat.AllChatResponse
-import com.herbify.herbifyapp.data.remote.response.chat.Conversation
-import com.herbify.herbifyapp.data.remote.response.chat.ConversationData
-import com.herbify.herbifyapp.data.remote.response.chat.MessagesItem
+import com.herbify.herbifyapp.data.remote.response.chat.*
 import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.repository.ChatRepository
 import com.herbify.herbifyapp.repository.DoctorRepository
@@ -17,17 +14,18 @@ import retrofit2.Call
 import retrofit2.Response
 
 class DoctorChatViewModel(private val doctorRepository: DoctorRepository, private val chatRepository: ChatRepository, private val preferences: UserPreferences): ViewModel() {
-    private var _currentChat = MutableLiveData<List<ConversationData>?>()
-    val currentChat : MutableLiveData<List<ConversationData>?> = _currentChat
+    private var _currentChat = MutableLiveData<ConversationData?>()
+    val currentChat : MutableLiveData<ConversationData?> = _currentChat
 
-    fun createConversation(idUser: Int, idDoctor: Int): LiveData<RepositoryResult<Conversation>> {
+    fun createConversation(idDoctor: Int): LiveData<RepositoryResult<SimpleConversationResponse>> {
         val raw = JsonObject()
-        raw.addProperty("idUser", idUser)
+        raw.addProperty("idUser", preferences.getIdUser())
         raw.addProperty("idDoctor", idDoctor)
         return chatRepository.createConversation(raw)
     }
+    fun getConversationByUserId(userId: Int) = chatRepository.getConversationRoom(userId)
     fun getDoctor(id: Int) = doctorRepository.getDoctorById(id)
-    fun getChat() {
+    fun getChat(conversation: Conversation) {
         val apiService = ApiConfig().getApiService()
         val client = apiService.getConversation(preferences.getIdUser())
         client.enqueue(object : retrofit2.Callback<AllChatResponse>{
@@ -38,7 +36,13 @@ class DoctorChatViewModel(private val doctorRepository: DoctorRepository, privat
                 if(response.isSuccessful){
                     val responseBody = response.body()!!
                     if(responseBody.data != null){
-                        _currentChat.value = responseBody.data
+                        responseBody.data.forEach { conversationData ->
+                            if(conversationData.id == conversation.id){
+                                _currentChat.value = conversationData
+                                return
+                            }
+                        }
+
                     }
                 }
             }

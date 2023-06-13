@@ -12,6 +12,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/loadingdialog"
+        layout="@layout/dialog_loading"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/back"
@@ -63,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nama_doctor" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rv_conversation"
         android:layout_width="match_parent"
         android:layout_height="650dp"
         android:padding="25dp"
