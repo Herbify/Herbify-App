@@ -16,18 +16,19 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.utils.createFile
 import com.herbify.herbifyapp.databinding.ActivityArticleCameraBinding
-import com.herbify.herbifyapp.ui.camera.CameraActivity
 import com.herbify.herbifyapp.utils.uriToFile
-import java.io.File
 
 class ArticleCameraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityArticleCameraBinding
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+    companion object {
+        const val CAMERA_X_RESULT = 1001
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +49,6 @@ class ArticleCameraActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onResume() {
         super.onResume()
         hideSystemUI()
@@ -63,19 +63,18 @@ class ArticleCameraActivity : AppCompatActivity() {
         imageCapture.takePicture(
             outputOptions,
             ContextCompat.getMainExecutor(this),
-            object : ImageCapture.OnImageSavedCallback{
+            object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val intent = Intent()
                     intent.putExtra("picture", photoFile)
                     intent.putExtra("isBackCamera", cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
-                    setResult(CameraActivity.CAMERA_X_RESULT, intent)
+                    setResult(CAMERA_X_RESULT, intent)
                     finish()
                 }
 
                 override fun onError(exception: ImageCaptureException) {
                     Toast.makeText(this@ArticleCameraActivity, "Gagal mengambil gambar", Toast.LENGTH_SHORT).show()
                 }
-
             }
         )
     }
@@ -90,13 +89,13 @@ class ArticleCameraActivity : AppCompatActivity() {
                 val intent = Intent()
                 intent.putExtra("picture", myFile)
                 intent.putExtra("isBackCamera", cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
-                setResult(CameraActivity.CAMERA_X_RESULT, intent)
+                setResult(CAMERA_X_RESULT, intent)
                 finish()
             }
         }
     }
 
-    private fun startCamera(){
+    private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
@@ -109,17 +108,17 @@ class ArticleCameraActivity : AppCompatActivity() {
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
-            }catch (e:Exception){
-                Toast.makeText(this@ArticleCameraActivity, "Gagal memasukkan camera", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Toast.makeText(this@ArticleCameraActivity, "Gagal memasukkan kamera", Toast.LENGTH_SHORT).show()
             }
         }, ContextCompat.getMainExecutor(this))
     }
 
-    private fun hideSystemUI(){
+    private fun hideSystemUI() {
         @Suppress("DEPRECATION")
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }else{
+        } else {
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN
             )

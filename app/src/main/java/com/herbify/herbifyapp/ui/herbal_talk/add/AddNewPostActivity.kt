@@ -13,18 +13,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.herbify.herbifyapp.databinding.ActivityAddNewPostBinding
-import com.herbify.herbifyapp.ui.MainActivity
 import com.herbify.herbifyapp.utils.reduceFileImage
-import com.herbify.herbifyapp.utils.rotateFile
 import com.herbify.herbifyapp.ui.ViewModelFactory
-import com.herbify.herbifyapp.ui.camera.CameraActivity
 import com.herbify.herbifyapp.ui.herbal_talk.ArticleCameraActivity
-import com.herbify.herbifyapp.ui.herbal_talk.HerbaTalkFragment
 import com.herbify.herbifyapp.ui.herbal_talk.detail.DetailPostActivity
 import com.herbify.herbifyapp.utils.RepositoryResult
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class AddNewPostActivity : AppCompatActivity() {
