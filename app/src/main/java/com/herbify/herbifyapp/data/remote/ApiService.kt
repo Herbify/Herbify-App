@@ -61,18 +61,6 @@ interface ApiService {
   @Multipart
   @POST("article")
   fun addNewArticle(
-      @Part("idUser") idUser: Long,
-      @Part("title") title: RequestBody,
-      @Part photo: MultipartBody.Part,
-      @Part("content") content: RequestBody,
-      @Part("tag") tag: RequestBody,
-  ): Call<AddNewArticleResponse>
-
-  @GET("article")
-  fun getAllArticle() : Call<ArticleResponse>
-
-  @GET("article/{id}")
-  fun getArticleById(@Path("id") id: Int): Call<DetailArticleResponse>
       @Part("idUser") idUser: RequestBody,
       @Part("title") title: RequestBody,
       @Part photo: MultipartBody.Part,
