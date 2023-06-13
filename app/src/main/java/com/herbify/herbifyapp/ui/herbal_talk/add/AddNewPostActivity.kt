@@ -1,6 +1,5 @@
 package com.herbify.herbifyapp.ui.herbal_talk.add
 
-
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,16 +8,11 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.herbify.herbifyapp.databinding.ActivityAddNewPostBinding
-import com.herbify.herbifyapp.ui.ViewModelFactory
-import com.herbify.herbifyapp.ui.herbal_talk.ArticleCameraActivity
 import com.herbify.herbifyapp.utils.reduceFileImage
 import com.herbify.herbifyapp.utils.rotateFile
 import com.herbify.herbifyapp.ui.ViewModelFactory
@@ -35,12 +29,6 @@ class AddNewPostActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityAddNewPostBinding
     private lateinit var viewModel: AddNewArticleViewModel
-    companion object {
-        const val CAMERA_X_RESULT = 200
-        private var REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
-        private const val REQUEST_CODE_PERMISSIONS = 10
-        private const val MAXIMAL_SIZE = 1000000
-    }
 
     private var getFile: File? = null
 
@@ -50,16 +38,6 @@ class AddNewPostActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        initViewModel()
-        initBinding()
-    }
-
-    private fun initViewModel() {
-        viewModel = ViewModelProvider(this, ViewModelFactory(this))[AddNewArticleViewModel::class.java]
-    }
-
-    private fun initBinding() {
-        binding.btnPosting.setOnClickListener {postNewArticle()}
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this,
@@ -76,15 +54,9 @@ class AddNewPostActivity : AppCompatActivity() {
             @Suppress("DEPRECATION")
             onBackPressed()
         }
-        binding.ivArtikel.setOnClickListener {
-            if (!allPermissionsGranted()) {
-                ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
-            }else{
-                startCamera()
-            }
-        }
-    }
 
+
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -110,55 +82,77 @@ class AddNewPostActivity : AppCompatActivity() {
     private fun startCameraX() {
         val intent = Intent(this, ArticleCameraActivity::class.java)
         launcherIntentCameraX.launch(intent)
-
     }
 
-    private val launcherIntentCamera = registerForActivityResult(
+    private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ){
-        if(it.resultCode == CAMERA_X_RESULT){
-            val myfile = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+    ) {
+        if (it.resultCode == CAMERA_X_RESULT) {
+            val myFile = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 it.data?.getSerializableExtra("picture", File::class.java)
-            }else {
-                @Suppress("Deprecation")
+            } else {
+                @Suppress("DEPRECATION")
                 it.data?.getSerializableExtra("picture")
             } as? File
 
             val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
 
-            myfile?.let { file ->
+            myFile?.let { file ->
+                rotateFile(file, isBackCamera)
                 getFile = file
-                binding.ivArtikel.setImageBitmap(BitmapFactory.decodeFile(file.path))
+                binding.ivPhotoArtikel.setImageBitmap(BitmapFactory.decodeFile(file.path))
             }
         }
     }
 
+
+
+
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(this, ViewModelFactory(this))[AddNewArticleViewModel::class.java]
+
+    }
+
     private fun postNewArticle() {
-        var canPost = true
-        if(binding.edJudul.text?.isEmpty() == true){
-            canPost = false
-        }
-        if(binding.edAddDescription.text?.isEmpty() == true){
-            canPost = false
-        }
-        if(getFile == null){
-            canPost = false
-        }
-        if(canPost){
-            viewModel.addNewArticle(
-                binding.edJudul.text.toString(),
-                getFile!!,
-                binding.edAddDescription.text.toString(),
-                ArrayList(listOf("1", "2"))
-            ).observe(this){result -> 
-              when(result){
-                is RepositoryResult.Success -> {
-                  handleSuccess()
+        if (getFile != null){
+            val file = reduceFileImage(getFile as File, MAXIMAL_SIZE)
+
+            val title = binding.edJudul.text.toString()
+            val requestImageFile = file.asRequestBody("image/*".toMediaType())
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "photo",
+                file.name,
+                requestImageFile
+            )
+            val content = binding.edAddDescription.text.toString()
+            val tag1 = binding.itemTag1.text.toString()
+            val tag2 = binding.itemTag2.text.toString()
+
+            viewModel.addNewArticle(title, imageMultipart, content, ArrayList(listOf(tag1, tag2))).observe(this){ result ->
+                when (result){
+                    is RepositoryResult.Loading -> {
+                        // Handle loading state
+
+                    }
+                    is RepositoryResult.Success -> {
+                        handleSuccess()
+                    }
+                    is RepositoryResult.Error -> {
+                        val error = result.error
+                        showErrorDialog(error)
+                    }
                 }
-                else -> {}
-              }
             }
+
+        }else{
+            Toast.makeText(this, "Please select photo", Toast.LENGTH_SHORT).show()
         }
+
+
+    }
+
+    private fun showErrorDialog(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun handleSuccess() {
@@ -166,5 +160,13 @@ class AddNewPostActivity : AppCompatActivity() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         val intent = Intent(this, HerbaTalkFragment::class.java)
         startActivity(intent)
+    }
+
+    companion object {
+        const val CAMERA_X_RESULT = 200
+        const val REQUEST_CODE_PERMISSIONS = 10
+
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        private const val MAXIMAL_SIZE = 1000000
     }
 }
