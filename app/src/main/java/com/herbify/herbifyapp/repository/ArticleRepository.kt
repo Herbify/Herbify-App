@@ -2,6 +2,7 @@ package com.herbify.herbifyapp.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.gson.JsonObject
 import com.herbify.herbifyapp.data.remote.ApiService
 import com.herbify.herbifyapp.data.remote.response.article.AddNewArticleResponse
@@ -12,6 +13,9 @@ import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.utils.RepositoryResult
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import org.json.JSONArray
+import org.json.JSONObject
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,13 +41,24 @@ class ArticleRepository(
         }
         val tagsBody = jsonObject.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
 
+        val titleRequestBody = title.toRequestBody("text/plain".toMediaType())
+        val photoRequestBody = photo.asRequestBody("image/*".toMediaTypeOrNull())
+        val photoPart = MultipartBody.Part.createFormData("photo", photo.name, photoRequestBody)
+        val contentRequestBody = content.toRequestBody("text/plain".toMediaType())
+        val tagJson = JsonObject()
+        for(i in 1..tags.size){
+            tagJson.addProperty("tag$i", tags[i-1])
+        }
+        val tagRequestBody = tagJson.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
+
         val client = apiService.addNewArticle(
-            userId.toString().toRequestBody("text/plain".toMediaType()),
-            title.toRequestBody("text/plain".toMediaType()),
-            photo,
-            content.toRequestBody("text/plain".toMediaType()),
-            tagsBody
-        )
+            userId,
+            titleRequestBody,
+            photoPart,
+            contentRequestBody,
+            tagRequestBody,
+          )
+
 
         client.enqueue(object : Callback<AddNewArticleResponse> {
             override fun onResponse(
@@ -70,31 +85,6 @@ class ArticleRepository(
         return result
     }
 
-    fun getArticleById(id: Int): LiveData<RepositoryResult<DetailArticleResponse>>{
-        val result = MediatorLiveData<RepositoryResult<DetailArticleResponse>>()
-        result.value = RepositoryResult.Loading
-        val client = apiService.getArticleById(id)
-        client.enqueue(object: retrofit2.Callback<DetailArticleResponse>{
-            override fun onResponse(
-                call: Call<DetailArticleResponse>,
-                response: Response<DetailArticleResponse>
-            ) {
-                if(response.isSuccessful){
-                    val responseBody = response.body()!!
-                    if(responseBody.data != null){
-                        result.value = RepositoryResult.Success(responseBody)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<DetailArticleResponse>, t: Throwable) {
-                result.value = RepositoryResult.Error(t.message.toString())
-            }
-
-        })
-        return result
-    }
-
     fun getAllArticle(): LiveData<RepositoryResult<List<ArticleData>>>{
         val result = MediatorLiveData<RepositoryResult<List<ArticleData>>>()
         result.value = RepositoryResult.Loading
@@ -106,12 +96,14 @@ class ArticleRepository(
                 response: Response<ArticleResponse>
             ) {
                 if(response.isSuccessful){
-                    val respBody = response.body()!!
-                    if(respBody.data != null){
-                        result.value = RepositoryResult.Success(respBody.data)
+                    val responseBody = response.body()!!
+                    if(responseBody.data != null){
+                        result.value = RepositoryResult.Success(responseBody.data)
                     }else{
-                        result.value = RepositoryResult.Error(respBody.message!!)
+                        result.value = RepositoryResult.Error(responseBody.message!!)
                     }
+                }else{
+                    result.value = RepositoryResult.Error(response.message())
                 }
             }
 
@@ -119,6 +111,30 @@ class ArticleRepository(
                 result.value = RepositoryResult.Error(t.message.toString())
             }
 
+        })
+        return result
+    }
+
+    fun getArticleById(id:Int): LiveData<RepositoryResult<DetailArticleResponse>>{
+        val result = MediatorLiveData<RepositoryResult<DetailArticleResponse>>()
+        result.value = RepositoryResult.Loading
+
+        val client = apiService.getArticleById(id)
+        client.enqueue(object : retrofit2.Callback<DetailArticleResponse>{
+            override fun onResponse(
+                call: Call<DetailArticleResponse>,
+                response: Response<DetailArticleResponse>
+            ) {
+                if(response.isSuccessful){
+                    result.value = RepositoryResult.Success(response.body()!!)
+                }else{
+                    result.value = RepositoryResult.Error(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<DetailArticleResponse>, t: Throwable) {
+                result.value = RepositoryResult.Error(t.message.toString())
+            }
         })
         return result
     }

@@ -16,6 +16,7 @@ import com.herbify.herbifyapp.ui.herbal_pedia.BrewViewModel
 import com.herbify.herbifyapp.ui.herbal_pedia.HerbalPediaViewModel
 import com.herbify.herbifyapp.ui.herbal_talk.HerbalTalkViewModel
 import com.herbify.herbifyapp.ui.herbal_talk.add.AddNewArticleViewModel
+import com.herbify.herbifyapp.ui.herbal_talk.detail.DetailPostViewModel
 
 class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -52,8 +53,19 @@ class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInst
                 modelClass.isAssignableFrom(BrewViewModel::class.java) -> {
                     BrewViewModel(Injection.provideBrewRepository(context)) as T
                 }
+
+                modelClass.isAssignableFrom(AddNewArticleViewModel::class.java) -> {
+                    AddNewArticleViewModel(Injection.provideArticleRepository(context)) as T
+                }
+                modelClass.isAssignableFrom(HerbalTalkViewModel::class.java) -> {
+                    HerbalTalkViewModel(Injection.provideArticleRepository(context)) as T
+                }
+                modelClass.isAssignableFrom(DetailPostViewModel::class.java) -> {
+                    DetailPostViewModel(Injection.provideArticleRepository(context)) as T
+
                 modelClass.isAssignableFrom(DoctorChatViewModel::class.java) -> {
                     DoctorChatViewModel(Injection.provideDoctorRepository(context), Injection.provideChatRepository(context)) as T
+
                 }
                 else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
             }

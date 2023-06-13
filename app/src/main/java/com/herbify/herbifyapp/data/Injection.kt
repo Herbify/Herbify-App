@@ -34,5 +34,4 @@ object Injection {
     fun provideBrewRepository(context: Context): BrewRepository {
         return BrewRepository(HerbalDatabase.getDatabase(context).getBrewedDao(), AppExecutors())
     }
-
 }
