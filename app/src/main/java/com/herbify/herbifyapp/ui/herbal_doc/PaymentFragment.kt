@@ -1,5 +1,6 @@
 package com.herbify.herbifyapp.ui.herbal_doc
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,8 +33,13 @@ class PaymentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val doctorId = arguments?.getInt("doctor_id")
+        val doctorName = arguments?.getString("doctor_name")
         binding.btnPayment.setOnClickListener {
-
+            val intent = Intent(activity, DoctorChatActivity::class.java)
+            intent.putExtra("doctor_id", doctorId)
+            intent.putExtra("doctor_name", doctorName)
+            activity?.startActivity(intent)
         }
     }
 

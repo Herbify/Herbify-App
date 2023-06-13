@@ -10,6 +10,7 @@ import com.herbify.herbifyapp.data.remote.response.auth.GenerateOtpResponse
 import com.herbify.herbifyapp.data.remote.response.auth.LoginResponse
 import com.herbify.herbifyapp.data.remote.response.auth.OtpResponse
 import com.herbify.herbifyapp.data.remote.response.auth.UserPostResponse
+import com.herbify.herbifyapp.data.remote.response.chat.*
 import com.herbify.herbifyapp.data.remote.response.herbal.HerbalResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -72,4 +73,27 @@ interface ApiService {
 
   @GET("article/{id}")
   fun getArticleById(@Path("id") id: Int): Call<DetailArticleResponse>
+
+  //Chat
+  @GET("message/conversation")
+  fun getAllConversation(): Call<AllChatResponse>
+
+  @GET("message/conversation/{id}")
+  suspend fun getConversation(@Path("id") userId: Int) : AllChatResponse
+
+  @GET("message/room/{id}")
+  suspend fun getConversationRoom(@Path("id") userId: Int): ConversationResponse
+
+  @POST("message/room")
+  fun createConversationRoom(
+      @Body raw : JsonObject
+  ): Call<AddConversationResponse>
+
+  @POST("message/send")
+  fun sendMessage(
+      @Body raw : JsonObject
+  ): SendMessageResponse
+
+  @PUT("message/room/{id}")
+  fun finishConversation(@Path("id") roomId: Int) : Call<FinishConversationResponse>
 }

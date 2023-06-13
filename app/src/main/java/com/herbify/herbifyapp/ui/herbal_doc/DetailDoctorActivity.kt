@@ -24,6 +24,11 @@ class DetailDoctorActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val paymentFragment = PaymentFragment()
 
+        val bundle = Bundle()
+        bundle.putString("doctor_name", doctorData?.name)
+        bundle.putInt("doctor_id", doctorData?.id!!)
+        paymentFragment.arguments = bundle
+
         binding.btnConsultNow.setOnClickListener {
             fragmentManager.beginTransaction().apply {
                 add(binding.framePayment.id, paymentFragment, PaymentFragment::class.java.simpleName)
