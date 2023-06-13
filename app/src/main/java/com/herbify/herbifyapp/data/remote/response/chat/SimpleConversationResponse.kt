@@ -2,7 +2,7 @@ package com.herbify.herbifyapp.data.remote.response.chat
 
 import com.google.gson.annotations.SerializedName
 
-data class AddConversationResponse(
+data class SimpleConversationResponse(
 
 	@field:SerializedName("createdAt")
 	val createdAt: String? = null,
@@ -17,7 +17,7 @@ data class AddConversationResponse(
 	val id: Int? = null,
 
 	@field:SerializedName("userId")
-	val userId: Int? = null,
+	val userId: Int,
 
 	@field:SerializedName("status")
 	val status: Int? = null,

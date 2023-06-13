@@ -51,8 +51,6 @@ class HerbalRemoteMediator(
         try {
             val responseData = apiService.getAllHerbals(state.config.pageSize, page).data
             val endOfPaginationReached = responseData.isEmpty()
-            Log.d("HerbalMediator", "Try")
-
 
             database.withTransaction {
                 if(loadType == LoadType.REFRESH){

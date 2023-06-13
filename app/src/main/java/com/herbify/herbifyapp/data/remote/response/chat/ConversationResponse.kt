@@ -20,16 +20,16 @@ data class Conversation(
 	val createdAt: String? = null,
 
 	@field:SerializedName("doctorId")
-	val doctorId: Int? = null,
+	val doctorId: Int,
 
 	@field:SerializedName("finish")
 	val finish: Boolean? = null,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("userId")
-	val userId: Int? = null,
+	val userId: Int,
 
 	@field:SerializedName("user")
 	val userSimple: UserSimple? = null,

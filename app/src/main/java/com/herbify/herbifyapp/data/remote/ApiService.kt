@@ -79,20 +79,20 @@ interface ApiService {
   fun getAllConversation(): Call<AllChatResponse>
 
   @GET("message/conversation/{id}")
-  suspend fun getConversation(@Path("id") userId: Int) : AllChatResponse
+  fun getConversation(@Path("id") userId: Int) : Call<AllChatResponse>
 
   @GET("message/room/{id}")
-  suspend fun getConversationRoom(@Path("id") userId: Int): ConversationResponse
+  fun getConversationRoom(@Path("id") userId: Int): Call<ConversationResponse>
 
   @POST("message/room")
   fun createConversationRoom(
       @Body raw : JsonObject
-  ): Call<AddConversationResponse>
+  ): Call<SimpleConversationResponse>
 
   @POST("message/send")
   fun sendMessage(
       @Body raw : JsonObject
-  ): SendMessageResponse
+  ): Call<SendMessageResponse>
 
   @PUT("message/room/{id}")
   fun finishConversation(@Path("id") roomId: Int) : Call<FinishConversationResponse>
