@@ -8,38 +8,10 @@ import com.google.gson.annotations.SerializedName
 data class AddNewArticleResponse(
 
 	@field:SerializedName("data")
-	val data: Data? = null,
+	val data: Article? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null
-) : Parcelable
-
-@Parcelize
-data class Data(
-
-	@field:SerializedName("idUser")
-	val idUser: Int,
-
-	@field:SerializedName("createdAt")
-	val createdAt: String,
-
-	@field:SerializedName("photo")
-	val photo: String? = null,
-
-	@field:SerializedName("id")
-	val id: Int,
-
-	@field:SerializedName("tag")
-	val tag: Tag? = null,
-
-	@field:SerializedName("title")
-	val title: String,
-
-	@field:SerializedName("content")
-	val content: String,
-
-	@field:SerializedName("updatedAt")
-	val updatedAt: String
 ) : Parcelable
 
 @Parcelize

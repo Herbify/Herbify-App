@@ -13,10 +13,9 @@ class AddNewArticleViewModel(private val articleRepository: ArticleRepository) :
         title: String,
         photo: MultipartBody.Part,
         content: String,
-        tag1: String,
-        tag2: String
+        tags: ArrayList<String>,
     ): LiveData<RepositoryResult<AddNewArticleResponse>> {
-        return articleRepository.addNewArticle(title, photo, content, tag1, tag2)
+        return articleRepository.addNewArticle(title, photo, content, tags)
     }
 
 }

@@ -1,6 +1,5 @@
 package com.herbify.herbifyapp.ui.herbal_talk.add
 
-import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -17,19 +16,59 @@ import com.herbify.herbifyapp.utils.reduceFileImage
 import com.herbify.herbifyapp.utils.rotateFile
 import com.herbify.herbifyapp.ui.ViewModelFactory
 import com.herbify.herbifyapp.ui.camera.CameraActivity
+import com.herbify.herbifyapp.ui.herbal_talk.ArticleCameraActivity
 import com.herbify.herbifyapp.ui.herbal_talk.HerbaTalkFragment
 import com.herbify.herbifyapp.utils.RepositoryResult
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class AddNewPostActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityAddNewPostBinding
     private lateinit var viewModel: AddNewArticleViewModel
+  
+    companion object {
+        const val CAMERA_X_RESULT = 200
+        private var REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
+        private const val REQUEST_CODE_PERMISSIONS = 10
+    }
 
     private var getFile: File? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityAddNewPostBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        supportActionBar?.hide()
+
+        if (!allPermissionsGranted()) {
+            ActivityCompat.requestPermissions(
+                this,
+                REQUIRED_PERMISSIONS,
+                REQUEST_CODE_PERMISSIONS
+            )
+        }
+
+        initViewModel()
+
+        binding.btnPosting.setOnClickListener { postNewArticle() }
+        binding.btnBack.setOnClickListener {
+            @Suppress("DEPRECATION")
+            onBackPressed()
+        }
+
+        binding.ivPhotoArtikel.setOnClickListener {
+            if (!allPermissionsGranted()) {
+                ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+            }else{
+                startCamera()
+            }
+        }
+    }
+
+
+
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -50,34 +89,9 @@ class AddNewPostActivity : AppCompatActivity() {
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityAddNewPostBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        supportActionBar?.hide()
-
-        if (!allPermissionsGranted()) {
-            ActivityCompat.requestPermissions(
-                this,
-                REQUIRED_PERMISSIONS,
-                REQUEST_CODE_PERMISSIONS
-            )
-        }
-
-        initViewModel()
-
-        binding.ivPhotoArtikel.setOnClickListener { startCameraX() }
-        binding.btnPosting.setOnClickListener { postNewArticle() }
-        binding.btnBack.setOnClickListener {
-            @Suppress("DEPRECATION")
-            onBackPressed()
-        }
-
-
-    }
 
     private fun startCameraX() {
-        val intent = Intent(this, CameraActivity::class.java)
+        val intent = Intent(this, ArticleCameraActivity::class.java)
         launcherIntentCameraX.launch(intent)
     }
 
@@ -92,10 +106,8 @@ class AddNewPostActivity : AppCompatActivity() {
                 it.data?.getSerializableExtra("picture")
             } as? File
 
-            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
 
-            myFile?.let { file ->
-                rotateFile(file, isBackCamera)
+            myfile?.let { file ->
                 getFile = file
                 binding.ivPhotoArtikel.setImageBitmap(BitmapFactory.decodeFile(file.path))
             }
@@ -125,7 +137,7 @@ class AddNewPostActivity : AppCompatActivity() {
             val tag1 = binding.itemTag1.text.toString()
             val tag2 = binding.itemTag2.text.toString()
 
-            viewModel.addNewArticle(title, imageMultipart, content, tag1, tag2).observe(this){ result ->
+            viewModel.addNewArticle(title, imageMultipart, content, ArrayList(listOf(tag1, tag2))).observe(this){ result ->
                 when (result){
                     is RepositoryResult.Loading -> {
                         // Handle loading state
@@ -157,6 +169,7 @@ class AddNewPostActivity : AppCompatActivity() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         val intent = Intent(this, HerbaTalkFragment::class.java)
         startActivity(intent)
+        finish()
     }
 
     companion object {
