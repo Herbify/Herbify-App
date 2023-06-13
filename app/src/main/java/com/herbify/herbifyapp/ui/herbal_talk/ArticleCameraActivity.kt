@@ -10,7 +10,6 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -20,7 +19,6 @@ import androidx.core.content.ContextCompat
 import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.utils.createFile
 import com.herbify.herbifyapp.databinding.ActivityArticleCameraBinding
-import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.ui.camera.CameraActivity
 import com.herbify.herbifyapp.utils.uriToFile
 import java.io.File

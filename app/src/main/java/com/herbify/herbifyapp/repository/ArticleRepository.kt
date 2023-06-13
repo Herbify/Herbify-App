@@ -16,6 +16,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class ArticleRepository(
     private val apiService: ApiService,
@@ -23,7 +24,7 @@ class ArticleRepository(
 
     fun addNewArticle(
         title: String,
-        photo: MultipartBody.Part,
+        photo: File,
         content: String,
         tags: ArrayList<String>
     ): LiveData<RepositoryResult<AddNewArticleResponse>> {
@@ -73,8 +74,9 @@ class ArticleRepository(
     fun getArticleById(id: Int): LiveData<RepositoryResult<DetailArticleResponse>>{
         val result = MediatorLiveData<RepositoryResult<DetailArticleResponse>>()
         result.value = RepositoryResult.Loading
-        val client = apiService.getArticleById(id)
-        client.enqueue(object: retrofit2.Callback<DetailArticleResponse>{
+      
+        val client = apiService.getAllArticle()
+        client.enqueue(object : Callback<ArticleResponse>{
             override fun onResponse(
                 call: Call<DetailArticleResponse>,
                 response: Response<DetailArticleResponse>
@@ -99,8 +101,9 @@ class ArticleRepository(
         val result = MediatorLiveData<RepositoryResult<List<ArticleData>>>()
         result.value = RepositoryResult.Loading
 
-        val client = apiService.getAllArticle()
-        client.enqueue(object : retrofit2.Callback<ArticleResponse>{
+        val client = apiService.getArticleById(id)
+        client.enqueue(object : Callback<DetailArticleResponse>{
+
             override fun onResponse(
                 call: Call<ArticleResponse>,
                 response: Response<ArticleResponse>

@@ -20,6 +20,8 @@ class DetailPostActivity : AppCompatActivity() {
         binding = ActivityDetailPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         initBinding()
         initViewModel()
     }
@@ -54,6 +56,9 @@ class DetailPostActivity : AppCompatActivity() {
     }
 
     private fun initBinding() {
-
+        binding.btnBack.setOnClickListener {
+            @Suppress("DEPRECATION")
+            onBackPressed()
+        }
     }
 }
