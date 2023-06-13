@@ -1,7 +1,5 @@
 package com.herbify.herbifyapp.ui.herbal_talk.add
 
-
-import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -9,9 +7,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -19,15 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.herbify.herbifyapp.databinding.ActivityAddNewPostBinding
 import com.herbify.herbifyapp.ui.ViewModelFactory
 import com.herbify.herbifyapp.ui.herbal_talk.ArticleCameraActivity
-import com.herbify.herbifyapp.utils.reduceFileImage
-import com.herbify.herbifyapp.utils.rotateFile
-import com.herbify.herbifyapp.ui.ViewModelFactory
-import com.herbify.herbifyapp.ui.camera.CameraActivity
 import com.herbify.herbifyapp.ui.herbal_talk.HerbaTalkFragment
 import com.herbify.herbifyapp.utils.RepositoryResult
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class AddNewPostActivity : AppCompatActivity() {
@@ -38,7 +26,6 @@ class AddNewPostActivity : AppCompatActivity() {
         const val CAMERA_X_RESULT = 200
         private var REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
-        private const val MAXIMAL_SIZE = 1000000
     }
 
     private var getFile: File? = null
@@ -88,13 +75,12 @@ class AddNewPostActivity : AppCompatActivity() {
 
         initViewModel()
 
-        binding.ivPhotoArtikel.setOnClickListener { startCameraX() }
         binding.btnPosting.setOnClickListener { postNewArticle() }
         binding.btnBack.setOnClickListener {
             @Suppress("DEPRECATION")
             onBackPressed()
         }
-        binding.ivArtikel.setOnClickListener {
+        binding.ivPhotoArtikel.setOnClickListener {
             if (!allPermissionsGranted()) {
                 ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
             }else{
@@ -119,11 +105,9 @@ class AddNewPostActivity : AppCompatActivity() {
                 it.data?.getSerializableExtra("picture")
             } as? File
 
-            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
-
             myfile?.let { file ->
                 getFile = file
-                binding.ivArtikel.setImageBitmap(BitmapFactory.decodeFile(file.path))
+                binding.ivPhotoArtikel.setImageBitmap(BitmapFactory.decodeFile(file.path))
             }
         }
     }
@@ -161,5 +145,6 @@ class AddNewPostActivity : AppCompatActivity() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         val intent = Intent(this, HerbaTalkFragment::class.java)
         startActivity(intent)
+        finish()
     }
 }

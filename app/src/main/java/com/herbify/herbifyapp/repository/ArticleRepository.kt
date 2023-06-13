@@ -2,7 +2,6 @@ package com.herbify.herbifyapp.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 import com.google.gson.JsonObject
 import com.herbify.herbifyapp.data.remote.ApiService
 import com.herbify.herbifyapp.data.remote.response.article.AddNewArticleResponse
@@ -11,13 +10,15 @@ import com.herbify.herbifyapp.data.remote.response.article.ArticleResponse
 import com.herbify.herbifyapp.data.remote.response.article.DetailArticleResponse
 import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.utils.RepositoryResult
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import org.json.JSONArray
-import org.json.JSONObject
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class ArticleRepository(
     private val apiService: ApiService,
@@ -25,7 +26,7 @@ class ArticleRepository(
 
     fun addNewArticle(
         title: String,
-        photo: MultipartBody.Part,
+        photo: File,
         content: String,
         tags: ArrayList<String>
     ): LiveData<RepositoryResult<AddNewArticleResponse>> {
@@ -82,7 +83,7 @@ class ArticleRepository(
         result.value = RepositoryResult.Loading
 
         val client = apiService.getAllArticle()
-        client.enqueue(object : retrofit2.Callback<ArticleResponse>{
+        client.enqueue(object : Callback<ArticleResponse>{
             override fun onResponse(
                 call: Call<ArticleResponse>,
                 response: Response<ArticleResponse>
@@ -112,7 +113,7 @@ class ArticleRepository(
         result.value = RepositoryResult.Loading
 
         val client = apiService.getArticleById(id)
-        client.enqueue(object : retrofit2.Callback<DetailArticleResponse>{
+        client.enqueue(object : Callback<DetailArticleResponse>{
             override fun onResponse(
                 call: Call<DetailArticleResponse>,
                 response: Response<DetailArticleResponse>

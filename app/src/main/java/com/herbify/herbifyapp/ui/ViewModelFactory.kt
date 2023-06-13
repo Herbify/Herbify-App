@@ -16,7 +16,6 @@ import com.herbify.herbifyapp.ui.herbal_pedia.HerbalPediaViewModel
 import com.herbify.herbifyapp.ui.herbal_talk.HerbalTalkViewModel
 import com.herbify.herbifyapp.ui.herbal_talk.add.AddNewArticleViewModel
 import com.herbify.herbifyapp.ui.herbal_talk.detail.DetailPostViewModel
-import com.herbify.herbifyapp.ui.herbal_talk.add.AddNewArticleViewModel
 
 class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")

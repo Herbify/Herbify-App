@@ -31,7 +31,6 @@
         android:background="@drawable/baseline_insert_photo_24"
         android:contentDescription="@string/shutter"
         android:padding="10dp"
-        android:src="@drawable/ic_baseline_camera_24"
         app:layout_constraintBottom_toBottomOf="@+id/shutter"
         app:layout_constraintEnd_toStartOf="@+id/shutter"
         app:layout_constraintStart_toStartOf="parent"
