@@ -11,9 +11,10 @@ import com.herbify.herbifyapp.data.remote.response.article.DetailArticleResponse
 import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.utils.RepositoryResult
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import org.json.JSONArray
+import org.json.JSONObject
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,6 +35,11 @@ class ArticleRepository(
         result.value = RepositoryResult.Loading
 
         val userId = userPreferences.getUser().id
+        val jsonObject = JsonObject()
+        for (i in 1..tags.size){
+            jsonObject.addProperty("tag$i", tags[i-1])
+        }
+        val tagsBody = jsonObject.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
 
         val titleRequestBody = title.toRequestBody("text/plain".toMediaType())
         val photoRequestBody = photo.asRequestBody("image/*".toMediaTypeOrNull())
@@ -52,6 +58,7 @@ class ArticleRepository(
             contentRequestBody,
             tagRequestBody,
           )
+
 
         client.enqueue(object : Callback<AddNewArticleResponse> {
             override fun onResponse(

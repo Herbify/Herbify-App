@@ -15,8 +15,9 @@
         android:background="@color/green_light"
         android:padding="10dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_profil_doctor"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/profil"

@@ -14,6 +14,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.herbify.herbifyapp.databinding.ActivityAddNewPostBinding
 import com.herbify.herbifyapp.ui.ViewModelFactory
 import com.herbify.herbifyapp.ui.herbal_talk.ArticleCameraActivity
+import com.herbify.herbifyapp.utils.reduceFileImage
+import com.herbify.herbifyapp.utils.rotateFile
+import com.herbify.herbifyapp.ui.ViewModelFactory
+import com.herbify.herbifyapp.ui.camera.CameraActivity
+import com.herbify.herbifyapp.ui.herbal_talk.ArticleCameraActivity
 import com.herbify.herbifyapp.ui.herbal_talk.HerbaTalkFragment
 import com.herbify.herbifyapp.utils.RepositoryResult
 import java.io.File
@@ -29,26 +34,7 @@ class AddNewPostActivity : AppCompatActivity() {
     }
 
     private var getFile: File? = null
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (!allPermissionsGranted()) {
-                Toast.makeText(
-                    this,
-                    "Tidak mendapatkan permission.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
 
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNewPostBinding.inflate(layoutInflater)
@@ -89,9 +75,32 @@ class AddNewPostActivity : AppCompatActivity() {
         }
     }
 
-    private fun startCamera(){
-        val intent = Intent(this@AddNewPostActivity, ArticleCameraActivity::class.java)
-        launcherIntentCamera.launch(intent)
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (!allPermissionsGranted()) {
+                Toast.makeText(
+                    this,
+                    "Tidak mendapatkan permission.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun startCameraX() {
+        val intent = Intent(this, ArticleCameraActivity::class.java)
+        launcherIntentCameraX.launch(intent)
+
     }
 
     private val launcherIntentCamera = registerForActivityResult(

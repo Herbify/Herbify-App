@@ -145,15 +145,14 @@
 
     </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/fab_racik"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="24dp"
         android:contentDescription="@string/racik"
-        app:backgroundTint="@color/green_moss"
-        app:fabSize="auto"
+        android:src="@drawable/button_racik"
         app:layout_constraintBottom_toTopOf="@+id/brew_component"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="30dp" />

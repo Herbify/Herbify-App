@@ -72,20 +72,18 @@ class DoctorRepository(private val doctorDao: DoctorDao, private val apiService:
             ) {
                 if(response.isSuccessful){
                     val doctor = response.body()?.data
-                    appExecutors.diskIO.execute{
-                        if(doctor != null){
-                            val item = Doctor(
-                                doctor.createdAt,
-                                doctor.name,
-                                doctor.verifiedAt,
-                                doctor.photo,
-                                doctor.id,
-                                doctor.email,
-                                doctor.status,
-                                doctor.updatedAt
-                            )
-                            resultDoctor.value = RepositoryResult.Success(item)
-                        }
+                    if(doctor != null){
+                        val item = Doctor(
+                            doctor.createdAt,
+                            doctor.name,
+                            doctor.verifiedAt,
+                            doctor.photo,
+                            doctor.id,
+                            doctor.email,
+                            doctor.status,
+                            doctor.updatedAt
+                        )
+                        resultDoctor.value = RepositoryResult.Success(item)
                     }
                 }
             }

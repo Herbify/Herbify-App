@@ -15,10 +15,11 @@
         android:background="@color/green_light"
         android:padding="15dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_profil_doctor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:contentDescription="@string/profil"
             android:src="@drawable/profil_doctor"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -66,7 +67,6 @@
                 tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
