@@ -18,11 +18,11 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.herbify.herbifyapp.R
-import com.herbify.herbifyapp.createFile
+import com.herbify.herbifyapp.utils.createFile
 import com.herbify.herbifyapp.databinding.ActivityArticleCameraBinding
 import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.ui.camera.CameraActivity
-import com.herbify.herbifyapp.uriToFile
+import com.herbify.herbifyapp.utils.uriToFile
 import java.io.File
 
 class ArticleCameraActivity : AppCompatActivity() {

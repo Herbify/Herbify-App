@@ -1,6 +1,7 @@
 package com.herbify.herbifyapp.ui.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.herbify.herbifyapp.databinding.ItemDoctorBinding
 import com.herbify.herbifyapp.model.Doctor
+import com.herbify.herbifyapp.ui.herbal_doc.DetailDoctorActivity
 
 class DoctorListAdapter : ListAdapter<Doctor, DoctorListAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(val binding : ItemDoctorBinding): RecyclerView.ViewHolder(binding.root) {
@@ -17,6 +19,11 @@ class DoctorListAdapter : ListAdapter<Doctor, DoctorListAdapter.MyViewHolder>(DI
             Log.d("DoctorListAdapter", doctor.name)
             binding.tvNameDoctor.text = doctor.name
             binding.tvTahun.text = doctor.verifiedAt
+            itemView.setOnClickListener{
+                val intent = Intent(itemView.context, DetailDoctorActivity::class.java)
+                intent.putExtra("doctor", doctor)
+                itemView.context.startActivity(intent)
+            }
 //            Glide.with(itemView.context).load(doctor.photo).into(binding.ivProfilDoctor)
         }
     }

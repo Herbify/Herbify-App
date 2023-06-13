@@ -12,6 +12,7 @@ class AddNewArticleViewModel(private val articleRepository: ArticleRepository) :
         title: String,
         photo: File,
         content: String,
+
         tags: ArrayList<String>
     ): LiveData<RepositoryResult<AddNewArticleResponse>> {
         return articleRepository.addNewArticle(title, photo, content, tags)
