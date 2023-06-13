@@ -1,60 +1,46 @@
 package com.herbify.herbifyapp.ui
 
+import android.app.Dialog
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.herbify.herbifyapp.R
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+import com.herbify.herbifyapp.databinding.FragmentPopUpCameraBinding
+import java.io.File
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class PopUpCameraFragment : DialogFragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PopUpCameraFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class PopUpCameraFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentPopUpCameraBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    companion object {
+        private const val ARG_PHOTO_FILE = "photo_file"
+        private const val ARG_PREDICTED_LABEL = "predicted_label"
+
+        fun newInstance(photoFile: File, predictedLabel: String): PopUpCameraFragment {
+            val fragment = PopUpCameraFragment()
+            val args = Bundle().apply {
+                putSerializable(ARG_PHOTO_FILE, photoFile)
+                putString(ARG_PREDICTED_LABEL, predictedLabel)
+            }
+            fragment.arguments = args
+            return fragment
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pop_up_camera, container, false)
-    }
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        @Suppress("DEPRECATION")
+        val photoFile = arguments?.getSerializable(ARG_PHOTO_FILE) as? File
+        val predictedLabel = arguments?.getString(ARG_PREDICTED_LABEL) ?: ""
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PopUpCameraFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PopUpCameraFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        binding = FragmentPopUpCameraBinding.inflate(layoutInflater)
+        val view = binding.root
+
+        binding.ivGambarHerbal.setImageURI(Uri.fromFile(photoFile))
+        binding.tvNamaHerbal.text = predictedLabel
+
+        return AlertDialog.Builder(requireActivity())
+            .setView(view)
+            .setTitle("Camera Result")
+            .create()
     }
 }

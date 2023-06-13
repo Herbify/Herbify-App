@@ -47,7 +47,7 @@
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:maxLines="1"
-            android:text="@string/description_post"
+            android:text="@string/coming_soon"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
