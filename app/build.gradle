@@ -9,10 +9,11 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('D:\\Kuliah\\_BANGKIT\\HerbifyApp\\debug.keystore')
+//            storeFile file('D:\\Kuliah\\_BANGKIT\\HerbifyApp\\debug.keystore')
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
+            storeFile file('/Users/haniapn/Documents/UMM/Semester 6/Capstone/Herbify-App/debug.keystore')
         }
     }
     namespace 'com.herbify.herbifyapp'

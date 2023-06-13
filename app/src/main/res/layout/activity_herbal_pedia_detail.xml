@@ -147,15 +147,15 @@
 
     <ImageButton
         android:id="@+id/fab_racik"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="24dp"
         android:contentDescription="@string/racik"
         android:src="@drawable/button_racik"
         app:layout_constraintBottom_toTopOf="@+id/brew_component"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="30dp" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <include
         android:id="@+id/brew_component"
