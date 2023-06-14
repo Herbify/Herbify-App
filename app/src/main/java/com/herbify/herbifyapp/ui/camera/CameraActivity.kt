@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -24,6 +25,8 @@ import com.herbify.herbifyapp.ui.PopUpCameraFragment
 import com.herbify.herbifyapp.utils.createFile
 import com.herbify.herbifyapp.utils.rotateBitmap
 import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.image.ImageProcessor
+import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
 import java.io.FileOutputStream
@@ -36,6 +39,31 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
+
+    private val dataLabel = listOf<String>(
+        "Belimbing Wuluh",
+        "Bukan Herbal",
+        "Daun Jambu Biji",
+        "Daun Kari",
+        "Daun Kemangi",
+        "Daun Kunyit",
+        "Daun Mint",
+        "Daun Pepaya",
+        "Daun Sirih",
+        "Daun Sirsak",
+        "Jeruk",
+        "Katuk",
+        "Kemangi",
+        "Kencur",
+        "Kunyit",
+        "Lengkuas",
+        "Lidah Buaya",
+        "Nangka",
+        "Pandan",
+        "Seledri",
+        "Teh Hijau",
+        "Temulawak"
+    )
 
     private val pickImageFromGalleryLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
@@ -198,11 +226,17 @@ class CameraActivity : AppCompatActivity() {
         val rotatedBitmap = rotateBitmap(BitmapFactory.decodeFile(photoFile.path), true)
         val resizedBitmap = Bitmap.createScaledBitmap(rotatedBitmap, 180, 180, true)
 
+        var tensorImage = TensorImage(DataType.FLOAT32)
+        tensorImage.load(resizedBitmap)
+
+        tensorImage = ImageProcessor.Builder().build().process(tensorImage)
+
         val model = Model.newInstance(application)
+
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 180, 180, 3), DataType.FLOAT32)
-        val byteBuffer = ByteBuffer.allocateDirect(180 * 180 * 3 * 4) // Ukuran buffer yang cukup besar
-        byteBuffer.order(ByteOrder.nativeOrder())
-        inputFeature0.loadBuffer(byteBuffer)
+        inputFeature0.loadBuffer(tensorImage.buffer)
+//        inputFeature0.loadBuffer(byteBuffer)
+
         resizedBitmap.getPixels(
             IntBuffer.allocate(180 * 180 * 3).apply {
                 resizedBitmap.getPixels(this.array(), 0, resizedBitmap.width, 0, 0, resizedBitmap.width, resizedBitmap.height)
@@ -217,12 +251,16 @@ class CameraActivity : AppCompatActivity() {
 
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-        val predictedLabel = outputFeature0.floatArray[0].toString()
-            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
+        var maxIdx = 0
+        outputFeature0.floatArray.forEachIndexed{ index, fl->
+            if(outputFeature0.floatArray[maxIdx] < fl){
+                maxIdx = index
+            }
+        }
         model.close()
 
-        return predictedLabel
+        return dataLabel[maxIdx]
     }
 
 

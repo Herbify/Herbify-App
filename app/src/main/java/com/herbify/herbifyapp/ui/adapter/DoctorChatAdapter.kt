@@ -19,13 +19,15 @@ class DoctorChatAdapter(private val chatList: List<MessagesItem>): RecyclerView.
         abstract fun bind(message: MessagesItem)
     }
 
-    class SendMessageViewholder(val view: View): MyViewHolder(view){
+    class SendMessageViewholder(val binding: ItemSendMessageBinding): MyViewHolder(binding.root){
         override fun bind(message: MessagesItem) {
+            binding.tvSendMessageContent.text = message.content
         }
     }
 
-    class ReceiveMessageViewHolder(val view: View): MyViewHolder(view){
+    class ReceiveMessageViewHolder(val binding: ItemReceiveMessageBinding): MyViewHolder(binding.root){
         override fun bind(message: MessagesItem) {
+            binding.tvReceiveMessageContent.text = message.content
         }
     }
 
@@ -33,11 +35,11 @@ class DoctorChatAdapter(private val chatList: List<MessagesItem>): RecyclerView.
         when(viewType){
             SEND_MESSAGE -> {
                 val view = ItemSendMessageBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-                return SendMessageViewholder(view.root)
+                return SendMessageViewholder(view)
             }
             RECEIVE_MESSAGE -> {
                 val view = ItemReceiveMessageBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-                return ReceiveMessageViewHolder(view.root)
+                return ReceiveMessageViewHolder(view)
             }
             else -> throw IllegalArgumentException("Invalid view type")
         }

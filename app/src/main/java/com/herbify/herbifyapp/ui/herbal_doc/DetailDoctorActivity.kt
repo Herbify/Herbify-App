@@ -2,10 +2,12 @@ package com.herbify.herbifyapp.ui.herbal_doc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.add
 import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.databinding.ActivityDetailDoctorBinding
 import com.herbify.herbifyapp.model.Doctor
+import java.util.concurrent.TimeUnit
 
 class DetailDoctorActivity : AppCompatActivity() {
     private lateinit var binding : ActivityDetailDoctorBinding

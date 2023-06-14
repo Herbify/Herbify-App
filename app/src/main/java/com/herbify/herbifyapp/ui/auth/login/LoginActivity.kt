@@ -165,7 +165,7 @@ class LoginActivity : AppCompatActivity() {
                 launchSignIn(result.pendingIntent)
             }
             .addOnFailureListener { e ->
-                
+                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
             }
     }
 

@@ -121,6 +121,7 @@
     <string name="total">Total</string>
     <string name="bayar">Bayar</string>
     <string name="pilih_metode_pembayaran">Pilih metode pembayaran</string>
+    <string name="wait_for_doctor">Tunggu, dokter akan segera datang</string>
     <string name="konsultasi_sekarang">Konsultasi Sekarang</string>
     <string name="coming_soon">Coming soon</string>
 </resources>

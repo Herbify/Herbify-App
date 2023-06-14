@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -131,13 +132,15 @@ class AddNewPostActivity : AppCompatActivity() {
             viewModel.addNewArticle(title, file, content, ArrayList(listOf(tag1, tag2))).observe(this){ result ->
                 when (result){
                     is RepositoryResult.Loading -> {
-                        // Handle loading state
+                        binding.loadingdialog.root.visibility = View.VISIBLE
 
                     }
                     is RepositoryResult.Success -> {
+                        binding.loadingdialog.root.visibility = View.INVISIBLE
                         handleSuccess(result.data.data?.id!!)
                     }
                     is RepositoryResult.Error -> {
+                        binding.loadingdialog.root.visibility = View.INVISIBLE
                         val error = result.error
                         showErrorDialog(error)
                     }
