@@ -9,6 +9,8 @@ import com.herbify.herbifyapp.data.remote.response.article.ArticleData
 import com.herbify.herbifyapp.data.remote.response.auth.UserData
 import com.herbify.herbifyapp.databinding.ItemPostBinding
 import com.herbify.herbifyapp.ui.herbal_talk.detail.DetailPostActivity
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ArticleAdapter(private val articles: List<ArticleData>, private val users: List<UserData>) : RecyclerView.Adapter<ArticleAdapter.MyViewHolder>() {
     class MyViewHolder(val binding: ItemPostBinding): RecyclerView.ViewHolder(binding.root)

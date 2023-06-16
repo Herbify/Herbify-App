@@ -10,15 +10,13 @@ interface BrewDao {
     @Query("SELECT * FROM brewed")
     fun getAllBrewed(): LiveData<List<Brewed>>
 
-    @Query(
-        "SELECT herbals.image, herbals.createdAt, herbals.scientificName, herbals.name, herbals.description, herbals.id, herbals.benefit, herbals.updatedAt FROM brewed LEFT JOIN herbals ON brewed.herbal_id = herbals.id"
-    )
-    fun getAllBrewedAsHerbal(): LiveData<List<HerbalData>>
-
     @Delete
     fun delete(brewed: Brewed)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Query("DELETE FROM brewed WHERE herbal_id = :id")
+    fun delete(id: Int)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(brewed: Brewed)
 
     @Query("DELETE FROM brewed")

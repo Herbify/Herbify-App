@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.data.remote.request.RegisterRequest
 import com.herbify.herbifyapp.databinding.ActivityRegisterBinding
 import com.herbify.herbifyapp.ui.ViewModelFactory
@@ -22,7 +24,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         supportActionBar?.hide()
 
         initViewModel()

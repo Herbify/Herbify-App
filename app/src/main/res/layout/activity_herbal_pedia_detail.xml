@@ -77,8 +77,8 @@
                 android:id="@+id/iv_herbal"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginTop="30dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="25dp"
                 android:contentDescription="@string/gambar_herbal"
                 android:scaleType="centerCrop"
@@ -108,18 +108,18 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="14sp"
                 android:text="@string/description_post"
+                android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi"
-                tools:layout_editor_absoluteX="25dp"
-                tools:ignore="VisualLintLongText" />
+                tools:ignore="VisualLintLongText"
+                tools:layout_editor_absoluteX="25dp" />
 
             <TextView
                 android:id="@+id/tv_manfaat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="25dp"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:text="@string/manfaat"
@@ -136,8 +136,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="14sp"
                 android:text="@string/manfaatnya"
+                android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_manfaat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -149,17 +149,20 @@
         android:id="@+id/fab_racik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="24dp"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/racik"
         android:src="@drawable/button_racik"
         app:layout_constraintBottom_toTopOf="@+id/brew_component"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <include
         android:id="@+id/brew_component"
         layout="@layout/component_brew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -8,7 +8,10 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/custom_app_bar" />
+        layout="@layout/custom_app_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/btn_back"
@@ -17,12 +20,12 @@
         android:layout_marginStart="25dp"
         android:contentDescription="@string/arrow_back"
         android:src="@drawable/ic_baseline_arrow_back_white_24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_halaman"
+        app:layout_constraintBottom_toBottomOf="@+id/hertalk"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_halaman" />
+        app:layout_constraintTop_toTopOf="@+id/hertalk" />
 
     <TextView
-        android:id="@+id/tv_halaman"
+        android:id="@+id/hertalk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semi_bold"
@@ -56,10 +59,12 @@
 
                 <ImageView
                     android:id="@+id/iv_profil"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:contentDescription="@string/profil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/profil_doctor"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,7 +83,6 @@
                     android:id="@+id/tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginStart="15dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="@string/address"
@@ -102,23 +106,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
-                    android:text="@string/tanggal"
                     android:fontFamily="@font/poppins_regular"
+                    android:text="@string/tanggal"
                     android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_address"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_waktu" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_address" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/iv_picture_post"
-                android:contentDescription="@string/picture_post"
+            <TextView
+                android:id="@+id/tv_halaman"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="8dp"
+                android:text="TextView jkldwaj hjwad jkawh dawkjdh akwh ldjawlk "
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_picture_post"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/pict_post"
-                android:background="@drawable/bg_rounded_item"/>
+                android:background="@drawable/bg_rounded_item"
+                android:contentDescription="@string/picture_post"
+                android:scaleType="centerCrop"
+                android:src="@drawable/pict_post" />
             <TextView
                 android:id="@+id/tv_description"
                 android:layout_width="match_parent"
@@ -132,8 +149,16 @@
         </LinearLayout>
     </ScrollView>
 
-
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

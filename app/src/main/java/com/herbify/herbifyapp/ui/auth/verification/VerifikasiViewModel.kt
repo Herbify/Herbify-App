@@ -20,6 +20,8 @@ class VerifikasiViewModel(private val pref: UserPreferences):ViewModel() {
     private val _otp = MutableLiveData<Int>(0)
     val otp : LiveData<Int> get() = _otp
 
+    fun getUser() = pref.getUser()
+
     fun refreshOtp(id: Int){
         _isLoading.value = true
         val apiService = ApiConfig().getApiService()

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="150dp"
     android:layout_height="150dp"
+    android:layout_marginStart="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
-    android:layout_marginStart="10dp"
-    app:cardCornerRadius="20dp"
-    android:elevation="40dp">
+    android:elevation="40dp"
+    app:cardCornerRadius="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="150dp"
@@ -16,11 +16,11 @@
 
         <ImageView
             android:id="@+id/iv_herbal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:contentDescription="@string/gambar_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/kayu_manis"
             android:scaleType="centerCrop"
+            android:src="@drawable/kayu_manis"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,11 +30,11 @@
             android:id="@+id/field_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_rounded_item"
             android:orientation="vertical"
             android:padding="5dp"
-            android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_herbal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">

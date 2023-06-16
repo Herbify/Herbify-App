@@ -2,6 +2,7 @@ package com.herbify.herbifyapp.ui.herbal_doc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -29,6 +30,7 @@ class SelectDoctorActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
 
         viewPager = binding.vpDokter
         viewPager.adapter = sectionsPagerAdapter

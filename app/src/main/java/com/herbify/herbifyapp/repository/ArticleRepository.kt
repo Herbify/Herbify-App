@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.google.gson.JsonObject
 import com.herbify.herbifyapp.data.remote.ApiService
-import com.herbify.herbifyapp.data.remote.response.article.AddNewArticleResponse
-import com.herbify.herbifyapp.data.remote.response.article.ArticleData
-import com.herbify.herbifyapp.data.remote.response.article.ArticleResponse
-import com.herbify.herbifyapp.data.remote.response.article.DetailArticleResponse
+import com.herbify.herbifyapp.data.remote.response.article.*
 import com.herbify.herbifyapp.model.UserPreferences
 import com.herbify.herbifyapp.utils.RepositoryResult
 import okhttp3.MediaType.Companion.toMediaType
@@ -22,6 +19,28 @@ import java.io.File
 class ArticleRepository(
     private val apiService: ApiService,
     private val userPreferences: UserPreferences) {
+
+    fun likeArtice(articleId: Int): LiveData<RepositoryResult<LikeRespone>>{
+        val result = MediatorLiveData<RepositoryResult<LikeRespone>>()
+        result.value = RepositoryResult.Loading
+
+        val client = apiService.likeArticle(articleId, userPreferences.getIdUser())
+        client.enqueue(object: retrofit2.Callback<LikeRespone>{
+            override fun onResponse(call: Call<LikeRespone>, response: Response<LikeRespone>) {
+                if(response.isSuccessful){
+                    result.value = RepositoryResult.Success(response.body()!!)
+                }else{
+                    result.value = RepositoryResult.Error(response.errorBody().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<LikeRespone>, t: Throwable) {
+                result.value = RepositoryResult.Error(t.message.toString())
+            }
+
+        })
+        return result
+    }
 
     fun addNewArticle(
         title: String,
@@ -113,6 +132,34 @@ class ArticleRepository(
                     val respBody = response.body()!!
                     if(respBody.data != null){
                         result.value = RepositoryResult.Success(respBody.data)
+                    }else{
+                        result.value = RepositoryResult.Error(respBody.message!!)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
+                result.value = RepositoryResult.Error(t.message.toString())
+            }
+
+        })
+        return result
+    }
+
+    fun getAllArticle(top: Int): LiveData<RepositoryResult<List<ArticleData>>>{
+        val result = MediatorLiveData<RepositoryResult<List<ArticleData>>>()
+        result.value = RepositoryResult.Loading
+        val client = apiService.getAllArticle()
+
+        client.enqueue(object : Callback<ArticleResponse>{
+            override fun onResponse(
+                call: Call<ArticleResponse>,
+                response: Response<ArticleResponse>
+            ) {
+                if(response.isSuccessful){
+                    val respBody = response.body()!!
+                    if(respBody.data != null){
+                        result.value = RepositoryResult.Success(respBody.data.sortedBy { it.numLike }.slice(IntRange(0, 3)))
                     }else{
                         result.value = RepositoryResult.Error(respBody.message!!)
                     }

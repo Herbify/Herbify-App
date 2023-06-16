@@ -45,7 +45,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/guideHorizontal2"
                 app:layout_constraintEnd_toStartOf="@+id/btn_scan"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideHorizontal1"
+                app:layout_constraintTop_toTopOf="@+id/btn_scan"
                 tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
 
             <TextView
@@ -66,6 +66,7 @@
                 android:id="@+id/btn_scan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/button_scan"
                 android:src="@drawable/button_scan"
@@ -102,7 +103,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/guideHorizontal2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_scan"
-                app:layout_constraintTop_toTopOf="@+id/guideHorizontal1"
+                app:layout_constraintTop_toTopOf="@+id/btn_scan"
                 tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
 
             <TextView
@@ -133,32 +134,37 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.13" />
 
-            <ImageView
-                android:id="@+id/banner_herbal"
-                android:layout_width="wrap_content"
-                android:layout_height="160dp"
-                android:layout_marginTop="20sp"
-                android:contentDescription="@string/picture_herbal"
-                android:elevation="30dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/banner_herbal"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/rv_carousel"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideHorizontal2"
-                tools:ignore="ImageContrastCheck" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_scan"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/carousel_tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabBackground="@drawable/tab_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"
+                app:layout_constraintEnd_toEndOf="@+id/rv_carousel"
+                app:layout_constraintStart_toStartOf="@+id/rv_carousel"
+                app:layout_constraintTop_toBottomOf="@+id/rv_carousel" />
 
             <TextView
                 android:id="@+id/tv_ingin_ketahui"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/yang_mungkin_ingin_anda_ketahui"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/banner_herbal" />
+                app:layout_constraintTop_toBottomOf="@+id/carousel_tab_layout" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_herbal"
@@ -166,11 +172,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_saran_produk"
+                android:layout_marginBottom="64dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_ingin_ketahui" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_ingin_ketahui"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/tv_saran_produk"
@@ -178,10 +185,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/produk_yang_mungkin_anda_cari"
                 android:textSize="16sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_herbal" />
 
@@ -191,9 +198,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
-                android:paddingBottom="110dp"
                 android:layout_marginEnd="25dp"
                 android:orientation="horizontal"
+                android:paddingBottom="110dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_saran_produk" />

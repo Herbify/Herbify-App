@@ -5,22 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_send_message_content"
+    <com.google.android.material.card.MaterialCardView
+        style="@style/CustomCardViewStyle"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/bg_send_message"
-        android:fontFamily="@font/poppins_regular"
-        android:gravity="center_vertical"
-        android:padding="10dp"
-        android:text="@string/text_message"
-        android:textSize="14sp"
+        android:backgroundTint="#F6F6F6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toTopOf="parent">
 
-
-
+        <TextView
+            android:id="@+id/tv_send_message_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/text_message"
+            android:textSize="14sp"
+            tools:ignore="TextContrastCheck" />
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

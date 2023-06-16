@@ -14,6 +14,8 @@ import retrofit2.Response
 class DetailPostViewModel(private val repository: ArticleRepository): ViewModel(){
     fun getArticle(id: Int) = repository.getArticleById(id)
 
+    fun likeArticle(articleId: Int) = repository.likeArtice(articleId)
+
     fun getUserData(id: Int): LiveData<RepositoryResult<UserData>>{
         val result = MediatorLiveData<RepositoryResult<UserData>>()
         val client = ApiConfig().getApiService().getUser(id)

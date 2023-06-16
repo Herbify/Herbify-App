@@ -32,7 +32,6 @@ class DoctorChatActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-
         initSocket()
         initViewModel()
         initBinding()
@@ -73,8 +72,14 @@ class DoctorChatActivity : AppCompatActivity() {
                         else -> {}
                     }
                 }
+                binding.editTextMessage.text.clear()
             }
         }
+    }
+
+    override fun onStop() {
+        viewModel.finishConversation(conversation)
+        super.onStop()
     }
 
     private fun initViewModel() {
@@ -122,9 +127,9 @@ class DoctorChatActivity : AppCompatActivity() {
             }
         }
         viewModel.currentChat.observe(this){conversationData ->
-            binding.rvConversation.adapter = DoctorChatAdapter(conversationData?.messages!!)
+            val adapter = DoctorChatAdapter(conversationData?.messages!!)
+            binding.rvConversation.adapter = adapter
+            binding.rvConversation.scrollToPosition(adapter.itemCount)
         }
     }
-
-
 }

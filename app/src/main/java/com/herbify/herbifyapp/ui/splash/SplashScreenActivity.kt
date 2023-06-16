@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import androidx.core.content.ContextCompat
 import com.herbify.herbifyapp.ui.MainActivity
 import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.model.UserPreferences
@@ -20,6 +21,8 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
+
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
 
         supportActionBar?.hide()
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)

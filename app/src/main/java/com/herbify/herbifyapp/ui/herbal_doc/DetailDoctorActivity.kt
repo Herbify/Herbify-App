@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.add
+import com.bumptech.glide.Glide
 import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.databinding.ActivityDetailDoctorBinding
 import com.herbify.herbifyapp.model.Doctor
@@ -22,6 +23,9 @@ class DetailDoctorActivity : AppCompatActivity() {
     private fun initBinding() {
         val doctorData : Doctor? = intent.getParcelableExtra("doctor")
         binding.tvNameUser.text = doctorData?.name
+        Glide.with(this).load(doctorData?.photo).into(binding.ivProfilDoctor)
+        binding.tvValueRiwayat.text = "-"
+        binding.tvPenghargaan.text = "-"
 
         val fragmentManager = supportFragmentManager
         val paymentFragment = PaymentFragment()

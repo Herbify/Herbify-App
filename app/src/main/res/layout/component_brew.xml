@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/brew_component"
     android:layout_width="wrap_content"
-    android:layout_height="72dp"
-    android:layout_marginBottom="-8dp"
-    android:backgroundTint="#E8FFE6"
+    android:layout_height="56dp"
+    android:backgroundTint="#F9FFF9"
+    android:elevation="300dp"
     android:foregroundGravity="center"
-    android:visibility="gone"
-    app:cardCornerRadius="8dp"
+    android:paddingHorizontal="32dp"
 
+    android:visibility="gone"
+    app:cardCornerRadius="32dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -22,25 +23,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="8dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="4dp"
         android:orientation="horizontal">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_brewed_item"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
             android:orientation="horizontal"
             tools:itemCount="4"
-            tools:listitem="@layout/item_brew" />
+            tools:listitem="@layout/item_brew">
 
-        <Button
-            android:id="@+id/button3"
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ImageButton
+            android:id="@+id/btn_start_brew"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
-            android:text="Do" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="24dp"
+            android:background="#00FFFFFF"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/serve_icon" />
 
     </LinearLayout>
 

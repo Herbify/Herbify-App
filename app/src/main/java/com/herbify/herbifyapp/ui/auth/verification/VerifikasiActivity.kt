@@ -7,7 +7,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.databinding.ActivityVerifikasiBinding
 import com.herbify.herbifyapp.ui.MainActivity
 import com.herbify.herbifyapp.ui.ViewModelFactory
@@ -20,7 +22,7 @@ class VerifikasiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityVerifikasiBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         initViewModel()
         initBinding()
         setEditTextListener()
@@ -31,6 +33,12 @@ class VerifikasiActivity : AppCompatActivity() {
 
     private fun initBinding() {
         binding.tvOtpWrong.visibility = View.INVISIBLE
+        var email = viewModel.getUser().email
+        val atPos = email?.indexOf("@")
+        if (email != null) {
+            email = email.replaceRange(1, atPos!!, "*******")
+        }
+        binding.tvSendEmail.text = "The verification code has been sent via email $email"
         binding.tvResendOtp.setOnClickListener{
             viewModel.resendOtp { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() }
         }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import com.herbify.herbifyapp.R
 import com.herbify.herbifyapp.databinding.FragmentPaymentBinding
 
@@ -35,6 +36,12 @@ class PaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val doctorId = arguments?.getInt("doctor_id")
         val doctorName = arguments?.getString("doctor_name")
+        binding.btnPayment.isEnabled = false
+
+        binding.rbPaymentMethod.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener(){button, value ->
+            binding.btnPayment.isEnabled = true
+        })
+
         binding.btnPayment.setOnClickListener {
             val intent = Intent(activity, DoctorChatActivity::class.java)
             intent.putExtra("doctor_id", doctorId)

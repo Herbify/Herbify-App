@@ -1,11 +1,15 @@
 package com.herbify.herbifyapp.ui
 
 import android.app.Dialog
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.herbify.herbifyapp.databinding.FragmentPopUpCameraBinding
+import com.herbify.herbifyapp.ui.herbal_pedia.HerbalPediaDetailActivity
+import com.herbify.herbifyapp.ui.herbal_pedia.HerbalPediaViewModel
 import java.io.File
 
 class PopUpCameraFragment : DialogFragment() {
@@ -37,6 +41,11 @@ class PopUpCameraFragment : DialogFragment() {
 
         binding.ivGambarHerbal.setImageURI(Uri.fromFile(photoFile))
         binding.tvNamaHerbal.text = predictedLabel
+        binding.btnDetail.setOnClickListener {
+            val intent = Intent(requireActivity(), HerbalPediaDetailActivity::class.java)
+            intent.putExtra(HerbalPediaDetailActivity.SCANNED_HERBAL, predictedLabel)
+            requireActivity().startActivity(intent)
+        }
 
         return AlertDialog.Builder(requireActivity())
             .setView(view)

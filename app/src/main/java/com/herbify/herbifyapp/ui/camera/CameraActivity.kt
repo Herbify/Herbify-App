@@ -4,9 +4,11 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -39,6 +41,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
+    private lateinit var preview: Preview
 
     private val dataLabel = listOf<String>(
         "Belimbing Wuluh",
@@ -95,6 +98,9 @@ class CameraActivity : AppCompatActivity() {
             @Suppress("DEPRECATION")
             onBackPressed()
         }
+        binding.btnTutorClose.setOnClickListener {
+            binding.cvTutorial.visibility = View.GONE
+        }
     }
 
     public override fun onResume() {
@@ -109,6 +115,7 @@ class CameraActivity : AppCompatActivity() {
         val photoFile = createFile(application)
 
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+        showLoading(true)
         imageCapture.takePicture(
             outputOptions,
             ContextCompat.getMainExecutor(this),
@@ -175,6 +182,15 @@ class CameraActivity : AppCompatActivity() {
     private fun showPopUpFragment(photoFile: File, predictedLabel: String) {
         val fragment = PopUpCameraFragment.newInstance(photoFile, predictedLabel)
         fragment.show(supportFragmentManager, "PopUpFragment")
+        showLoading(false)
+    }
+
+    private fun showLoading(b: Boolean) {
+        binding.loadingdialog.root.visibility = if(b){
+            View.VISIBLE
+        }else{
+            View.INVISIBLE
+        }
     }
 
     private fun startCamera() {
@@ -182,7 +198,7 @@ class CameraActivity : AppCompatActivity() {
 
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder()
+            preview = Preview.Builder()
                 .build()
                 .also {
                     it.setSurfaceProvider(binding.previewView.surfaceProvider)

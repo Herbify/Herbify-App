@@ -27,7 +27,7 @@ class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInst
                     LoginViewModel(UserPreferences.getInstance(context)) as T
                 }
                 modelClass.isAssignableFrom(HerbalPediaViewModel::class.java) -> {
-                    HerbalPediaViewModel(Injection.provideHerbalRepository(context)) as T
+                    HerbalPediaViewModel(Injection.provideHerbalRepository(context), Injection.provideBrewRepository(context)) as T
                 }
                 modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                     RegisterViewModel(UserPreferences.getInstance(context)) as T
@@ -36,7 +36,7 @@ class ViewModelFactory(private val context: Context?): ViewModelProvider.NewInst
                     VerifikasiViewModel(UserPreferences.getInstance(context)) as T
                 }
                 modelClass.isAssignableFrom(DashboardViewModel::class.java) -> {
-                    DashboardViewModel(Injection.provideHerbalRepository(context)) as T
+                    DashboardViewModel(Injection.provideHerbalRepository(context), Injection.provideArticleRepository(context)) as T
                 }
                 modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
                     AccountViewModel(UserPreferences.getInstance(context)) as T

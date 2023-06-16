@@ -17,7 +17,7 @@ import com.herbify.herbifyapp.model.RemoteKey
 
 @Database(
     entities = [HerbalData::class, RemoteKey::class, Doctor::class, Brewed::class],
-    version = 6,
+    version = 11,
     exportSchema = false
 )
 

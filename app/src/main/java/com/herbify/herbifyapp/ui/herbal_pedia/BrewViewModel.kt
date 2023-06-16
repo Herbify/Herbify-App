@@ -14,10 +14,12 @@ class BrewViewModel(private val brewRepository: BrewRepository): ViewModel() {
     fun addBrewedHerbal(herbalData: HerbalData){
         brewRepository.addBrewed(
             Brewed(
-                herbalId = herbalData.id
+                herbalId = herbalData.id,
+                herbalData.image
             )
         )
     }
 
     fun reset() = brewRepository.reset()
+    fun delete(herbalData: Brewed) = brewRepository.deleteBrewed(herbalData.herbalId)
 }

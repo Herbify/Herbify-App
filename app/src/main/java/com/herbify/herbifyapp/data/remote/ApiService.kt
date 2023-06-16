@@ -6,11 +6,13 @@ import com.herbify.herbifyapp.data.remote.response.DoctorResponse
 import com.herbify.herbifyapp.data.remote.response.article.AddNewArticleResponse
 import com.herbify.herbifyapp.data.remote.response.article.ArticleResponse
 import com.herbify.herbifyapp.data.remote.response.article.DetailArticleResponse
+import com.herbify.herbifyapp.data.remote.response.article.LikeRespone
 import com.herbify.herbifyapp.data.remote.response.auth.GenerateOtpResponse
 import com.herbify.herbifyapp.data.remote.response.auth.LoginResponse
 import com.herbify.herbifyapp.data.remote.response.auth.OtpResponse
 import com.herbify.herbifyapp.data.remote.response.auth.UserPostResponse
 import com.herbify.herbifyapp.data.remote.response.chat.*
+import com.herbify.herbifyapp.data.remote.response.herbal.HerbalIdResponse
 import com.herbify.herbifyapp.data.remote.response.herbal.HerbalResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -48,6 +50,26 @@ interface ApiService {
         @Query("limit") limit:Int,
         @Query("page") page: Int
     ): HerbalResponse
+
+    @GET("herbal/{id}")
+    fun herbalById(
+        @Path("id") id: Int
+    ) : Call<HerbalIdResponse>
+
+    @GET("herbal/search")
+    suspend fun searchHerbal(
+        @Query("keyword") keyword: String,
+        @Query("limit") limit: Int = 10,
+        @Query("page") page: Int = 1
+    ): HerbalResponse
+
+    @GET("herbal/search")
+    fun searchHerbalClient(
+        @Query("keyword") keyword: String
+    ): Call<HerbalResponse>
+
+    @GET("article/{id}/like")
+    fun likeArticle(@Path("id") articleId: Int, @Query("userId") userId: Int): Call<LikeRespone>
   
   
   //herbadoc
@@ -96,4 +118,7 @@ interface ApiService {
 
   @PUT("message/room/{id}")
   fun finishConversation(@Path("id") roomId: Int) : Call<FinishConversationResponse>
+
+  @POST("predict/chatbot")
+  fun sendChatBot(@Body raw: JsonObject): Call<ChatbotResponse>
 }

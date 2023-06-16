@@ -17,4 +17,7 @@ interface HerbalDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertHerbal(herbalData: List<HerbalData>)
+
+    @Query("SELECT * FROM herbals WHERE name LIKE :keyword ORDER BY name DESC")
+    fun searchHerbal(keyword : String): PagingSource<Int, HerbalData>
 }

@@ -14,7 +14,6 @@ import com.herbify.herbifyapp.ui.herbal_pedia.BrewViewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var brewViewModel: BrewViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

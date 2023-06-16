@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.GetSignInIntentRequest
@@ -47,6 +48,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Log.d("LoginActivity: ", "Login page opened")
+
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
 
         supportActionBar?.hide()
         iniViewModel()

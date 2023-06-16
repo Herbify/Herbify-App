@@ -19,7 +19,7 @@
     <string name="login">Login</string>
     <string name="don_t_have_account_register">Don\'t have account? <font color="#687316">register</font></string>
     <string name="picture_otp">picture OTP</string>
-    <string name="the_verification_code_has_been_sent_via_email">The verification code has been sent via email u**r@g****.**m</string>
+    <string name="the_verification_code_has_been_sent_via_email">The verification code has been sent via email </string>
     <string name="code">0</string>
     <string name="otp_verification">OTP Verification</string>
     <string name="button_chatbot">button chatbot</string>
@@ -117,11 +117,14 @@
     <string name="daftar_riwayat_pekerjaan">Daftar riwayat pekerjaan</string>
     <string name="penghargaan">Penghargaan</string>
     <string name="daftar_penghargaan">Daftar penghargaan</string>
-    <string name="nama_payment">Nama payment</string>
+    <string name="nama_payment">Bank Testing Indonesia</string>
     <string name="total">Total</string>
     <string name="bayar">Bayar</string>
     <string name="pilih_metode_pembayaran">Pilih metode pembayaran</string>
     <string name="wait_for_doctor">Tunggu, dokter akan segera datang</string>
     <string name="konsultasi_sekarang">Konsultasi Sekarang</string>
     <string name="coming_soon">Coming soon</string>
+    <string name="close_camera">Dekatkan kamera ke objek herbal</string>
+    <string name="cara_kerja">Cara Kerja</string>
+    <string name="tutor_content">Dekatkan kamera hingga daun/buahnya hampir memenuhi layar. Disarankan menggunakan latar putih/polos</string>
 </resources>

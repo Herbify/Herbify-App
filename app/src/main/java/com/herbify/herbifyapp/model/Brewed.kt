@@ -6,10 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity("brewed")
 data class Brewed(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Int = 0,
-
+    @PrimaryKey
     @ColumnInfo(name = "herbal_id")
     val herbalId: Int,
+    @ColumnInfo(name = "herbal_image")
+    val image: String,
 )

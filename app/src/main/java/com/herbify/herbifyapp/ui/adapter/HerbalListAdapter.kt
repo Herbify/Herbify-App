@@ -16,11 +16,11 @@ class HerbalListAdapter: PagingDataAdapter<HerbalData, HerbalListAdapter.MyViewH
     companion object{
         val DIFF_CALLBACK = object: DiffUtil.ItemCallback<HerbalData>(){
             override fun areItemsTheSame(oldItem: HerbalData, newItem: HerbalData): Boolean {
-                return oldItem == newItem
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(oldItem: HerbalData, newItem: HerbalData): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.updatedAt.equals(newItem.updatedAt)
             }
         }
     }

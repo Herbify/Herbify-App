@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_profil_doctor"
         android:contentDescription="@string/profil_doctor"
         android:layout_width="48dp"
@@ -42,7 +42,9 @@
         android:src="@drawable/profil_doctor"
         app:layout_constraintBottom_toBottomOf="@+id/back"
         app:layout_constraintStart_toEndOf="@+id/back"
-        app:layout_constraintTop_toTopOf="@+id/back" />
+        app:layout_constraintTop_toTopOf="@+id/back"
+        android:scaleType="centerCrop"
+        style="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"/>
 
     <TextView
         android:id="@+id/nama_doctor"
