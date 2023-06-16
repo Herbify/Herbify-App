@@ -7,4 +7,4 @@ This is the main repository of Herbify Application
 3. JDK 11
 
 Note: 
-When replicate the project, open build.gradle (module), then replace storeFile file('xxxxxxxx') to where you put the debug.keystroke in project folder. Example : "storeFile file('D:\\Kuliah\\_BANGKIT\\HerbifyApp\\debug.keystore')
+When replicate the project, open build.gradle (module), then replace storeFile file('xxxxxxxx') to where you put the debug.keystroke in project folder. Example : storeFile file('D:\\Kuliah\\_BANGKIT\\HerbifyApp\\debug.keystore')
